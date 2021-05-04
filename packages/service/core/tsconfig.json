@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"declaration": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"moduleResolution": "node",
+		"pretty": true,
+		"sourceMap": true,
+		"strict": true,
+		"outDir": "build",
+		"resolveJsonModule": true,
+		"lib": ["ESNext"],
+		"target": "esNext",
+		"module": "ESNext"
+	},
+	"include": ["packages/backend/src/**/*.ts"],
+	"exclude": ["node_modules"]
+}
