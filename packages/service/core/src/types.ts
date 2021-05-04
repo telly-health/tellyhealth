@@ -2,7 +2,7 @@ import { ParameterizedContext } from 'koa'
 import Router from '@koa/router'
 import { Twilio } from 'twilio'
 import admin from 'firebase-admin'
-import { VerificationInstance } from 'twilio/lib/rest/verify/v2/service/verification'
+import { MailService } from '@sendgrid/mail'
 
 export interface User {
 	displayName: string
@@ -15,6 +15,7 @@ export interface User {
 export interface Services {
 	twilio: Twilio
 	firebase: admin.app.App
+	sendgrid: MailService
 }
 
 export enum VerificationStatus {
