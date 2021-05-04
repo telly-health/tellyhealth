@@ -46,6 +46,56 @@ const config = convict({
 			env: 'TWILIO_PHONE_NUMBER',
 			default: undefined as any,
 		},
+		sendGridApiKey: {
+			type: String,
+			doc: 'The Sendgrid API Key for sending email',
+			env: 'SENDGRID_API_KEY',
+			default: undefined as any,
+		},
+	},
+	firebase: {
+		apiKey: {
+			type: String,
+			doc: 'Firebase API Key',
+			env: 'FIREBASE_API_KEY',
+			default: undefined as any,
+		},
+		authDomain: {
+			type: String,
+			doc: 'FIrebase Auth Domain',
+			env: 'FIREBASE_AUTH_DOMAIN',
+			default: undefined as any,
+		},
+		projectId: {
+			type: String,
+			doc: 'Firebase Project ID',
+			env: 'FIREBASE_PROJECT_ID',
+			default: 'tellyhealth',
+		},
+		storageBucket: {
+			type: String,
+			doc: 'Firebase Storage Bucket',
+			env: 'FIREBASE_STORAGE_BUCKET',
+			default: undefined as any,
+		},
+		messagingSenderId: {
+			type: String,
+			doc: 'Firebase Message Sender Id',
+			env: 'FIREBASE_MESSAGING_SENDER_ID',
+			default: undefined as any,
+		},
+		appId: {
+			type: String,
+			doc: 'Firebase App Id',
+			env: 'FIREBASE_APP_ID',
+			default: undefined as any,
+		},
+		measurementId: {
+			type: String,
+			doc: 'Firebase Measurement Id',
+			env: 'FIREBASE_MEASUREMENT_ID',
+			default: undefined as any,
+		},
 	},
 	zoom: {
 		clientId: {
