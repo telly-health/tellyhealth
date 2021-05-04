@@ -1,11 +1,51 @@
 {
 	"name": "core-api",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"private": true,
+	"main": "dist",
 	"author": "Ajain Vivek <ajainvivek07@gmail.com>",
-	"license": "MIT"
+	"type": "module",
+	"files": [
+		"dist/"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"@koa/router": "^10.0.0",
+		"axios": "^0.21.1",
+		"convict": "^6.0.1",
+		"dotenv": "^8.2.0",
+		"ioredis": "^4.27.1",
+		"koa": "^2.13.1",
+		"koa-bodyparser": "^4.3.0",
+		"koa-helmet": "^6.1.0",
+		"mongoose": "^5.12.7",
+		"qs": "^6.10.1",
+		"twilio": "^3.61.0"
+	},
+	"devDependencies": {
+		"@jest/globals": "^26.6.2",
+		"@types/convict": "^6.0.1",
+		"@types/ioredis": "^4.26.1",
+		"@types/koa": "^2.13.1",
+		"@types/koa-bodyparser": "^4.3.0",
+		"@types/koa__router": "^8.0.4",
+		"@types/mongoose": "^5.10.5",
+		"@types/node": "^15.0.1",
+		"@types/qs": "^6.9.6",
+		"jest": "^26.6.3",
+		"jest-circus": "^26.6.3",
+		"ts-jest": "^26.5.5",
+		"ts-node": "^9.1.1",
+		"ts-standard": "^10.0.0",
+		"tslib": "^2.2.0",
+		"typescript": "^4.2.4"
+	},
+	"scripts": {
+		"format": "ts-standard --fix",
+		"lint": "ts-standard",
+		"build": "tsc",
+		"test": "node --experimental-vm-modules node_modules/.bin/jest",
+		"start": "node --experimental-json-modules --experimental-modules -r dotenv/config ./build/index.js",
+		"repl": "node --experimental-repl-await --experimental-json-modules --loader ts-node/esm -r dotenv/config"
+	}
 }
