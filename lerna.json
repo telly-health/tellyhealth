@@ -1,0 +1,7 @@
+{
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "private": true,
+  "version": "0.0.1",
+  "lerna": "2.11.0"
+}
