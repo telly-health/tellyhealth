@@ -1,6 +1,6 @@
 import convict from 'convict'
 
-const config = convict({
+export const config = convict({
 	server: {
 		host: {
 			doc: 'Server host',
@@ -140,8 +140,11 @@ const config = convict({
 			default: 'mongodb://localhost:27017/myapp',
 		},
 	},
+	revokeRefreshTokensUponLogout: {
+		type: String,
+		doc:
+			'Time before auth cookie expires. Use vercel/ms notation for the value',
+		default: '5d',
+		env: 'AUTH_SESSION_EXPIRES_IN',
+	},
 })
-
-const schema = config.getSchema()
-
-export { config, schema }
