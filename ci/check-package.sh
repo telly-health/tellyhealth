@@ -8,7 +8,7 @@ source ./ci/setup.sh
 
 pipeline_name=$1
 
-echo "DocPile..."
+echo "telly.health..."
 
 # get all packages
 get_all_packages() {
