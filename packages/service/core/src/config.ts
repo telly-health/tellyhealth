@@ -111,40 +111,4 @@ export const config = convict({
 			default: undefined as any,
 		},
 	},
-	redis: {
-		host: {
-			doc: 'Redis Host',
-			type: String,
-			env: 'REDIS_HOST',
-			default: 'localhost',
-		},
-		port: {
-			doc: 'Redis Port',
-			type: String,
-			env: 'REDIS_PORT',
-			default: '6379',
-		},
-		password: {
-			doc: 'Redis Password',
-			type: String,
-			env: 'REDIS_PASSWORD',
-			sensitive: true,
-			default: undefined as any,
-		},
-	},
-	mongo: {
-		connectionUrl: {
-			doc: 'MongoDB Connection URL',
-			type: String,
-			env: 'MONGO_CONNECTION_URL',
-			default: 'mongodb://localhost:27017/myapp',
-		},
-	},
-	revokeRefreshTokensUponLogout: {
-		type: String,
-		doc:
-			'Time before auth cookie expires. Use vercel/ms notation for the value',
-		default: '5d',
-		env: 'AUTH_SESSION_EXPIRES_IN',
-	},
 })
