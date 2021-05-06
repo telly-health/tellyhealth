@@ -57,10 +57,6 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: Dump needs context
-        env:
-          STEPS_CONTEXT: ${{ toJson(needs) }}
-        run: echo "$STEPS_CONTEXT"
       # Checkout the source code
       - name: 'Checkout source code'
         uses: actions/checkout@v2

@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import Hidden from "@material-ui/core/Hidden"
 import Link from "@material-ui/core/Link"
-import FabDownload from "./fab-download"
+import Image from "./image"
 
 const Footer = () => {
   const footerLinks = [
@@ -44,10 +44,15 @@ const Footer = () => {
             style={{ padding: 10 }}
           >
             <Typography variant="h4" color="inherit">
-              telly.health
+              <div style={{ width: "250px" }}>
+                <Image
+                  alt="Connecting people to medical practitioners across the globe"
+                  filename="telly.health-logo-white.png"
+                />
+              </div>
             </Typography>
-            <Typography variant="body2" color="inherit">
-              telly.health is platform for making health care accessible for
+            <Typography variant="body1" color="inherit">
+              TellyHealth is platform for making health care accessible for
               everyone across globe. We connect people to medical practitioners
               across the globe.
             </Typography>
@@ -96,11 +101,7 @@ const Footer = () => {
         >
           <Typography variant="body2" color="inherit">
             Designed by
-            <a
-              href="https://dribbble.com/slabdsgn"
-              target="_blank"
-              style={{ color: "#FFF", margin: 5 }}
-            >
+            <a href="" target="_blank" style={{ color: "#FFF", margin: 5 }}>
               telly.health
             </a>
           </Typography>
