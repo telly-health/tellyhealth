@@ -18,6 +18,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Install packages
         run: npm install
+      - name: Check root path
+        run: ls -la /
+      - name: Check netlify version
+        run: netlify version
+      - name: Check work path
+        run: ls -la /home/runner/work
       - name: Build the package
         run: npm run build
       - name: Publish
