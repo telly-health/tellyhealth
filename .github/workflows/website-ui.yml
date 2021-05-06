@@ -1,0 +1,15 @@
+name: 'WEBSITE UI CI'
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    steps:
+      - uses: jsmrcaga/action-netlify-deploy@v1.1.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_SECRET }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: 'build'
