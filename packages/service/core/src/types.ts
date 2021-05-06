@@ -50,6 +50,7 @@ export interface StateAddons {
 		sent: VerificationDetails
 		completed: boolean
 	}
+	// TODO: remove
 	emailVerificationLink: string
 	passwordResetLink: string
 }
