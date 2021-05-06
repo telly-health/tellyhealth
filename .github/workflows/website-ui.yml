@@ -1,6 +1,10 @@
 name: 'WEBSITE UI CI'
 
 on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   release:
     types: [published]
 
@@ -8,15 +12,21 @@ jobs:
   deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
     defaults:
       run:
         working-directory: ./packages/ui/website
     steps:
+      - uses: netlify/actions/cli@master
       - name: Check out code
         uses: actions/checkout@v2
-      - uses: jsmrcaga/action-netlify-deploy@v1.1.0
-        with:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_SECRET }}
-          NETLIFY_DEPLOY_MESSAGE: 'Prod deploy v${{ github.ref }}'
-          NETLIFY_DEPLOY_TO_PROD: true
-          build_directory: 'build'
+      - name: Install packages
+        run: npm install
+      - name: Check netlify version
+        run: netlify version
+      - name: Check work path
+        run: ls -la
+      - name: Build the package
+        run: npm run build
+      - name: Publish
+        run: netlify deploy --dir=public --prod --auth ${{ secrets.NETLIFY_SECRET }} --site ${{ secrets.WEBSITE_SITE_ID }}
