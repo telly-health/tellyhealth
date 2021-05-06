@@ -1,4 +1,3 @@
-export { createClient, createEmailClient } from './client'
 export { createService } from './create-service'
 export { lookupPhoneNumber } from './lookup-phone'
 

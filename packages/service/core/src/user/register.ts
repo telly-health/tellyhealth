@@ -4,11 +4,8 @@ import admin from 'firebase-admin'
 
 export async function register(ctx: AppContext, next: Next) {
 	const createRequest = ctx.request.body as admin.auth.CreateRequest
-	const user = await ctx.services.firebase.auth().createUser(createRequest)
+	const user = await ctx.services.auth.createUser(createRequest)
 	const { uid, displayName, email, emailVerified, phoneNumber } = user
-	const emailVerificationLink = await ctx.services.firebase
-		.auth()
-		.generateEmailVerificationLink(email)
 
 	ctx.state.user = {
 		displayName,
@@ -17,8 +14,6 @@ export async function register(ctx: AppContext, next: Next) {
 		phoneNumber,
 		uid,
 	}
-
-	ctx.state.emailVerificationLink = emailVerificationLink
 
 	ctx.body = {
 		message: 'User registration sucessful',

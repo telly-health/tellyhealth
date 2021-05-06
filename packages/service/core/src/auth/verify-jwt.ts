@@ -9,9 +9,9 @@ export async function verifyJwt(ctx: AppContext, next: Next) {
 	const idToken = bearerToken.split(' ')[1]
 
 	try {
-		const claims: admin.auth.DecodedIdToken = await ctx.services.firebase
-			.auth()
-			.verifyIdToken(idToken)
+		const claims: admin.auth.DecodedIdToken = await ctx.services.auth.verifyIdToken(
+			idToken
+		)
 
 		ctx.state.claims = claims
 		await next()

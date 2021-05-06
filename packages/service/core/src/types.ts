@@ -1,6 +1,7 @@
 import { ParameterizedContext } from 'koa'
 import Router from '@koa/router'
 import { Twilio } from 'twilio'
+import firebase from 'firebase'
 import admin from 'firebase-admin'
 import { MailService } from '@sendgrid/mail'
 
@@ -14,7 +15,8 @@ export interface User {
 
 export interface Services {
 	twilio: Twilio
-	firebase: admin.app.App
+	auth: admin.auth.Auth
+	db: firebase.firestore.Firestore
 	sendgrid: MailService
 }
 

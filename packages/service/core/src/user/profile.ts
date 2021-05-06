@@ -10,7 +10,7 @@ export async function updateUser(ctx: AppContext, next: Next) {
 		email,
 		emailVerified,
 		phoneNumber,
-	} = await ctx.services.firebase.auth().updateUser(userId, user)
+	} = await ctx.services.auth.updateUser(userId, user)
 
 	ctx.state.user = { uid, displayName, email, emailVerified, phoneNumber }
 

@@ -10,7 +10,6 @@ import logger from 'koa-pino-logger'
 import { AppContext } from './types'
 import { authRouter, otpRouter } from './routes/'
 
-firebase.initializeApp(config.get('firebase'))
 const app = new Koa<AppContext>()
 
 app.use(logger())
