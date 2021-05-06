@@ -6,14 +6,17 @@ import Hero from "../components/hero"
 import Consultations from "../components/consultations"
 import AboutPanel from "../components/about-panel"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
-import theme from "../theme"
 import JoinUs from "../components/join-us-panel"
+import theme from "../theme"
 
 const IndexPage = () => (
   <React.Fragment>
     <ThemeProvider theme={theme}>
       <Layout>
-        <SEO title="Home" />
+        <SEO
+          title="TellyHealth | Home"
+          description={`Connecting people to medical practitoners across the globe`}
+        />
         <Hero />
         <Consultations />
         <AboutPanel />
