@@ -8,11 +8,13 @@ jobs:
   deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./packages/ui/website
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - uses: jsmrcaga/action-netlify-deploy@v1.1.0
-        working-directory: ./packages/ui/website
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_SECRET }}
           NETLIFY_DEPLOY_MESSAGE: 'Prod deploy v${{ github.ref }}'
