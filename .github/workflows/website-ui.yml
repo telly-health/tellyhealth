@@ -2,7 +2,7 @@ name: 'WEBSITE UI CI'
 
 on:
   push:
-    branches: [feat/deploy]
+    branches: ['feat/deploy']
   # release:
   #   types: [published]
 
