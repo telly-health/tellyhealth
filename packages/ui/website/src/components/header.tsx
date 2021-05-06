@@ -51,10 +51,8 @@ const Header = ({ companyName }: Props) => {
 
   const navLinks = [
     { displayText: "Home", link: "#" },
-    { displayText: "Services", link: "#services" },
-    { displayText: "Apps", link: "#apps" },
-    { displayText: "Testimonials", link: "#testimonials" },
-    { displayText: "Blog", link: "#blog" },
+    { displayText: "How it works", link: "#services" },
+    { displayText: "Contact", link: "#contact" },
   ]
 
   return (
@@ -92,6 +90,9 @@ const Header = ({ companyName }: Props) => {
               </Button>
             ))}
           </Hidden>
+          <Button variant="contained" color="primary" disableElevation>
+            Register Medical Practitioner
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -121,7 +122,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  companyName: `vHealth`,
+  companyName: `TellyHealth`,
 }
 
 export default Header
