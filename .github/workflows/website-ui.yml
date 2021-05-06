@@ -1,15 +1,12 @@
 name: 'WEBSITE UI CI'
 
-on:
-  push:
-    branches: ['*/*']
-  # release:
-  #   types: [published]
-
 jobs:
   deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
+    on:
+      release:
+        types: [published]
     defaults:
       run:
         working-directory: ./packages/ui/website
