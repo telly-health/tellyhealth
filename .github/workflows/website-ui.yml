@@ -25,4 +25,5 @@ jobs:
           NETLIFY_DEPLOY_MESSAGE: 'Prod deploy v${{ github.ref }}'
           NETLIFY_DEPLOY_TO_PROD: true
           NETLIFY_SITE_ID: ${{ secrets.WEBSITE_SITE_ID }}
-          build_directory: 'public'
+          build_directory: './packages/ui/website/public'
+          install_command: yarn workspace website build
