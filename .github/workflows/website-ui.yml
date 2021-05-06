@@ -1,8 +1,10 @@
 name: 'WEBSITE UI CI'
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [feat/deploy]
+  # release:
+  #   types: [published]
 
 jobs:
   deploy:
@@ -19,4 +21,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_SECRET }}
           NETLIFY_DEPLOY_MESSAGE: 'Prod deploy v${{ github.ref }}'
           NETLIFY_DEPLOY_TO_PROD: true
-          build_directory: 'build'
+          NETLIFY_SITE_ID: ${{ secrets.WEBSITE_SITE_ID }}
+          build_directory: 'public'

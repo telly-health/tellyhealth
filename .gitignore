@@ -12,3 +12,5 @@ build
 .env.production.local
 .idea
 package-lock.json
+# Local Netlify folder
+.netlify
