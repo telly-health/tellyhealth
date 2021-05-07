@@ -13,6 +13,7 @@ import Drawer from "@material-ui/core/Drawer"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import List from "@material-ui/core/List"
+import { Link } from "gatsby"
 import Image from "./image"
 
 interface Props {
@@ -50,8 +51,8 @@ const Header = ({ companyName }: Props) => {
   }
 
   const navLinks = [
-    { displayText: "Home", link: "#" },
-    { displayText: "How it works", link: "#services" },
+    { displayText: "Home", link: "/" },
+    { displayText: "How it works", link: "/how-it-works" },
     { displayText: "Contact", link: "#contact" },
   ]
 
@@ -85,9 +86,11 @@ const Header = ({ companyName }: Props) => {
 
           <Hidden xsDown>
             {navLinks.map(item => (
-              <Button color="inherit" key={item.displayText}>
-                {item.displayText}
-              </Button>
+              <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button color="inherit" key={item.displayText}>
+                  {item.displayText}
+                </Button>
+              </Link>
             ))}
           </Hidden>
           <Button variant="contained" color="primary" disableElevation>
