@@ -44,7 +44,7 @@ const Footer = () => {
             style={{ padding: 10 }}
           >
             <Typography variant="h4" color="inherit">
-              <div style={{ width: "250px" }}>
+              <div style={{ width: "200px" }}>
                 <Image
                   alt="Connecting people to medical practitioners across the globe"
                   filename="telly.health-logo-white.png"

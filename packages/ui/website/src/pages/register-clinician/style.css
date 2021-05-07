@@ -1,0 +1,19 @@
+.register-form {
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+.register-form .title {
+    color: #6e6f6f; 
+    text-align: center;
+    margin: 10px 0;
+}
+
+.register-form .textfield {
+    margin: 10px 20px;
+}
+
+.register-form .submit {
+    margin: 10px 20px;
+}

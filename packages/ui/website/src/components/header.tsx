@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     color: "#233348",
     backgroundColor: "#FFF",
+    borderBottom: "1px solid #ccc"
   },
   toolbar: {
     flexWrap: "wrap",
