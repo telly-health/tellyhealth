@@ -1,2 +1,3 @@
 export { updateUser } from './profile'
-export { register } from './register'
+export { createFirebaseUser } from './create-firebase-user'
+export { saveUserDetails } from './save-user-details'

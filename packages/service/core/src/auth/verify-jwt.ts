@@ -4,30 +4,30 @@ import { Next } from 'koa'
 import { AppContext } from '../types'
 import admin from 'firebase-admin'
 
-export async function verifyJwt(ctx: AppContext, next: Next) {
-	const bearerToken = ctx.headers.authorization
+export async function verifyJwt (ctx: AppContext, next: Next) {
+  const bearerToken = ctx.headers.authorization
 
-	const idToken = (bearerToken || '').split(' ')[1] as string
+  const idToken = (bearerToken || '').split(' ')[1]
 
-	if (!idToken) {
-		ctx.body = {
-			message: 'Missing bearer token',
-		}
+  if (!idToken) {
+    ctx.body = {
+      message: 'Missing bearer token'
+    }
 
-		ctx.status = 400
-	}
+    ctx.status = 400
+  }
 
-	try {
-		const claims: admin.auth.DecodedIdToken = await ctx.services.auth.verifyIdToken(
-			idToken
-		)
+  try {
+    const claims: admin.auth.DecodedIdToken = await ctx.services.auth.verifyIdToken(
+      idToken
+    )
 
-		ctx.state.claims = claims
-		await next()
-	} catch (e) {
-		ctx.body = {
-			message: 'Unauthorized',
-		}
-		ctx.status = 401
-	}
+    ctx.state.claims = claims
+    await next()
+  } catch (e) {
+    ctx.body = {
+      message: 'Unauthorized'
+    }
+    ctx.status = 401
+  }
 }

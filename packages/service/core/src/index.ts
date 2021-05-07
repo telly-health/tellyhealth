@@ -24,7 +24,7 @@ app.use(otpRouter.allowedMethods())
 
 const port = config.get('server.port')
 if (port) {
-	app.listen(port, () => {
-		console.log('telly-health API has started on port', port)
-	})
+  app.listen(port, () => {
+    console.log('telly-health API has started on port', port)
+  })
 }

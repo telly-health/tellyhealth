@@ -5,6 +5,6 @@ export { lookupPhoneNumber } from './lookup-phone'
 export { sendOTP, confirmOTP } from './verify-phone'
 
 export {
-	requestPhoneVerification as sendOTPMiddleware,
-	confirmPhoneVerification as confirmOTPMiddleware,
+  requestPhoneVerification as sendOTPMiddleware,
+  confirmPhoneVerification as confirmOTPMiddleware
 } from './otp'

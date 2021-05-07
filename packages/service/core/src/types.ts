@@ -1,5 +1,4 @@
-import { ParameterizedContext } from 'koa'
-import Router from '@koa/router'
+import Router, { RouterContext } from '@koa/router'
 import { Twilio } from 'twilio'
 import firebase from 'firebase'
 import admin from 'firebase-admin'
@@ -7,52 +6,52 @@ import { MailService } from '@sendgrid/mail'
 import { User } from './db/models/User'
 
 export interface Services {
-	twilio: Twilio
-	auth: admin.auth.Auth
-	db: firebase.firestore.Firestore
-	sendgrid: MailService
+  twilio: Twilio
+  auth: admin.auth.Auth
+  db: firebase.firestore.Firestore
+  sendgrid: MailService
 }
 
 export enum VerificationStatus {
-	Correct = 'approved',
-	Incorrect = 'pending',
-	Canceled = 'canceled',
+  Correct = 'approved',
+  Incorrect = 'pending',
+  Canceled = 'canceled',
 }
 
 export interface Attempt {
-	time: string
-	channel: VerificationChannel
-	channelId: string
+  time: string
+  channel: VerificationChannel
+  channelId: string
 }
 
 export enum VerificationChannel {
-	Email = 'email',
-	Sms = 'sms',
-	Call = 'call',
+  Email = 'email',
+  Sms = 'sms',
+  Call = 'call',
 }
 
 export interface VerificationDetails {
-	sid: string
-	serviceSid: string
-	status: VerificationStatus
-	attempts: Attempt[]
+  sid: string
+  serviceSid: string
+  status: VerificationStatus
+  attempts: Attempt[]
 }
 
 export interface StateAddons {
-	claims: admin.auth.DecodedIdToken
-	user: Partial<User>
-	phoneVerification: {
-		sent: VerificationDetails
-		completed: boolean
-	}
-	// TODO: remove
-	emailVerificationLink: string
-	passwordResetLink: string
+  claims: admin.auth.DecodedIdToken
+  user: Partial<User>
+  phoneVerification: {
+    sent: VerificationDetails
+    completed: boolean
+  }
+  // TODO: remove
+  emailVerificationLink: string
+  passwordResetLink: string
 }
 
 export interface ContextAddons {
-	services: Services
+  services: Services
 }
 
-export type AppContext = ParameterizedContext<StateAddons, ContextAddons>
+export type AppContext = RouterContext<StateAddons, ContextAddons>
 export type AppRouter = Router<StateAddons, ContextAddons>
