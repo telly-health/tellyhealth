@@ -94,7 +94,7 @@ const Header = ({ companyName }: Props) => {
             ))}
           </Hidden>
           <Button variant="contained" color="primary" disableElevation>
-            Register Medical Practitioner
+            Register Clinician
           </Button>
         </Toolbar>
       </AppBar>

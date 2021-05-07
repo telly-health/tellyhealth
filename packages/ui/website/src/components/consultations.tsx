@@ -46,11 +46,11 @@ const Services = () => {
         justify="center"
         alignItems="center"
       >
-        <Typography variant="h5">Open Consultations</Typography>
+        <Typography variant="h5">Available Consultations</Typography>
         <Bar />
         <Typography variant="subtitle1" style={{ margin: 30 }}>
           Countries across Asia Pacific are reeling from surges from corona
-          viruses cases, this as overburdened health care professionals. Open
+          viruses cases, this as overburdened health care professionals. Group
           consultations are created by medical practitioners across the globe to
           support people in time of crisis.
         </Typography>
@@ -64,7 +64,7 @@ const Services = () => {
 
       <Grid item xs={12}>
         <Button variant="outlined" color="primary" size="large">
-          All Available Open Consultations
+          All Available Group Consultations
         </Button>
       </Grid>
     </Grid>
