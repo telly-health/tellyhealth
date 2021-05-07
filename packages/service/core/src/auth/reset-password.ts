@@ -1,9 +1,12 @@
 import { Next } from 'koa'
 import { AppContext } from '../types'
 
-export async function resetPassword (ctx: AppContext, next: Next) {
+export async function resetPassword (
+  ctx: AppContext,
+  next: Next
+): Promise<void> {
   const { email } = ctx.request.body
-  if (!ctx.state.user) {
+  if (ctx.state.user.email == null) {
     ctx.body = {
       message: 'User with email does not exist'
     }

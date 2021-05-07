@@ -1,8 +1,8 @@
 import { AppContext } from '../types'
 import { Next } from 'koa'
 
-export async function getUser (ctx: AppContext, next: Next) {
-  if (ctx.request.body.email) {
+export async function getUser (ctx: AppContext, next: Next): Promise<void> {
+  if (ctx.request.body.email != null) {
     const {
       uid,
       displayName,
@@ -20,7 +20,7 @@ export async function getUser (ctx: AppContext, next: Next) {
     }
   }
 
-  if (ctx.request.body.phoneNumber) {
+  if (ctx.request.body.phoneNumber != null) {
     const {
       uid,
       displayName,

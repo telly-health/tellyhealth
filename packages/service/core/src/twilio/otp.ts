@@ -1,5 +1,4 @@
 import { Next } from 'koa'
-import twilio from 'twilio'
 import { VerificationInstance } from 'twilio/lib/rest/verify/v2/service/verification'
 import { VerificationCheckInstance } from 'twilio/lib/rest/verify/v2/service/verificationCheck'
 import { config } from '../config'
@@ -11,7 +10,10 @@ import {
 } from '../types'
 import { lookupPhoneNumber } from './lookup-phone'
 
-export async function requestPhoneVerification (ctx: AppContext, next: Next) {
+export async function requestPhoneVerification (
+  ctx: AppContext,
+  next: Next
+): Promise<void> {
   const { phoneNumber } = ctx.request.body
   const { e164Format: formattedPhoneNumber } = await lookupPhoneNumber(
     ctx.services.twilio,
@@ -33,9 +35,21 @@ export async function requestPhoneVerification (ctx: AppContext, next: Next) {
     attempts: attempts as Attempt[],
     serviceSid
   }
+
+  ctx.body = {
+    message: 'An sms has been sent to the user for phone verification',
+    messageSid: sid,
+    attempts,
+    status
+  }
+
+  ctx.status = 200
 }
 
-export async function confirmPhoneVerification (ctx: AppContext, next: Next) {
+export async function confirmPhoneVerification (
+  ctx: AppContext,
+  next: Next
+): Promise<void> {
   const { phoneNumber, otp } = ctx.request.body
 
   const { e164Format: formattedPhoneNumber } = await lookupPhoneNumber(
@@ -50,6 +64,18 @@ export async function confirmPhoneVerification (ctx: AppContext, next: Next) {
       code: otp
     })
 
-  ctx.state.phoneVerification.completed =
-		verificationCheck.status === VerificationStatus.Correct
+  if (
+    (ctx.state.phoneVerification.completed =
+			verificationCheck.status === VerificationStatus.Correct)
+  ) {
+    const { uid, authId } = ctx.state.user
+
+    ctx.body = {
+      message: 'Phone number has been verified',
+      uid,
+      authId
+    }
+
+    ctx.status = 200
+  }
 }

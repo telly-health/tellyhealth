@@ -1,9 +1,11 @@
 import { Next } from 'koa'
-import { config } from './config'
 import { AppContext } from './types'
 import { twilio, firebase, sendgrid, firebaseAdmin } from './clients'
 
-export async function prepareContext (ctx: AppContext, next: Next) {
+export async function prepareContext (
+  ctx: AppContext,
+  next: Next
+): Promise<void> {
   ctx.services = {
     auth: firebaseAdmin.auth(),
     db: firebase.firestore(),

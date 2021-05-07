@@ -55,7 +55,8 @@
 		"project": "./tsconfig.json",
 		"ignore": [
 			"dist/"
-		]
+		],
+		"fix": true
 	},
 	"scripts": {
 		"format": "ts-standard --fix",

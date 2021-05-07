@@ -1,5 +1,3 @@
-import firebase from 'firebase'
-
 export enum Role {
   Admin = 'Admin',
   MedicalPractioner = 'MedicalPractioner',
