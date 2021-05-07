@@ -12,7 +12,7 @@ export async function authorize (
   }
   const queryString = qs.stringify(params)
   const response = await axios.get(
-		`https://zoom.us/oauth/authorize?${queryString}`
+    `https://zoom.us/oauth/authorize?${queryString}`
   )
   return response.data
 }

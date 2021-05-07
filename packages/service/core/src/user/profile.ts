@@ -1,8 +1,7 @@
-import admin from 'firebase-admin'
 import { Next } from 'koa'
 import { AppContext } from '../types'
 
-export async function updateUser (ctx: AppContext, next: Next) {
+export async function updateUser (ctx: AppContext, next: Next): Promise<void> {
   const { uid: userId, ...user } = ctx.request.body
   const {
     uid,

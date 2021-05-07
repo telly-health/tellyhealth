@@ -6,12 +6,12 @@ import { StateAddons, ContextAddons } from '../types'
 export async function saveUserDetails (
   ctx: RouterContext<StateAddons, ContextAddons>,
   next: Next
-) {
+): Promise<void> {
   const { role } = ctx.params
 
   if (role === Role.MedicalPractioner) {
     ;(ctx.state.user as MedicalPractioner).specialization =
-			ctx.request.body.specialization
+      ctx.request.body.specialization
   }
 
   const { id } = await ctx.services.db.collection('users').add(ctx.state.user)

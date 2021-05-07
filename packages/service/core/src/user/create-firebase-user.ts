@@ -7,7 +7,7 @@ import { RegistrationForm } from './types'
 export async function createFirebaseUser (
   ctx: RouterContext<StateAddons, ContextAddons>,
   next: Next
-) {
+): Promise<void> {
   const { role } = ctx.params
 
   if (![Role.Individual, Role.MedicalPractioner].includes(role as Role)) {

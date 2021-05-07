@@ -21,8 +21,8 @@ export async function token (
   redirectUrl: string
 ): Promise<ZoomTokenResponse> {
   const authorizationKey = Buffer.from(
-		`${clientId}:${clientSecret}`,
-		'base64'
+    `${clientId}:${clientSecret}`,
+    'base64'
   ).toString()
 
   const options = {

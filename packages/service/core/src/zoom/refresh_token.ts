@@ -13,8 +13,8 @@ export async function refreshToken (
   })
 
   const authorization = Buffer.from(
-		`${clientId}:${clientSecret}`,
-		'base64'
+    `${clientId}:${clientSecret}`,
+    'base64'
   ).toString()
   const options = {
     headers: {
@@ -23,8 +23,8 @@ export async function refreshToken (
   }
 
   const response: AxiosResponse<ZoomTokenResponse> = await axios.get(
-		`https://zoom.us/oauth/token?${params}`,
-		options
+    `https://zoom.us/oauth/token?${params}`,
+    options
   )
 
   return response.data

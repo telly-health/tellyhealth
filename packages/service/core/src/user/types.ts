@@ -17,5 +17,5 @@ MedicalPractionerRegistrationForm,
 >
 
 export type RegistrationForm =
-	| IndividualRegistrationForm
-	| MedicalPractionerRegistrationForm
+  | IndividualRegistrationForm
+  | MedicalPractionerRegistrationForm

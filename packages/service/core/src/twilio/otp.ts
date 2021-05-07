@@ -66,7 +66,7 @@ export async function confirmPhoneVerification (
 
   if (
     (ctx.state.phoneVerification.completed =
-			verificationCheck.status === VerificationStatus.Correct)
+      verificationCheck.status === VerificationStatus.Correct)
   ) {
     const { uid, authId } = ctx.state.user
 

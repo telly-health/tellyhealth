@@ -10,8 +10,8 @@ export async function revokeToken (
   token: string
 ): Promise<TokenRevokeResponse> {
   const authorization = Buffer.from(
-		`${clientId}:${clientSecret}`,
-		'base64'
+    `${clientId}:${clientSecret}`,
+    'base64'
   ).toString()
 
   const options = {
