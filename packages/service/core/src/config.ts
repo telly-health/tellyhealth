@@ -1,4 +1,7 @@
 import convict from 'convict'
+import formats from 'convict-format-with-validator'
+
+convict.addFormats(formats as { [name: string]: convict.Format })
 
 export const config = convict({
 	server: {
@@ -6,48 +9,48 @@ export const config = convict({
 			doc: 'Server host',
 			env: 'APP_HOST',
 			default: 'localhost',
-			type: String,
+			format: String,
 		},
 		port: {
 			doc: 'Server port',
 			env: 'APP_PORT',
 			default: 3000,
-			type: String,
+			format: String,
 		},
 	},
 	twilio: {
 		accountSid: {
-			type: String,
+			format: String,
 			doc: 'The Twilio Account SID',
 			env: 'TWILIO_ACCOUNT_SID',
 			default: undefined as any,
 		},
 		authToken: {
-			type: String,
+			format: String,
 			doc: 'The Twilio Auth Token',
 			env: 'TWILIO_AUTH_TOKEN',
 			default: undefined as any,
 		},
 		serviceName: {
-			type: String,
+			format: String,
 			doc: 'The Twilio Service Name',
 			env: 'TWILIO_SERVICE_NAME',
 			default: undefined as any,
 		},
 		serviceSid: {
-			type: String,
+			format: String,
 			doc: 'The Twilio Service Identifier',
 			env: 'TWILIO_SERVICE_SID',
 			default: undefined as any,
 		},
 		twilioPhoneNumber: {
-			type: String,
+			format: String,
 			doc: 'The Twilio Phone Number to send messages from',
 			env: 'TWILIO_PHONE_NUMBER',
 			default: undefined as any,
 		},
 		sendGridApiKey: {
-			type: String,
+			format: String,
 			doc: 'The Sendgrid API Key for sending email',
 			env: 'SENDGRID_API_KEY',
 			default: undefined as any,
@@ -55,43 +58,43 @@ export const config = convict({
 	},
 	firebase: {
 		apiKey: {
-			type: String,
+			format: String,
 			doc: 'Firebase API Key',
 			env: 'FIREBASE_API_KEY',
 			default: undefined as any,
 		},
 		authDomain: {
-			type: String,
+			format: String,
 			doc: 'FIrebase Auth Domain',
 			env: 'FIREBASE_AUTH_DOMAIN',
 			default: undefined as any,
 		},
 		projectId: {
-			type: String,
+			format: String,
 			doc: 'Firebase Project ID',
 			env: 'FIREBASE_PROJECT_ID',
 			default: 'tellyhealth',
 		},
 		storageBucket: {
-			type: String,
+			format: String,
 			doc: 'Firebase Storage Bucket',
 			env: 'FIREBASE_STORAGE_BUCKET',
 			default: undefined as any,
 		},
 		messagingSenderId: {
-			type: String,
+			format: String,
 			doc: 'Firebase Message Sender Id',
 			env: 'FIREBASE_MESSAGING_SENDER_ID',
 			default: undefined as any,
 		},
 		appId: {
-			type: String,
+			format: String,
 			doc: 'Firebase App Id',
 			env: 'FIREBASE_APP_ID',
 			default: undefined as any,
 		},
 		measurementId: {
-			type: String,
+			format: String,
 			doc: 'Firebase Measurement Id',
 			env: 'FIREBASE_MEASUREMENT_ID',
 			default: undefined as any,
@@ -100,13 +103,13 @@ export const config = convict({
 	zoom: {
 		clientId: {
 			doc: 'Zoom OAuth2.0 Client Id',
-			type: String,
+			format: String,
 			env: 'ZOOM_CLIENT_ID',
 			default: undefined as any,
 		},
 		clientSecret: {
 			doc: 'Zoom OAuth 2.0 Client Secret',
-			type: String,
+			format: String,
 			env: 'ZOOM_CLIENT_SECRET',
 			default: undefined as any,
 		},

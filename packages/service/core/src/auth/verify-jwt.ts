@@ -6,7 +6,16 @@ import admin from 'firebase-admin'
 
 export async function verifyJwt(ctx: AppContext, next: Next) {
 	const bearerToken = ctx.headers.authorization
-	const idToken = bearerToken.split(' ')[1]
+
+	const idToken = (bearerToken || '').split(' ')[1] as string
+
+	if (!idToken) {
+		ctx.body = {
+			message: 'Missing bearer token',
+		}
+
+		ctx.status = 400
+	}
 
 	try {
 		const claims: admin.auth.DecodedIdToken = await ctx.services.auth.verifyIdToken(

@@ -1,14 +1,12 @@
 export {
 	model as Appointment,
 	schema as AppointmentSchema,
-} from './Appointment'
+} from './Appointment.js'
 export {
 	model as Consultation,
 	schema as ConsultationSchema,
-} from './Consultation'
+} from './Consultation.js'
 
-export {
-	schema as MedicalPractionerSchema,
-	model as MedicalPractioner,
-} from './MedicalPractioner'
 export { schema as PatientSchema, model as Patient } from './Patient'
+
+export * from './User.js'

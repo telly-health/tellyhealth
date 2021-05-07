@@ -9,13 +9,11 @@ export async function getUser(ctx: AppContext, next: Next) {
 			email,
 			emailVerified,
 			phoneNumber,
-		} = await ctx.services.firebase
-			.auth()
-			.getUserByEmail(ctx.request.body.email as string)
+		} = await ctx.services.auth.getUserByEmail(ctx.request.body.email as string)
 
 		ctx.state.user = {
 			uid,
-			displayName,
+			name: displayName,
 			email,
 			emailVerified,
 			phoneNumber,
@@ -29,13 +27,13 @@ export async function getUser(ctx: AppContext, next: Next) {
 			email,
 			emailVerified,
 			phoneNumber,
-		} = await ctx.services.firebase
-			.auth()
-			.getUserByEmail(ctx.request.body.phoneNumber as string)
+		} = await ctx.services.auth.getUserByEmail(
+			ctx.request.body.phoneNumber as string
+		)
 
 		ctx.state.user = {
 			uid,
-			displayName,
+			name: displayName,
 			email,
 			emailVerified,
 			phoneNumber,

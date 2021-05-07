@@ -1,4 +1,6 @@
-export enum UserType {
+import firebase from 'firebase'
+
+export enum Role {
 	Admin = 'Admin',
 	MedicalPractioner = 'MedicalPractioner',
 	Individual = 'Individual',
@@ -33,11 +35,42 @@ export interface GeoPoint {
 	longitude: string
 }
 
-export interface User {
+export interface Individual {
 	uid: string
+	authUid: string
+	role: Role.Individual
 	email: string
+	name: string
 	phoneNumber: string
 	location: GeoPoint
-	languages: string
+	languages: string[]
+	timezone: string
+	emailVerified: boolean
+	phoneVerified: boolean
+}
+
+export interface MedicalPractioner {
+	uid: string
+	authUid: string
+	role: Role.MedicalPractioner
+	email: string
+	name: string
+	phoneNumber: string
+	location: GeoPoint
+	languages: string[]
+	timezone: string
+	emailVerified: boolean
+	phoneVerified: boolean
 	specialization: MedicalSpecialization
 }
+
+export type Admin = Individual & {
+	role: Role.Admin
+}
+
+export type User = MedicalPractioner | Individual | Admin
+
+export type NewIndividualUser = Omit<Individual, 'uid'>
+export type NewMedicalPractioner = Omit<MedicalPractioner, 'uid'>
+
+export type NewUser = NewIndividualUser | NewMedicalPractioner

@@ -12,7 +12,7 @@ export async function updateUser(ctx: AppContext, next: Next) {
 		phoneNumber,
 	} = await ctx.services.auth.updateUser(userId, user)
 
-	ctx.state.user = { uid, displayName, email, emailVerified, phoneNumber }
+	ctx.state.user = { uid, name: displayName, email, emailVerified, phoneNumber }
 
 	ctx.body = {
 		uid,

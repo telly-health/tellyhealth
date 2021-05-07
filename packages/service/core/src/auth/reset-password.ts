@@ -12,14 +12,11 @@ export async function resetPassword(ctx: AppContext, next: Next) {
 	}
 
 	if (ctx.state.user.email === email) {
-		const resetLink = await ctx.services.firebase
-			.auth()
-			.generatePasswordResetLink(email)
-
-		ctx.state.passwordResetLink = resetLink
+		const resetLink = await ctx.services.auth.generatePasswordResetLink(email)
 
 		ctx.body = {
 			message: 'Password Reset Link Generated',
+			resetLink,
 		}
 
 		ctx.status = 200

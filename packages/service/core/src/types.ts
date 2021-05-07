@@ -4,14 +4,7 @@ import { Twilio } from 'twilio'
 import firebase from 'firebase'
 import admin from 'firebase-admin'
 import { MailService } from '@sendgrid/mail'
-
-export interface User {
-	displayName: string
-	email: string
-	emailVerified: boolean
-	phoneNumber?: string
-	uid: string
-}
+import { User } from './db/models/User'
 
 export interface Services {
 	twilio: Twilio
@@ -47,7 +40,7 @@ export interface VerificationDetails {
 
 export interface StateAddons {
 	claims: admin.auth.DecodedIdToken
-	user: User
+	user: Partial<User>
 	phoneVerification: {
 		sent: VerificationDetails
 		completed: boolean

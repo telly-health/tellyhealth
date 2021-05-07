@@ -14,10 +14,13 @@
 		"strict": true,
 		"outDir": "build",
 		"resolveJsonModule": true,
-		"lib": ["ESNext"],
+		"lib": [
+			"ESNext"
+		],
 		"target": "esNext",
 		"module": "ESNext"
 	},
-	"include": ["packages/backend/src/**/*.ts"],
-	"exclude": ["node_modules"]
+	"include": [
+		"./src/**/*.ts"
+	]
 }
