@@ -35,7 +35,21 @@ module.exports = {
       },
     },
     `gatsby-plugin-material-ui`,
-    `gatsby-plugin-mdx`,
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        root: __dirname,
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 500,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
