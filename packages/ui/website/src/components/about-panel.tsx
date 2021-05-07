@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import Image from "./image"
 import Hidden from "@material-ui/core/Hidden"
+import { Link } from "gatsby"
 import Bar from "./bar"
 
 const AboutPanel = () => {
@@ -42,13 +43,14 @@ const AboutPanel = () => {
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          We are connecting people to medical practitioners across the globe to
-          support the covid impacted regions by creating free open
+          Connecting people to medical practitioners across the globe through group
           consultations.
         </Typography>
-        <Button variant="outlined" color="primary" size="large">
-          Learn More
-        </Button>
+        <Link to={`/how-it-works`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Button variant="outlined" color="primary" size="large">
+            Learn More
+          </Button>
+        </Link>
       </Grid>
     </Grid>
   )

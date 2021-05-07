@@ -19,7 +19,7 @@ const Hero = () => {
         style={{ paddingLeft: 40, paddingRight: 40 }}
       >
         <Typography variant="h4" color="inherit" style={{ marginBottom: 20 }}>
-          Free Open Telehealth Consultation
+          Telehealth Consultation
         </Typography>
 
         <Typography variant="subtitle1" style={{ marginBottom: 30 }}>
@@ -27,7 +27,7 @@ const Hero = () => {
           tele consultation.
         </Typography>
         <Button variant="contained" color="primary" size="large">
-          Book open consultation
+          Book group consultation
         </Button>
       </Grid>
       <Hidden xsDown>

@@ -31,8 +31,8 @@ const JoinUsPanel = () => {
           Countries across Asis Pacific are reeling surges in corona virus cases
           which has put stress and overburden on health care professionals. We
           are in need of medical practitioners across the globe to support and
-          help impacted regions by creating free open consultations for people
-          in need of medical consultation.
+          help impacted regions by creating group consultations for people
+          with similar medical conditions.
         </Typography>
         <Button
           variant="outlined"
@@ -40,7 +40,7 @@ const JoinUsPanel = () => {
           size="large"
           endIcon={<AccessibilityNewIcon />}
         >
-          Join us - Medical Practitioner
+          Join us - Clinician
         </Button>
       </Grid>
 
