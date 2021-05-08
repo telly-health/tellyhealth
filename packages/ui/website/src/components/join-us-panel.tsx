@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew"
+import { Link } from "gatsby"
 import Image from "./image"
 import Hidden from "@material-ui/core/Hidden"
 import Bar from "./bar"
@@ -34,14 +35,16 @@ const JoinUsPanel = () => {
           help impacted regions by creating group consultations for people
           with similar medical conditions.
         </Typography>
-        <Button
-          variant="outlined"
-          color="primary"
-          size="large"
-          endIcon={<AccessibilityNewIcon />}
-        >
-          Join us - Clinician
-        </Button>
+        <Link to={`/register-clinician`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            endIcon={<AccessibilityNewIcon />}
+          >
+            Join us - Clinician
+          </Button>
+        </Link>
       </Grid>
 
       <Hidden xsDown>

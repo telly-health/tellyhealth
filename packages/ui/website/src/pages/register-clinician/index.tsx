@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography"
 import MenuItem from "@material-ui/core/MenuItem"
 import Recaptcha from "react-recaptcha"
 import theme from "../../theme"
+import { map } from "lodash"
 
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
@@ -32,6 +33,17 @@ function countryToFlag(isoCode: string) {
     : isoCode
 }
 
+const interests = [{
+  id: 'webinar',
+  title: 'Webinar Consultation'
+}, {
+  id: 'group',
+  title: 'Group Consultation'
+}, {
+  id: 'one-to-one',
+  title: 'One-to-One Consultation'
+}]
+
 const siteKey = location.hostname === "localhost" ? "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" : "6LeCucsaAAAAANOXl02zN6x83xmDVRQHyEvTyGij"
 
 const validationSchema = yup
@@ -46,11 +58,11 @@ const validationSchema = yup
       .min(8, "Phone should be of minimum 8 characters length")
       .required("Phone number is required"),
     specialization: yup.string().required("Specialization is required"),
-    languages: yup.array().of(yup.string()).required("Languages is required"),
   })
   .shape({
     location: yup.string().required("Location is required"),
     recaptcha: yup.string().required(),
+    languages: yup.array().of(yup.string()).required("Languages is required"),
   })
 
 const RegisterClinician = () => {
@@ -62,6 +74,7 @@ const RegisterClinician = () => {
     specialization: "",
     languages: [],
     recaptcha: "",
+    preferredConsultation: []
   }
 
   const onSubmit = (values: any) => {
@@ -83,7 +96,7 @@ const RegisterClinician = () => {
         <SEO title="Register clinician" />
         <Paper className={`register-form`} elevation={3}>
           <Typography variant="h5" className={`title`}>
-            Register Clinician
+            Register GP/Specialist
           </Typography>
           <Formik
             validationSchema={validationSchema}
@@ -183,28 +196,54 @@ const RegisterClinician = () => {
                     </MenuItem>
                   ))}
                 </TextField>
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  name="languages"
+                <Autocomplete
+                  multiple
                   id="languages"
-                  variant="filled"
-                  select
-                  label="Known languages"
-                  error={touched.languages && Boolean(errors.languages)}
-                  SelectProps={{
-                    multiple: true,
-                    value: values.languages,
-                    onChange: handleChange,
+                  options={allLanguages}
+                  getOptionLabel={(option) => option.name}
+                  defaultValue={[]}
+                  onChange={(e, value) => {
+                    const languages = map(value, (option) => {
+                      return option.id
+                    })
+                    setFieldValue(
+                      "languages",
+                      value !== null ? languages : initialValues.preferredConsultation
+                    )
                   }}
-                  helperText={touched.languages && errors.languages}
-                >
-                  {allLanguages.map(option => (
-                    <MenuItem key={option.id} value={option.id}>
-                      {option.name}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="filled"
+                      label="Known languages"
+                      className="textfield"
+                      placeholder="Choose"
+                      helperText={touched.languages && errors.languages}
+                    />
+                  )}
+                />
+                <Autocomplete
+                  multiple
+                  id="preferred-consultation"
+                  options={interests}
+                  getOptionLabel={(option) => option.title}
+                  defaultValue={[]}
+                  onChange={(e, value) => {
+                    setFieldValue(
+                      "preferredConsultation",
+                      value !== null ? value : initialValues.preferredConsultation
+                    )
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="filled"
+                      className="textfield"
+                      label="Preferred consultation"
+                      placeholder="Choose"
+                    />
+                  )}
+                />
                 <Recaptcha
                   sitekey={siteKey}
                   render="explicit"
