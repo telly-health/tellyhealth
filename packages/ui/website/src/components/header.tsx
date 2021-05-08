@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     color: "#233348",
     backgroundColor: "#FFF",
+    borderBottom: "1px solid #ccc"
   },
   toolbar: {
     flexWrap: "wrap",
@@ -93,9 +94,11 @@ const Header = ({ companyName }: Props) => {
               </Link>
             ))}
           </Hidden>
-          <Button variant="contained" color="primary" disableElevation>
-            Register Clinician
-          </Button>
+          <Link to={`/register-clinician`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Button variant="contained" color="primary" disableElevation>
+              Register GP/Specialist
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
