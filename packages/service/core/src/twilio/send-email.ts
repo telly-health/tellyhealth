@@ -1,6 +1,6 @@
 import { MailService } from '@sendgrid/mail'
 
-export async function sendEmail (
+export async function sendEmail(
   client: MailService,
   message?: any
 ): Promise<any> {

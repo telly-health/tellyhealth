@@ -1,7 +1,7 @@
 import { Next } from 'koa'
 import { AppContext } from '../types'
 
-export async function resetPassword (
+export async function resetPassword(
   ctx: AppContext,
   next: Next
 ): Promise<void> {
