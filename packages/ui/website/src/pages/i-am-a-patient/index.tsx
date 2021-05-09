@@ -15,9 +15,9 @@ import { map } from "lodash"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
-import specializations from "./specializations"
-import allLanguages from "./languages"
-import countries from "./countries"
+import specializations from "../../data/specializations"
+import allLanguages from "../../data/languages"
+import countries from "../../data/countries"
 
 import "./style.css"
 
