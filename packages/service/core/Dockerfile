@@ -14,4 +14,4 @@ COPY --from=builder /usr/src/app/package*.json ./
 RUN npm install --only=prod
 
 EXPOSE ${SERVER_PORT}
-CMD ["node", "./dist/index.js"]
+CMD ["npm", "start"]
