@@ -1,0 +1,6 @@
+{
+    "watch": ["src"],
+    "ext": "ts",
+    "ignore": [".git", "node_modules"],
+    "exec": "node --experimental-specifier-resolution=node --experimental-repl-await --experimental-json-modules --loader ts-node/esm -r dotenv/config src/index.ts"
+  }
