@@ -13,5 +13,5 @@ COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/package*.json ./
 RUN npm install --only=prod
 
-EXPOSE 3000
+EXPOSE ${SERVER_PORT}
 CMD ["node", "./dist/index.js"]
