@@ -1,7 +1,3 @@
-// use a koa backend.
-
-// auth0 + react + twilio
-
 import Koa from 'koa'
 import cors from '@koa/cors'
 import bodyParser from 'koa-bodyparser'

@@ -10,7 +10,7 @@ import {
 } from '../types'
 import { lookupPhoneNumber } from './lookup-phone'
 
-export async function requestPhoneVerification (
+export async function requestPhoneVerification(
   ctx: AppContext,
   next: Next
 ): Promise<void> {
@@ -46,7 +46,7 @@ export async function requestPhoneVerification (
   ctx.status = 200
 }
 
-export async function confirmPhoneVerification (
+export async function confirmPhoneVerification(
   ctx: AppContext,
   next: Next
 ): Promise<void> {
@@ -68,7 +68,7 @@ export async function confirmPhoneVerification (
     (ctx.state.phoneVerification.completed =
       verificationCheck.status === VerificationStatus.Correct)
   ) {
-    const { uid, authId } = ctx.state.user
+    const { uid, authUid: authId } = ctx.state.user as any
 
     ctx.body = {
       message: 'Phone number has been verified',

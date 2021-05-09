@@ -5,13 +5,13 @@ import { VerificationCheckInstance } from 'twilio/lib/rest/verify/v2/service/ver
 export enum VerificationStatus {
   Correct = 'approved',
   Incorrect = 'pending',
-  Canceled = 'canceled',
+  Canceled = 'canceled'
 }
 
 export enum VerificationChannel {
   Email = 'email',
   Sms = 'sms',
-  Call = 'call',
+  Call = 'call'
 }
 
 export interface Attempt {
@@ -27,7 +27,7 @@ export interface VerificationDetails {
   attempts: Attempt[]
 }
 
-export async function sendOTP (
+export async function sendOTP(
   client: Twilio,
   serviceId: string,
   phoneNumber: string
@@ -56,7 +56,7 @@ export async function sendOTP (
  * @param phoneNumber The phone number that needs to be verified.
  * @param providedCode The OTP code provided by the user.
  */
-export async function confirmOTP (
+export async function confirmOTP(
   client: Twilio,
   details: VerificationDetails,
   phoneNumber: string,

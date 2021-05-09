@@ -1,11 +1,9 @@
-import { RouterContext } from '@koa/router'
 import { Next } from 'koa'
-import { Role } from '../db/models'
-import { StateAddons, ContextAddons } from '../types'
-import { RegistrationForm } from './types'
+import { Role } from '../../db/models'
+import { RegistrationContext, RegistrationForm } from './types'
 
-export async function createFirebaseUser (
-  ctx: RouterContext<StateAddons, ContextAddons>,
+export async function createFirebaseUser(
+  ctx: RegistrationContext,
   next: Next
 ): Promise<void> {
   const { role } = ctx.params

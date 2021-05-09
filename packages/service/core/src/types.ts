@@ -15,7 +15,7 @@ export interface Services {
 export enum VerificationStatus {
   Correct = 'approved',
   Incorrect = 'pending',
-  Canceled = 'canceled',
+  Canceled = 'canceled'
 }
 
 export interface Attempt {
@@ -27,7 +27,7 @@ export interface Attempt {
 export enum VerificationChannel {
   Email = 'email',
   Sms = 'sms',
-  Call = 'call',
+  Call = 'call'
 }
 
 export interface VerificationDetails {
@@ -53,5 +53,5 @@ export interface ContextAddons {
   services: Services
 }
 
-export type AppContext = RouterContext<StateAddons, ContextAddons>
+export type AppContext = RouterContext<Partial<StateAddons>, ContextAddons>
 export type AppRouter = Router<StateAddons, ContextAddons>
