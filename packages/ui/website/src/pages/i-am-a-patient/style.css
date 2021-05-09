@@ -1,0 +1,19 @@
+.patient-form {
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+.patient-form .title {
+    color: #6e6f6f; 
+    text-align: center;
+    margin: 10px 0;
+}
+
+.patient-form .textfield {
+    margin: 10px 0;
+}
+
+.patient-form .submit {
+    margin: 10px 0;
+}

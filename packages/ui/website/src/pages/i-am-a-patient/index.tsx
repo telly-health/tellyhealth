@@ -74,7 +74,8 @@ const RegisterClinician = () => {
     specialization: "",
     languages: [],
     recaptcha: "",
-    preferredConsultation: []
+    preferredConsultation: [],
+    message: ""
   }
 
   const onSubmit = (values: any) => {
@@ -93,10 +94,10 @@ const RegisterClinician = () => {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <SEO title="Register clinician" />
-        <Paper className={`register-form`} elevation={3}>
+        <SEO title="Patient registration form" />
+        <Paper className={`patient-form`} elevation={3}>
           <Typography variant="h5" className={`title`}>
-            Register GP/Specialist
+            Patient registration form
           </Typography>
           <Formik
             validationSchema={validationSchema}
@@ -182,7 +183,7 @@ const RegisterClinician = () => {
                   id="specialization"
                   variant="filled"
                   select
-                  label="Specialization"
+                  label="Choose specialist"
                   value={values.specialization}
                   onChange={handleChange}
                   error={
@@ -215,7 +216,7 @@ const RegisterClinician = () => {
                     <TextField
                       {...params}
                       variant="filled"
-                      label="Known languages"
+                      label="Choose preferred languages"
                       className="textfield"
                       placeholder="Choose"
                       helperText={touched.languages && errors.languages}
@@ -243,6 +244,20 @@ const RegisterClinician = () => {
                       placeholder="Choose"
                     />
                   )}
+                />
+                <TextField
+                  fullWidth
+                  multiline
+                  className="textfield"
+                  rows={4}
+                  id="message"
+                  name="message"
+                  label="Additional message"
+                  variant="filled"
+                  value={values.message}
+                  onChange={handleChange}
+                  error={touched.message && Boolean(errors.message)}
+                  helperText={touched.message && errors.message}
                 />
                 <Recaptcha
                   sitekey={siteKey}

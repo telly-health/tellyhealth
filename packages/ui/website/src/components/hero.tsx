@@ -24,10 +24,10 @@ const Hero = () => {
 
         <Typography variant="subtitle1" style={{ marginBottom: 30 }}>
           We connect people to medical practitoners across the globe for online
-          tele consultation.
+          telehealth consultation.
         </Typography>
         <Button variant="contained" color="primary" size="large">
-          Book group consultation
+          Book consultation
         </Button>
       </Grid>
       <Hidden xsDown>
