@@ -68,12 +68,12 @@ export async function confirmPhoneVerification (
     (ctx.state.phoneVerification.completed =
       verificationCheck.status === VerificationStatus.Correct)
   ) {
-    const { uid, authId } = ctx.state.user
+    const { uid, authUid } = ctx.state.user
 
     ctx.body = {
       message: 'Phone number has been verified',
       uid,
-      authId
+      authUid
     }
 
     ctx.status = 200

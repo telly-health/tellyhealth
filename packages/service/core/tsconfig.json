@@ -9,18 +9,16 @@
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitReturns": true,
 		"moduleResolution": "node",
+		"skipLibCheck": true,
 		"pretty": true,
 		"sourceMap": true,
 		"strict": true,
 		"outDir": "build",
 		"resolveJsonModule": true,
-		"lib": [
-			"ESNext"
-		],
+		"lib": ["ESNext"],
 		"target": "esNext",
 		"module": "ESNext"
 	},
-	"include": [
-		"./src/**/*.ts"
-	]
+	"include": ["./src/**/*.ts"],
+	"exclude": ["test", "node_modules", "dist"]
 }

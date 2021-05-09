@@ -1,5 +1,3 @@
-import { Model } from 'mongoose'
-
 export const schema = {
   name: String,
   phoneNumber: String,
@@ -9,4 +7,4 @@ export const schema = {
   upcomingAppointments: [String]
 }
 
-export const model = new Model(schema)
+export const model = schema

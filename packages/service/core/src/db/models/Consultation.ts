@@ -1,5 +1,3 @@
-import { Model } from 'mongoose'
-
 export const schema = {
   title: String,
   description: String,
@@ -11,4 +9,4 @@ export const schema = {
   recordingLink: String
 }
 
-export const model = new Model(schema)
+export const model = schema
