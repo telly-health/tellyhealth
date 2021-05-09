@@ -27,7 +27,7 @@ jobs:
         with:
           RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
           file_name: .env.production
-          directory: telly-health
+          directory: /home/runner/work/tellyhealth/tellyhealth/packages/website
       - name: Check files
         run: ls -la
       # - name: Build the package
