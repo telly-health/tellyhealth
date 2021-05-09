@@ -30,10 +30,8 @@ const JoinUsPanel = () => {
           style={{ marginBottom: 30, marginTop: 20 }}
         >
           Countries across Asis Pacific are reeling surges in corona virus cases
-          which has put stress and overburden on health care professionals. We
-          are in need of medical practitioners across the globe to support and
-          help impacted regions by creating group consultations for people
-          with similar medical conditions.
+          which has put stress and overburden on health care professionals. We want to make 
+          health professionals accessible to everyone across the globe.
         </Typography>
         <Link to={`/register-clinician`} style={{ textDecoration: 'none', color: 'inherit' }}>
           <Button

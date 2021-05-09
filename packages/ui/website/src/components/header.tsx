@@ -53,8 +53,9 @@ const Header = ({ companyName }: Props) => {
 
   const navLinks = [
     { displayText: "Home", link: "/" },
+    { displayText: "I'm a patient", link: "/i-am-a-patient" },
     { displayText: "How it works", link: "/how-it-works" },
-    { displayText: "Contact", link: "#contact" },
+    { displayText: "Contact", link: "/contact-us" },
   ]
 
   return (
@@ -78,10 +79,12 @@ const Header = ({ companyName }: Props) => {
             className={classes.toolbarTitle}
           >
             <div style={{ width: "180px" }}>
-              <Image
-                alt="Connecting people to medical practitioners across the globe"
-                filename="logo.png"
-              />
+              <Link to={`/`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Image
+                  alt="Connecting people to medical practitioners across the globe"
+                  filename="logo.png"
+                />
+              </Link>
             </div>
           </Typography>
 

@@ -1,0 +1,19 @@
+.contact-form {
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+.contact-form .title {
+    color: #6e6f6f; 
+    text-align: center;
+    margin: 10px 0;
+}
+
+.contact-form .textfield {
+    margin: 10px 0;
+}
+
+.contact-form .submit {
+    margin: 10px 0;
+}

@@ -17,6 +17,7 @@ interface Service {
   time: string
   location: string
   slots: string
+  type: string
 }
 
 const ServiceCard = ({ service, ...props }: IProps) => {
@@ -31,6 +32,9 @@ const ServiceCard = ({ service, ...props }: IProps) => {
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {service.description}
+        </Typography>
+        <Typography variant="subtitle1" color="inherit">
+          <b>Consultation:</b> {service.type}
         </Typography>
         <Typography variant="subtitle1" color="inherit">
           <b>Time:</b> {service.time}
