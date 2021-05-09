@@ -7,14 +7,13 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Recaptcha from "react-recaptcha"
 import theme from "../../theme"
 
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
-import countries from "./countries"
+import countries from "../../data/countries"
 
 import "./style.css"
 
