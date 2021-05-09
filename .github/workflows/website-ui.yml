@@ -20,16 +20,17 @@ jobs:
       - uses: netlify/actions/cli@master
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Install packages
-        run: npm install
+      # - name: Install packages
+      #   run: npm install
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
           RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
           file_name: .env.production
+          directory: telly-health
       - name: Check files
         run: ls -la
-      - name: Build the package
-        run: npm run build
-      - name: Publish
-        run: netlify deploy --dir=public --prod --auth ${{ secrets.NETLIFY_SECRET }} --site ${{ secrets.WEBSITE_SITE_ID }}
+      # - name: Build the package
+      #   run: npm run build
+      # - name: Publish
+      #   run: netlify deploy --dir=public --prod --auth ${{ secrets.NETLIFY_SECRET }} --site ${{ secrets.WEBSITE_SITE_ID }}
