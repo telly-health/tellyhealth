@@ -19,15 +19,15 @@ const Hero = () => {
         style={{ paddingLeft: 40, paddingRight: 40 }}
       >
         <Typography variant="h4" color="inherit" style={{ marginBottom: 20 }}>
-          Telehealth for you
+          Telehealth Consultation
         </Typography>
 
         <Typography variant="subtitle1" style={{ marginBottom: 30 }}>
           We connect people to medical practitoners across the globe for online
-          tele consultation.
+          telehealth consultation.
         </Typography>
         <Button variant="contained" color="primary" size="large">
-          Book free consultation
+          Book consultation
         </Button>
       </Grid>
       <Hidden xsDown>
@@ -41,7 +41,7 @@ const Hero = () => {
           style={{ padding: 10 }}
         >
           <div style={{ width: "100%" }}>
-            <Image alt="Virtual Healthcare for you" filename="hero-image.png" />
+            <Image alt="Virtual Healthcare for you" filename="bg.jpg" />
           </div>
         </Grid>
       </Hidden>

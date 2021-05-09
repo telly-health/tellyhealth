@@ -13,6 +13,7 @@ import Drawer from "@material-ui/core/Drawer"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import List from "@material-ui/core/List"
+import { Link } from "gatsby"
 import Image from "./image"
 
 interface Props {
@@ -23,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     color: "#233348",
     backgroundColor: "#FFF",
+    borderBottom: "1px solid #ccc"
   },
   toolbar: {
     flexWrap: "wrap",
@@ -50,11 +52,10 @@ const Header = ({ companyName }: Props) => {
   }
 
   const navLinks = [
-    { displayText: "Home", link: "#" },
-    { displayText: "Services", link: "#services" },
-    { displayText: "Apps", link: "#apps" },
-    { displayText: "Testimonials", link: "#testimonials" },
-    { displayText: "Blog", link: "#blog" },
+    { displayText: "Home", link: "/" },
+    { displayText: "I'm a patient", link: "/i-am-a-patient" },
+    { displayText: "How it works", link: "/how-it-works" },
+    { displayText: "Contact", link: "/contact-us" },
   ]
 
   return (
@@ -78,20 +79,29 @@ const Header = ({ companyName }: Props) => {
             className={classes.toolbarTitle}
           >
             <div style={{ width: "180px" }}>
-              <Image
-                alt="Connecting people to medical practitioners across the globe"
-                filename="logo.png"
-              />
+              <Link to={`/`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Image
+                  alt="Connecting people to medical practitioners across the globe"
+                  filename="logo.png"
+                />
+              </Link>
             </div>
           </Typography>
 
           <Hidden xsDown>
             {navLinks.map(item => (
-              <Button color="inherit" key={item.displayText}>
-                {item.displayText}
-              </Button>
+              <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button color="inherit" key={item.displayText}>
+                  {item.displayText}
+                </Button>
+              </Link>
             ))}
           </Hidden>
+          <Link to={`/register-clinician`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Button variant="contained" color="primary" disableElevation>
+              Register GP/Specialist
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -121,7 +131,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  companyName: `vHealth`,
+  companyName: `TellyHealth`,
 }
 
 export default Header

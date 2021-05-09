@@ -2,12 +2,13 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward"
+import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew"
+import { Link } from "gatsby"
 import Image from "./image"
 import Hidden from "@material-ui/core/Hidden"
 import Bar from "./bar"
 
-const AppsPanel = () => {
+const JoinUsPanel = () => {
   return (
     <Grid container spacing={3} style={{ minHeight: 500 }}>
       <Grid
@@ -21,25 +22,27 @@ const AppsPanel = () => {
         style={{ paddingLeft: 40, paddingRight: 40 }}
       >
         <Typography variant="h4" color="inherit">
-          Download our mobile apps
+          Global COVID-19 appeal in Asia Pacific
         </Typography>
         <Bar />
         <Typography
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          Our dedicated patient engagement app and web portal allow you to
-          access information instantaneously (no tedious form, long calls, or
-          administrative hassle) and securely
+          Countries across Asis Pacific are reeling surges in corona virus cases
+          which has put stress and overburden on health care professionals. We want to make 
+          health professionals accessible to everyone across the globe.
         </Typography>
-        <Button
-          variant="outlined"
-          color="primary"
-          size="large"
-          endIcon={<ArrowDownwardIcon />}
-        >
-          Download
-        </Button>
+        <Link to={`/register-clinician`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            endIcon={<AccessibilityNewIcon />}
+          >
+            Join us - Clinician
+          </Button>
+        </Link>
       </Grid>
 
       <Hidden xsDown>
@@ -53,14 +56,11 @@ const AppsPanel = () => {
           style={{ padding: 10 }}
         >
           <div style={{ width: "100%" }}>
-            <Image
-              alt="Virtual Healthcare for you"
-              filename="apps-panel-image.png"
-            />
+            <Image alt="Medical practitoner" filename="doctor.jpg" />
           </div>
         </Grid>
       </Hidden>
     </Grid>
   )
 }
-export default AppsPanel
+export default JoinUsPanel

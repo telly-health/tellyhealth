@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import Image from "./image"
 import Hidden from "@material-ui/core/Hidden"
+import { Link } from "gatsby"
 import Bar from "./bar"
 
 const AboutPanel = () => {
@@ -20,10 +21,7 @@ const AboutPanel = () => {
           style={{ padding: 10 }}
         >
           <div style={{ width: "100%" }}>
-            <Image
-              alt="Virtual Healthcare for you"
-              filename="about-illustration.png"
-            />
+            <Image alt="how it works" filename="how-it-works.png" />
           </div>
         </Grid>
       </Hidden>
@@ -38,20 +36,21 @@ const AboutPanel = () => {
         style={{ paddingLeft: 40, paddingRight: 40 }}
       >
         <Typography variant="h4" color="inherit">
-          Leading healthcare providers
+          Global healthcare support
         </Typography>
         <Bar />
         <Typography
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          We provide progressive, and affordable healthcare, accessible on
-          mobile and online for everyone. To us, it’s not just work. We take
-          pride in the solutions we deliver
+          Connecting people to medical practitioners across the globe through telehealth
+          consultations.
         </Typography>
-        <Button variant="outlined" color="primary" size="large">
-          Learn More
-        </Button>
+        <Link to={`/how-it-works`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Button variant="outlined" color="primary" size="large">
+            Learn More
+          </Button>
+        </Link>
       </Grid>
     </Grid>
   )

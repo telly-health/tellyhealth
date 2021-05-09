@@ -1,11 +1,18 @@
 module.exports = {
   siteMetadata: {
-    title: `Vhealth - Open source gatsby template`,
-    description: `Free website template for a health care startup.`,
-    author: `Shantanu Deshmukj`,
+    title: `TellyHealth`,
+    description: `Connecting people to medical practitioners across the globe.`,
+    author: ``,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/posts/`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -24,10 +31,25 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/vhealth-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo-icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-material-ui`,
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        root: __dirname,
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 500,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

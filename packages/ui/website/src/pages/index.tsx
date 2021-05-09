@@ -3,25 +3,24 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero"
-import Services from "../components/services"
+import Consultations from "../components/consultations"
 import AboutPanel from "../components/about-panel"
-import Testimonials from "../components/testimonials"
-import Articles from "../components/articles"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
+import JoinUs from "../components/join-us-panel"
 import theme from "../theme"
-import AppsPanel from "../components/apps-panel"
 
 const IndexPage = () => (
   <React.Fragment>
     <ThemeProvider theme={theme}>
       <Layout>
-        <SEO title="Home" />
+        <SEO
+          title="TellyHealth | Home"
+          description={`Connecting people to medical practitoners across the globe`}
+        />
         <Hero />
-        <Services />
+        <Consultations />
         <AboutPanel />
-        <AppsPanel />
-        {/* <Testimonials /> */}
-        <Articles />
+        <JoinUs />
       </Layout>
     </ThemeProvider>
   </React.Fragment>

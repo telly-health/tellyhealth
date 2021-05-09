@@ -1,0 +1,32 @@
+name: 'WEBSITE UI CI'
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    defaults:
+      run:
+        working-directory: ./packages/ui/website
+    steps:
+      - uses: netlify/actions/cli@master
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Install packages
+        run: npm install
+      - name: Create env file
+        run: |
+          touch .env.production
+          echo RECAPTCHA_SITE_KEY=${{ secrets.RECAPTCHA_SITE_KEY }} >> .env.production
+      - name: Build the package
+        run: npm run build
+      - name: Publish
+        run: netlify deploy --dir=public --prod --auth ${{ secrets.NETLIFY_SECRET }} --site ${{ secrets.WEBSITE_SITE_ID }}
