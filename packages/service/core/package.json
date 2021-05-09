@@ -65,7 +65,8 @@
 		"build": "tsc",
 		"test": "node --experimental-specifier-resolution=node --experimental-vm-modules node_modules/.bin/jest",
 		"dev": "nodemon",
-		"start": "node --experimental-specifier-resolution=node --experimental-json-modules --experimental-modules -r dotenv/config ./dist/index.js",
+		"dev:docker": "SERVER_PORT=3000 docker-compose up --build api",
+		"start": "GOOGLE_APPLICATION_CREDENTIALS='./service-account.json' node --experimental-specifier-resolution=node --experimental-json-modules --experimental-modules -r dotenv/config ./dist/index.js",
 		"repl": "node --experimental-specifier-resolution=node --experimental-repl-await --experimental-json-modules --loader ts-node/esm -r dotenv/config"
 	}
 }

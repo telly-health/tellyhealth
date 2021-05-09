@@ -10,6 +10,7 @@ WORKDIR /usr/src/app
 ARG SERVER_PORT
 
 COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/service-account.json ./
 COPY --from=builder /usr/src/app/package*.json ./
 RUN npm install --only=prod
 
