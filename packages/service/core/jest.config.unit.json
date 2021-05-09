@@ -1,0 +1,7 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": ["<rootDir>/test/unit/**/*.test.ts"],
+  "testRunner": "jest-circus/runner",
+  "moduleDirectories": ["node_modules"]
+}

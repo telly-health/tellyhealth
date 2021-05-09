@@ -1,5 +1,5 @@
 import { Next } from 'koa'
-import { AppContext } from '../types'
+import { AppContext } from '../../types'
 import admin from 'firebase-admin'
 
 export async function verifyJwt(ctx: AppContext, next: Next): Promise<void> {
@@ -33,7 +33,13 @@ export async function verifyJwt(ctx: AppContext, next: Next): Promise<void> {
       idToken
     )
 
-    ctx.state.claims = claims
+    const { phone_number: phoneNumber, email, uid } = claims
+    ctx.state.user = {
+      phoneNumber,
+      email,
+      uid
+    }
+
     await next()
   } catch (e) {
     ctx.body = {

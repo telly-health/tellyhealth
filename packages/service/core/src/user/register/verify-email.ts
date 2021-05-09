@@ -1,8 +1,8 @@
 import { Next } from 'koa'
 import { User } from '../../db/models/User'
-import { AppContext } from '../../types'
+import { RegistrationContext } from './types'
 
-export async function verifyEmail(ctx: AppContext, next: Next): Promise<void> {
+export async function verifyEmail(ctx: RegistrationContext, next: Next): Promise<void> {
   const { authUid, email, emailVerified } = ctx.state.user as User
   if (authUid != null && email != null && !emailVerified) {
     const link = await ctx.services.auth.generateEmailVerificationLink(email, {

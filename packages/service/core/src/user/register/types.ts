@@ -1,7 +1,9 @@
-import Router from '@koa/router'
+import Router, { RouterContext } from '@koa/router'
 import { Request } from 'koa'
-import { GeoPoint, MedicalSpecialization } from '../../db/models/User'
-import { AppContext, StateAddons } from '../../types'
+import { GeoPoint, MedicalSpecialization, User } from '../../db/models/User'
+import admin from 'firebase-admin'
+import firebase from 'firebase'
+import { MailService } from '@sendgrid/mail'
 
 export interface MedicalPractionerRegistrationForm {
   name: string
@@ -47,13 +49,28 @@ export interface ErrorResponse {
   message: string
 }
 
+export interface Services {
+  auth: admin.auth.Auth
+  db: firebase.firestore.Firestore
+  sendgrid: MailService
+}
+
+
 export interface ContextRequestAddons {
+  services: Services
   params: Record<string, string>
   request: RegistrationRequest
   body?: RegistrationResponse | ErrorResponse
 }
 
-export type RegistrationContext = AppContext & ContextRequestAddons
+export interface StateAddons {
+  user: Partial<User>
+  emailVerificationLink?: string
+}
+
+export type AppContext = RouterContext<StateAddons, ContextRequestAddons>
+
+export type RegistrationContext = RouterContext<Partial<StateAddons>, ContextRequestAddons>
 export type RegistrationRouter = Router<
   RegistrationContext,
   Partial<StateAddons>

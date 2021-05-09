@@ -1,9 +1,10 @@
+import { RouterContext } from '@koa/router'
 import { Next } from 'koa'
 import { twilio, firebase, sendgrid, firebaseAdmin } from './clients'
-import { RegistrationContext } from './user/register/types'
+import { Services } from './types'
 
 export async function prepareContext(
-  ctx: RegistrationContext,
+  ctx: RouterContext<{ services: Services }, any>,
   next: Next
 ): Promise<void> {
   ctx.services = {
