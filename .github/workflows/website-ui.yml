@@ -2,11 +2,11 @@ name: 'WEBSITE UI CI'
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-  release:
-    types: [published]
+    branches: ["blog/setup"]
+  # pull_request:
+  #   branches: [master]
+  # release:
+  #   types: [published]
 
 jobs:
   deploy:
@@ -22,6 +22,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Install packages
         run: npm install
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+          file_name: .env.production
+      - name: Check files
+        run: ls -la
       - name: Build the package
         run: npm run build
       - name: Publish
