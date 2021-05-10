@@ -7,10 +7,11 @@ set -o pipefail
 
 awsRegion=$1
 awsAccountId=$2
-localImage=$3
-image=$4
+image=$3
 
-# login to 
+# login to AWS ECR
 aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin ${awsAccountId}.dkr.ecr.region.amazonaws.com
-docker tag ${localImage} ${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${image}
+# tag the docker image
+docker tag ${image} ${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${image}
+# push the image to ECR
 docker push ${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${image}

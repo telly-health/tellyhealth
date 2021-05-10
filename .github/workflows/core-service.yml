@@ -120,4 +120,4 @@ jobs:
         run: docker build --tag tellyhealth-core-api .
       
       - name: Push to ECR
-        run: echo "Push to ECR"
+        run: $GITHUB_WORKSPACE/ci/push-ecr.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api
