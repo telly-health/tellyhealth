@@ -125,11 +125,11 @@ jobs:
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
-      - name: Build docker image
-        run: docker build --tag tellyhealth-core-api .
+      # - name: Build docker image
+      #   run: docker build --tag tellyhealth-core-api .
       
-      - name: Push to ECR
-        run: $GITHUB_WORKSPACE/ci/push-ecr.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api
+      # - name: Push to ECR
+      #   run: $GITHUB_WORKSPACE/ci/push-ecr.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api
       
-      - name: Deploy to Lambda
-        run: $GITHUB_WORKSPACE/ci/deploy-lambda.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api tellyhealth-core-api
+      # - name: Deploy to Lambda
+      #   run: $GITHUB_WORKSPACE/ci/deploy-lambda.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api tellyhealth-core-api
