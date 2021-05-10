@@ -77,6 +77,10 @@ jobs:
     name: Publish Lambda
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./packages/service/core
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -109,13 +113,8 @@ jobs:
       - name: Create firebase service client
         run: |
           touch service-account.json
-          json='${{ secrets.FIREBASE_SERVICE_CLIENT }}'
+          json='${{ secrets.FIREBASE_SERVICE_CLIENT }}' 
           echo $json > service-account.json
-      
-      - name: Check for content
-        run: |
-          cat service-account.json
-          ls -la
 
       - name: Build docker image
         run: docker build --tag tellyhealth-core-api .
