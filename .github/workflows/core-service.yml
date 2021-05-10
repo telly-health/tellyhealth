@@ -116,19 +116,19 @@ jobs:
           json='${{ secrets.FIREBASE_SERVICE_CLIENT }}' 
           echo $json > service-account.json
       
-      - run: mkdir -p path/to/artifact
+      - run: mkdir -p /artifact
 
-      - run: cp $GITHUB_WORKSPACE/*/* /path/to/artifact/
+      - run: cp $GITHUB_WORKSPACE/*/* /artifact
 
       - uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: path/to/artifact
+          path: /artifact
       
       - uses: actions/download-artifact@v2
         with:
           name: artifact
-          path: path/to/artifact
+          path: /artifact
 
       # - name: Build docker image
       #   run: docker build --tag tellyhealth-core-api .
