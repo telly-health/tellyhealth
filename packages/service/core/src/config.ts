@@ -14,7 +14,7 @@ export const config = convict({
     port: {
       doc: 'Server port',
       env: 'APP_PORT',
-      default: 3000,
+      default: null,
       format: String
     }
   },

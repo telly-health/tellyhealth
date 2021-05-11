@@ -23,7 +23,7 @@ app.use(otpRouter.allowedMethods())
 
 const port = config.get('server.port')
 // port is only configured for localhost
-if (port != null) {
+if (port !== null) {
   app.listen(port, () => {
     console.log('telly-health API has started on port', port)
   })
