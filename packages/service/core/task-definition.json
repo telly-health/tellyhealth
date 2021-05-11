@@ -1,7 +1,7 @@
 {
     "executionRoleArn": "arn:aws:iam::470224437316:role/ecs-service",
 	"requiresCompatibilities": [
-		"Fargate"
+		"EC2"
 	],
 	"containerDefinitions": [
 		{
