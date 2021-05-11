@@ -2,8 +2,8 @@
 	"requiresCompatibilities": ["EC2"],
 	"containerDefinitions": [
 		{
-			"name": "nginx",
-			"image": "nginx:latest",
+			"name": "tellyhealth-core-api",
+			"image": "tellyhealth-core-api:latest",
 			"memory": 256,
 			"cpu": 256,
 			"essential": true,
@@ -16,9 +16,9 @@
 			"logConfiguration": {
 				"logDriver": "awslogs",
 				"options": {
-					"awslogs-group": "awslogs-nginx-ecs",
+					"awslogs-group": "awslogs-tellyhealth-core-api-ecs",
 					"awslogs-region": "us-east-2",
-					"awslogs-stream-prefix": "nginx"
+					"awslogs-stream-prefix": ""
 				}
 			}
 		}
