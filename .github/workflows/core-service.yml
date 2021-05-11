@@ -134,7 +134,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: task-definition.json
+          task-definition: packages/service/core/task-definition.json
           container-name: tellyhealth-core-api
           image: ${{ steps.build-image.outputs.image }}
 
