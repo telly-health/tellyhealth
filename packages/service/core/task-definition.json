@@ -27,7 +27,7 @@
 		}
 	],
 	"volumes": [],
-	"networkMode": "bridge",
+	"networkMode": "awsvpc",
 	"placementConstraints": [],
 	"family": "tellyhealth-core-api"
 }
