@@ -4,5 +4,5 @@ import Blockquote from "./blockquote"
 
 export default {
   p: props => <Paragraph {...props} />,
-  blockquote: props => <Blockquote {...props} />
+  blockquote: props => <Blockquote {...props} />,
 }
