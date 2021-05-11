@@ -107,6 +107,7 @@ jobs:
           echo FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }} >> .env
           echo FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }} >> .env
           echo FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }} >> .env
+          echo APP_PORT=80 >> .env
       
       - name: Create firebase service client
         run: |
@@ -114,11 +115,29 @@ jobs:
           json='${{ secrets.FIREBASE_SERVICE_CLIENT }}' 
           echo $json > service-account.json
 
-      - name: Build docker image
-        run: docker build --tag tellyhealth-core-api .
-      
-      - name: Push to ECR
-        run: $GITHUB_WORKSPACE/ci/push-ecr.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api
-      
-      - name: Deploy to Lambda
-        run: $GITHUB_WORKSPACE/ci/deploy-lambda.sh ${{ secrets.AWS_REGION }} ${{ secrets.AWS_ACCOUNT_ID }} tellyhealth-core-api tellyhealth-core-api
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: tellyhealth-core-api
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: tellyhealth-core-api
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: tellyhealth-core-api-service
+          cluster: tellyhealth-prod
+          wait-for-service-stability: true

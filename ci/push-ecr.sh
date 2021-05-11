@@ -15,3 +15,5 @@ aws ecr get-login-password --region ${awsRegion} | docker login --username AWS -
 docker tag ${image} ${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${image}
 # push the image to ECR
 docker push ${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${image}
+
+
