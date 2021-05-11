@@ -8,7 +8,7 @@
 	},
 	"devDependencies": {
 		"apidoc": "^0.20.0",
-		"husky": "^4.3.0",
+		"husky": "^6.0.0",
 		"lerna": "^3.22.1",
 		"pre-commit": "^1.2.2",
 		"prettier": "^2.2.1",
@@ -17,5 +17,9 @@
 	},
 	"workspaces": [
 		"packages/**"
-	]
+	],
+	"scripts": {
+		"prepare": "husky install",
+		"format": "lerna exec yarn format"
+	}
 }

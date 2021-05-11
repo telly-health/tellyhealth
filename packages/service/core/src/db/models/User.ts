@@ -1,7 +1,7 @@
 export enum Role {
   Admin = 'Admin',
   MedicalPractioner = 'MedicalPractioner',
-  Individual = 'Individual',
+  Individual = 'Individual'
 }
 
 // Retrieved from https://www.sgu.edu/blog/medical/ultimate-list-of-medical-specialties/
@@ -25,7 +25,7 @@ export enum MedicalSpecialization {
   Psychiatry = 'Psychiatry',
   RadiationOncology = 'Radiation oncology',
   Surgery = 'Surgery',
-  Urology = 'Urology',
+  Urology = 'Urology'
 }
 
 export interface GeoPoint {

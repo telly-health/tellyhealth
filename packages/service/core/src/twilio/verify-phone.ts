@@ -5,13 +5,13 @@ import { VerificationCheckInstance } from 'twilio/lib/rest/verify/v2/service/ver
 export enum VerificationStatus {
   Correct = 'approved',
   Incorrect = 'pending',
-  Canceled = 'canceled',
+  Canceled = 'canceled'
 }
 
 export enum VerificationChannel {
   Email = 'email',
   Sms = 'sms',
-  Call = 'call',
+  Call = 'call'
 }
 
 export interface Attempt {
