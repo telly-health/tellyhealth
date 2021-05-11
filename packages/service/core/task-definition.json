@@ -1,5 +1,5 @@
 {
-    "executionRoleArn": "arn:aws:iam::470224437316:role/ecs-service",
+    "executionRoleArn": "arn:aws:iam::470224437316:role/ecsTaskExecutionRole",
 	"requiresCompatibilities": [
 		"EC2"
 	],
