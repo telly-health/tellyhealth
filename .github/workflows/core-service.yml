@@ -142,6 +142,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: tellyhealth-core-api-service
+          service: tellyhealth-core-api
           cluster: tellyhealth-prod
           wait-for-service-stability: true

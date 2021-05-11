@@ -1,30 +1,33 @@
 {
-  "requiresCompatibilities": ["EC2"],
-  "containerDefinitions": [
-    {
-      "name": "tellyhealth-core-api",
-      "image": "470224437316.dkr.ecr.us-east-2.amazonaws.com/tellyhealth-core-api",
-      "memory": 256,
-      "cpu": 256,
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "protocol": "tcp"
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "awslogs-tellyhealth-core-api-ecs",
-          "awslogs-region": "us-east-2",
-          "awslogs-stream-prefix": ""
-        }
-      }
-    }
-  ],
-  "volumes": [],
-  "networkMode": "bridge",
-  "placementConstraints": [],
-  "family": ""
+    "executionRoleArn": "arn:aws:iam::470224437316:role/ecsTaskExecutionRole",
+	"requiresCompatibilities": [
+		"EC2"
+	],
+	"containerDefinitions": [
+		{
+			"name": "tellyhealth-core-api",
+			"image": "470224437316.dkr.ecr.us-east-2.amazonaws.com/tellyhealth-core-api",
+			"memory": 256,
+			"cpu": 256,
+			"essential": true,
+			"portMappings": [
+				{
+					"containerPort": 80,
+					"protocol": "tcp"
+				}
+			],
+			"logConfiguration": {
+				"logDriver": "awslogs",
+				"options": {
+					"awslogs-group": "awslogs-tellyhealth-core-api-ecs",
+					"awslogs-region": "us-east-2",
+					"awslogs-stream-prefix": ""
+				}
+			}
+		}
+	],
+	"volumes": [],
+	"networkMode": "awsvpc",
+	"placementConstraints": [],
+	"family": "tellyhealth-core-api"
 }
