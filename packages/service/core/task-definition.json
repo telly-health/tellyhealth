@@ -1,9 +1,11 @@
 {
-	"requiresCompatibilities": ["EC2"],
+	"requiresCompatibilities": [
+		"EC2"
+	],
 	"containerDefinitions": [
 		{
 			"name": "tellyhealth-core-api",
-			"image": "tellyhealth-core-api:latest",
+			"image": "470224437316.dkr.ecr.us-east-2.amazonaws.com/tellyhealth-core-api",
 			"memory": 256,
 			"cpu": 256,
 			"essential": true,
@@ -26,5 +28,5 @@
 	"volumes": [],
 	"networkMode": "bridge",
 	"placementConstraints": [],
-	"family": "nginx"
+	"family": "tellyhealth-core-api"
 }
