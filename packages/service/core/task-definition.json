@@ -1,9 +1,9 @@
 {
   "executionRoleArn": "arn:aws:iam::470224437316:role/ecsTaskExecutionRole",
-  "requiresCompatibilities": ["EC2"],
+  "requiresCompatibilities": ["FARGATE"],
   "containerDefinitions": [
     {
-      "name": "tellyhealth-core-api",
+      "name": "tellyhealth-core-api-container",
       "image": "470224437316.dkr.ecr.us-east-2.amazonaws.com/tellyhealth-core-api",
       "memory": 256,
       "cpu": 256,
@@ -27,5 +27,5 @@
   "volumes": [],
   "networkMode": "awsvpc",
   "placementConstraints": [],
-  "family": "tellyhealth-core-api"
+  "family": "tellyhealth-core-api-task"
 }
