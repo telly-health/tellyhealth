@@ -3,7 +3,7 @@ import { Next } from 'koa'
 import { Role, MedicalPractioner } from '../db/models'
 import { StateAddons, ContextAddons } from '../types'
 
-export async function saveUserDetails(
+export async function saveUserDetails (
   ctx: RouterContext<StateAddons, ContextAddons>,
   next: Next
 ): Promise<void> {
