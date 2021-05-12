@@ -14,7 +14,7 @@ import Layout from "./layout"
 import components from "./mdx"
 import theme from "./../theme"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
     position: "relative",
     backgroundColor: theme.palette.grey[800],
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    minHeight: 320
+    minHeight: 320,
   },
   overlay: {
     position: "absolute",
@@ -61,7 +61,11 @@ export default function PageTemplate({ data: { mdx } }) {
             <Typography variant="h4" gutterBottom style={{ padding: 10 }}>
               {mdx.frontmatter.title}
             </Typography>
-            <Typography variant="subtitle1" gutterBottom style={{ padding: 10 }}>
+            <Typography
+              variant="subtitle1"
+              gutterBottom
+              style={{ padding: 10 }}
+            >
               {`${mdx.frontmatter.date} by ${mdx.frontmatter.author}`}
             </Typography>
             <Divider />
@@ -71,7 +75,7 @@ export default function PageTemplate({ data: { mdx } }) {
           </Grid>
         </div>
       </Layout>
-    </ThemeProvider> 
+    </ThemeProvider>
   )
 }
 

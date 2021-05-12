@@ -55,7 +55,7 @@ const RegisterClinician = () => {
     phone: "",
     location: "",
     recaptcha: "",
-    message: ""
+    message: "",
   }
 
   const onSubmit = (values: any) => {
@@ -63,12 +63,11 @@ const RegisterClinician = () => {
   }
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://www.google.com/recaptcha/api.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
+    const script = document.createElement("script")
+    script.src = "https://www.google.com/recaptcha/api.js"
+    script.async = true
+    script.defer = true
+    document.body.appendChild(script)
   }, [])
 
   return (

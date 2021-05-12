@@ -43,10 +43,13 @@ const AboutPanel = () => {
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          Connecting people to medical practitioners across the globe through telehealth
-          consultations.
+          Connecting people to medical practitioners across the globe through
+          telehealth consultations.
         </Typography>
-        <Link to={`/how-it-works`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link
+          to={`/how-it-works`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <Button variant="outlined" color="primary" size="large">
             Learn More
           </Button>

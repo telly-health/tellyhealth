@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     color: "#233348",
     backgroundColor: "#FFF",
-    borderBottom: "1px solid #ccc"
+    borderBottom: "1px solid #ccc",
   },
   toolbar: {
     flexWrap: "wrap",
@@ -79,7 +79,10 @@ const Header = ({ companyName }: Props) => {
             className={classes.toolbarTitle}
           >
             <div style={{ width: "180px" }}>
-              <Link to={`/`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link
+                to={`/`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <Image
                   alt="Connecting people to medical practitioners across the globe"
                   filename="logo.png"
@@ -90,14 +93,20 @@ const Header = ({ companyName }: Props) => {
 
           <Hidden xsDown>
             {navLinks.map(item => (
-              <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link
+                to={item.link}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <Button color="inherit" key={item.displayText}>
                   {item.displayText}
                 </Button>
               </Link>
             ))}
           </Hidden>
-          <Link to={`/register-clinician`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link
+            to={`/register-clinician`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Button variant="contained" color="primary" disableElevation>
               Register GP/Specialist
             </Button>

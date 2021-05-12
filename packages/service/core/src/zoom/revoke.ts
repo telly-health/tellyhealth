@@ -20,7 +20,10 @@ export async function revokeToken (
     }
   }
 
-  const response: AxiosResponse<TokenRevokeResponse> = await axios.get(`https://zoom.us/oauth/revoke?token=${token}`, options)
+  const response: AxiosResponse<TokenRevokeResponse> = await axios.get(
+    `https://zoom.us/oauth/revoke?token=${token}`,
+    options
+  )
 
   return response.data
 }

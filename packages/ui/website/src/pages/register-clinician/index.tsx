@@ -33,16 +33,20 @@ function countryToFlag(isoCode: string) {
     : isoCode
 }
 
-const interests = [{
-  id: 'webinar',
-  title: 'Webinar Consultation'
-}, {
-  id: 'group',
-  title: 'Group Consultation'
-}, {
-  id: 'one-to-one',
-  title: 'One-to-One Consultation'
-}]
+const interests = [
+  {
+    id: "webinar",
+    title: "Webinar Consultation",
+  },
+  {
+    id: "group",
+    title: "Group Consultation",
+  },
+  {
+    id: "one-to-one",
+    title: "One-to-One Consultation",
+  },
+]
 
 const siteKey = process.env.RECAPTCHA_SITE_KEY
 
@@ -74,7 +78,7 @@ const RegisterClinician = () => {
     specialization: "",
     languages: [],
     recaptcha: "",
-    preferredConsultation: []
+    preferredConsultation: [],
   }
 
   const onSubmit = (values: any) => {
@@ -82,12 +86,11 @@ const RegisterClinician = () => {
   }
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://www.google.com/recaptcha/api.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
+    const script = document.createElement("script")
+    script.src = "https://www.google.com/recaptcha/api.js"
+    script.async = true
+    script.defer = true
+    document.body.appendChild(script)
   }, [])
 
   return (
@@ -200,18 +203,20 @@ const RegisterClinician = () => {
                   multiple
                   id="languages"
                   options={allLanguages}
-                  getOptionLabel={(option) => option.name}
+                  getOptionLabel={option => option.name}
                   defaultValue={[]}
                   onChange={(e, value) => {
-                    const languages = map(value, (option) => {
+                    const languages = map(value, option => {
                       return option.id
                     })
                     setFieldValue(
                       "languages",
-                      value !== null ? languages : initialValues.preferredConsultation
+                      value !== null
+                        ? languages
+                        : initialValues.preferredConsultation
                     )
                   }}
-                  renderInput={(params) => (
+                  renderInput={params => (
                     <TextField
                       {...params}
                       variant="filled"
@@ -226,15 +231,17 @@ const RegisterClinician = () => {
                   multiple
                   id="preferred-consultation"
                   options={interests}
-                  getOptionLabel={(option) => option.title}
+                  getOptionLabel={option => option.title}
                   defaultValue={[]}
                   onChange={(e, value) => {
                     setFieldValue(
                       "preferredConsultation",
-                      value !== null ? value : initialValues.preferredConsultation
+                      value !== null
+                        ? value
+                        : initialValues.preferredConsultation
                     )
                   }}
-                  renderInput={(params) => (
+                  renderInput={params => (
                     <TextField
                       {...params}
                       variant="filled"

@@ -1,24 +1,26 @@
 {
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"declaration": true,
-		"forceConsistentCasingInFileNames": true,
-		"noEmitOnError": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		"moduleResolution": "node",
-		"skipLibCheck": true,
-		"pretty": true,
-		"sourceMap": true,
-		"strict": true,
-		"outDir": "dist",
-		"resolveJsonModule": true,
-		"lib": ["ESNext"],
-		"target": "esNext",
-		"module": "ESNext"
-	},
-	"include": ["./src/**/*.ts"],
-	"exclude": ["test", "node_modules", "dist"]
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "outDir": "dist/esm",
+    "resolveJsonModule": true,
+    "lib": ["ESNext"],
+    "target": "esNext",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": "dist/types"
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["test", "node_modules", "dist"]
 }
