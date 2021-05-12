@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import qs from 'qs'
 import { ZoomTokenResponse } from './access_token'
 
-export async function refreshToken (
+export async function refreshToken(
   clientId: string,
   clientSecret: string,
   refreshToken: string

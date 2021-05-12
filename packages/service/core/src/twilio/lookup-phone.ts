@@ -14,7 +14,7 @@ export interface PhoneDetails {
  * @param phoneNumber International phone number
  * @returns Promise<PhoneDetails> E.164 formatted number, country of origin and other details.
  */
-export async function lookupPhoneNumber (
+export async function lookupPhoneNumber(
   client: Twilio,
   phoneNumber: string
 ): Promise<PhoneDetails> {
