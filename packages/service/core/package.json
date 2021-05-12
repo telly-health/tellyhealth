@@ -8,6 +8,16 @@
   "files": [
     "dist/"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./handler": {
+      "import": "./dist/esm/handler.js",
+      "require": "./dist/cjs/handler.js"
+    }
+  },
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^3.1.0",
@@ -66,6 +76,7 @@
     "format": "prettier --write . && yarn lint --fix",
     "lint": "ts-standard",
     "build": "yarn run build:esm && yarn run build:cjs",
+    "postbuild": "echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json && echo '{\"type\": \"module\"}' > ./dist/esm/package.json",
     "build:esm": "tsc",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
     "clean": "rm -rf dist/",

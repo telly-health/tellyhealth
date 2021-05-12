@@ -6,7 +6,7 @@ import { AppContext } from './types.js'
 import defaultRouter, { authRouter, otpRouter } from './routes/index.js'
 import { config } from './config.js'
 
-const app = new Koa<AppContext>()
+export const app = new Koa<AppContext>()
 
 app.use(cors())
 app.use(bodyParser())
