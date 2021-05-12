@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-export async function authorize (
+export async function authorize(
   clientId: string,
   redirectUrl: string
 ): Promise<any> {

@@ -11,11 +11,11 @@ Parameters:
 Resources:
   ACMCertificate:
     Type: AWS::CertificateManager::Certificate
-    Properties: 
-      DomainName: !Sub "api.${DomainName}"
+    Properties:
+      DomainName: !Sub 'api.${DomainName}'
       DomainValidationOptions:
-        - DomainName: !Sub "api.${DomainName}"
-          ValidationDomain: !Sub "api.${DomainName}"
+        - DomainName: !Sub 'api.${DomainName}'
+          ValidationDomain: !Sub 'api.${DomainName}'
       ValidationMethod: DNS
   Cluster:
     Type: AWS::ECS::Cluster
@@ -125,7 +125,6 @@ Resources:
         - !Ref Subnet2ID
       SecurityGroups:
         - !GetAtt LoadBalancerSecurityGroup.GroupId
-
 # aws cloudformation create-stack --stack-name tellyhealth-core-api --template-body file://./ecs-create.yml --capabilities CAPABILITY_NAMED_IAM \
 # --parameters ParameterKey=VPCID,ParameterValue=***\
 # ParameterKey=Subnet1ID,ParameterValue=*** \

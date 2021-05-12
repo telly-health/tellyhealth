@@ -73,7 +73,7 @@
     "fix": true
   },
   "scripts": {
-    "format": "prettier --write . && yarn lint --fix",
+    "format": "prettier --write ./src && yarn lint --fix",
     "lint": "ts-standard",
     "build": "yarn run build:esm && yarn run build:cjs",
     "postbuild": "echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json && echo '{\"type\": \"module\"}' > ./dist/esm/package.json",

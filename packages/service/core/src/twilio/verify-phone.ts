@@ -27,7 +27,7 @@ export interface VerificationDetails {
   attempts: Attempt[]
 }
 
-export async function sendOTP (
+export async function sendOTP(
   client: Twilio,
   serviceId: string,
   phoneNumber: string
@@ -56,7 +56,7 @@ export async function sendOTP (
  * @param phoneNumber The phone number that needs to be verified.
  * @param providedCode The OTP code provided by the user.
  */
-export async function confirmOTP (
+export async function confirmOTP(
   client: Twilio,
   details: VerificationDetails,
   phoneNumber: string,
