@@ -2,7 +2,7 @@ import { Next } from 'koa'
 import { AppContext } from '../types'
 import admin from 'firebase-admin'
 
-export async function verifyJwt(ctx: AppContext, next: Next): Promise<void> {
+export async function verifyJwt (ctx: AppContext, next: Next): Promise<void> {
   const bearerToken = ctx.headers.authorization
 
   if (bearerToken == null) {

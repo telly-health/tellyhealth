@@ -12,8 +12,8 @@ export interface MedicalPractionerRegistrationForm {
 }
 
 export type IndividualRegistrationForm = Omit<
-  MedicalPractionerRegistrationForm,
-  'specialization'
+MedicalPractionerRegistrationForm,
+'specialization'
 >
 
 export type RegistrationForm =

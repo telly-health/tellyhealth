@@ -4,7 +4,7 @@ import { Role } from '../db/models'
 import { StateAddons, ContextAddons } from '../types'
 import { RegistrationForm } from './types'
 
-export async function createFirebaseUser(
+export async function createFirebaseUser (
   ctx: RouterContext<StateAddons, ContextAddons>,
   next: Next
 ): Promise<void> {

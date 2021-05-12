@@ -4,7 +4,7 @@ export interface TokenRevokeResponse {
   status: string
 }
 
-export async function revokeToken(
+export async function revokeToken (
   clientId: string,
   clientSecret: string,
   token: string

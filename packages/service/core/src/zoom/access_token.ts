@@ -14,7 +14,7 @@ export interface ZoomTokenResponse {
   scope: string
 }
 
-export async function token(
+export async function token (
   authorizationCode: string,
   clientId: string,
   clientSecret: string,
