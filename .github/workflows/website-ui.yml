@@ -40,11 +40,10 @@ jobs:
   deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
 
     needs: check
-    if: needs.check.outputs.status == 'success'
-    
+    if: needs.check.outputs.status == 'success' && github.ref == 'refs/heads/master'
+
     defaults:
       run:
         working-directory: ./packages/ui/website
