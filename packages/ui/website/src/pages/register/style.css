@@ -17,3 +17,8 @@
 .register-form .submit {
     margin: 10px 0;
 }
+
+.typeform-full {
+    padding: 20px 0 0 0;
+    height: calc(100vh - 80px);
+}

@@ -44,7 +44,7 @@ const JoinUsPanel = () => {
             size="large"
             endIcon={<AccessibilityNewIcon />}
           >
-            Join us - Clinician
+            Join us - Doctor
           </Button>
         </Link>
       </Grid>
