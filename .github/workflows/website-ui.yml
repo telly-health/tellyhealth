@@ -7,10 +7,44 @@ on:
     branches: [master]
 
 jobs:
+  # This workflow checks if the package has changed to trigger subsequent pipeline
+  check:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    outputs:
+      status: ${{ steps.early.conclusion }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checkout the source code
+      - name: 'Checkout source code'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Check for package changes
+      - name: Check for package changes
+        id: early
+        run: ./ci/check-package.sh "website-ui"
+
   deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
+
+    needs: check
+    if: needs.check.outputs.status == 'success'
+    
     defaults:
       run:
         working-directory: ./packages/ui/website

@@ -78,6 +78,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
 
+    needs: check
+    if: needs.check.outputs.status == 'success'
+
     defaults:
       run:
         working-directory: ./packages/service/core
