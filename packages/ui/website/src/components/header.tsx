@@ -104,7 +104,7 @@ const Header = ({ companyName }: Props) => {
             ))}
           </Hidden>
           <Link
-            to={`/register-clinician`}
+            to={`/register`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Button variant="contained" color="primary" disableElevation>
