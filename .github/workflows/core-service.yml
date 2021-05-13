@@ -76,10 +76,9 @@ jobs:
      # The type of runner that the job will run on
     name: Deploy to Amazon ECS
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
 
     needs: check
-    if: needs.check.outputs.status == 'success'
+    if: needs.check.outputs.status == 'success' && github.ref == 'refs/heads/master'
 
     defaults:
       run:
