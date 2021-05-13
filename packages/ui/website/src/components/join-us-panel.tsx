@@ -35,7 +35,7 @@ const JoinUsPanel = () => {
           globe.
         </Typography>
         <Link
-          to={`/register-clinician`}
+          to={`/register`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <Button
