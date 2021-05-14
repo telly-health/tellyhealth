@@ -1,0 +1,19 @@
+service: my-express-application
+useDotenv: true
+plugins:
+# - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-2
+
+
+functions:
+  app:
+    handler: dist/cjs/handler.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'

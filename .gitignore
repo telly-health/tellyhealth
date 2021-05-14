@@ -15,5 +15,9 @@ dist
 .idea
 package-lock.json
 service-account.json
+
 # Local Netlify folder
 .netlify
+
+# Local serverless build directory
+.build

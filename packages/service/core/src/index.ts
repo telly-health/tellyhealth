@@ -4,7 +4,7 @@ import bodyParser from 'koa-bodyparser'
 import helmet from 'koa-helmet'
 import { AppContext } from './types.js'
 import defaultRouter, { authRouter, otpRouter } from './routes/index.js'
-import { config } from './config.js'
+// import { config } from './config.js'
 
 export const app = new Koa<AppContext>()
 
@@ -20,11 +20,11 @@ app.use(authRouter.allowedMethods())
 app.use(otpRouter.routes())
 app.use(otpRouter.allowedMethods())
 
-const port = config.get('server.port')
+// const port = config.get('server.port')
 
 // port is only configured for localhost
-if (port !== null) {
-  app.listen(port, () => {
-    console.log('telly-health API has started on port', port)
-  })
-}
+// if (port !== null) {
+//   app.listen(port, () => {
+//     console.log('telly-health API has started on port', port)
+//   })
+// }
