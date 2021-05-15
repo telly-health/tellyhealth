@@ -58,7 +58,7 @@ module.exports = {
           "GA-G-NVW81EZYP0", // Google Analytics / GA
         ],
       },
-    }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -14,23 +14,30 @@ const { koaSwagger } = swaggerUi
 
 const spec = yamljs.load('./openapi.yaml')
 
-const UNPKG_SWAGGER_UI = 'cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.46.0/';
-const SELF = "'self'";
+const UNPKG_SWAGGER_UI = 'cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.46.0/'
+const SELF = "'self'"
 
 app.use(cors())
 app.use(bodyParser())
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      baseUri: [SELF, UNPKG_SWAGGER_UI],
-      defaultSrc: [SELF, UNPKG_SWAGGER_UI],
-      styleSrc: [SELF, "'unsafe-inline'", UNPKG_SWAGGER_UI, 'fonts.googleapis.com'],
-      fontSrc: [SELF, 'fonts.googleapis.com', 'fonts.gstatic.com'],
-      scriptSrc: [SELF, "'unsafe-inline'", UNPKG_SWAGGER_UI],
-      imgSrc: [SELF, 'data:', UNPKG_SWAGGER_UI],
-    },
-  },
-}))
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        baseUri: [SELF, UNPKG_SWAGGER_UI],
+        defaultSrc: [SELF, UNPKG_SWAGGER_UI],
+        styleSrc: [
+          SELF,
+          "'unsafe-inline'",
+          UNPKG_SWAGGER_UI,
+          'fonts.googleapis.com'
+        ],
+        fontSrc: [SELF, 'fonts.googleapis.com', 'fonts.gstatic.com'],
+        scriptSrc: [SELF, "'unsafe-inline'", UNPKG_SWAGGER_UI],
+        imgSrc: [SELF, 'data:', UNPKG_SWAGGER_UI]
+      }
+    }
+  })
+)
 
 app.use(defaultRouter.routes())
 
@@ -45,8 +52,8 @@ app.use(
     routePrefix: '/swagger', // host at /swagger instead of default /docs
     swaggerOptions: {
       spec // example path to json
-    },
-  }),
+    }
+  })
 )
 
 const port = config.get('server.port')

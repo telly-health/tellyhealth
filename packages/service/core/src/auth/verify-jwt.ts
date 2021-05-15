@@ -29,8 +29,9 @@ export async function verifyJwt (ctx: AppContext, next: Next): Promise<void> {
   }
 
   try {
-    const claims: admin.auth.DecodedIdToken =
-      await ctx.services.auth.verifyIdToken(idToken)
+    const claims: admin.auth.DecodedIdToken = await ctx.services.auth.verifyIdToken(
+      idToken
+    )
 
     ctx.state.claims = claims
     await next()
