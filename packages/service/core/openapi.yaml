@@ -1,0 +1,21 @@
+openapi: 3.0.1
+info:
+  title: TellyHealth API
+  version: 1.0.0
+  license:
+    name: MIT
+paths:
+  /healthcheck:
+    get:
+      summary: Health check
+      description: End point to check health check
+      operationId: getHealthCheck
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "\U0001F44D"
+tags: []
