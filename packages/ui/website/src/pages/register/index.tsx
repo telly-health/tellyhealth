@@ -198,18 +198,19 @@ const RegisterClinician = () => {
                   error={touched.email && Boolean(errors.email)}
                   helperText={touched.email && errors.email}
                 />
-                <PhoneInput
-                  id="phone"
-                  variant="filled"
-                  autoComplete="new-password"
-                  country={"us"}
-                  value={values.phoneNumber}
-                  error={touched.phoneNumber && Boolean(errors.phoneNumber)}
-                  helperText={touched.phoneNumber && errors.phoneNumber}
-                  onChange={phone => {
-                    setFieldValue("phoneNumber", `+${phone}`)
-                  }}
-                />
+                <div className="MuiFormControl-root MuiTextField-root textfield MuiFormControl-fullWidth">
+                  <PhoneInput
+                    variant="filled"
+                    autoComplete="new-password"
+                    country={"us"}
+                    value={values.phoneNumber}
+                    error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+                    helperText={touched.phoneNumber && errors.phoneNumber}
+                    onChange={phone => {
+                      setFieldValue("phoneNumber", `+${phone}`)
+                    }}
+                  />
+                </div>
                 <Autocomplete
                   id="country-select"
                   options={countries}
