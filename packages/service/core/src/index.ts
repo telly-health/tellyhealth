@@ -7,6 +7,7 @@ import helmet from 'koa-helmet'
 import { AppContext } from './types'
 import defaultRouter, { authRouter, otpRouter } from './routes/index'
 import { config } from './config'
+import { Server } from 'http'
 
 export const app = new Koa<AppContext>()
 
@@ -53,10 +54,12 @@ app.use(otpRouter.routes())
 // )
 
 const port = config.get('server.port')
+let server: Server | undefined
 
-// port is only configured for localhost
 if (port !== null && process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {
+  server = app.listen(port, () => {
     console.log('telly-health API has started on port', port)
   })
 }
+
+export default server

@@ -4,7 +4,7 @@ import {
   it,
   expect,
   beforeEach,
-  beforeAll,
+  afterEach,
   afterAll
 } from '@jest/globals'
 import { Server } from 'http'
@@ -18,19 +18,20 @@ let server: Server
 const port = config.get('server.port')
 
 describe('app', () => {
-  beforeAll((done) => {
-    server = app.listen(port, done)
-  })
-
-  afterAll((done) => {
+  afterEach((done) => {
     if (server != null) {
       server.close(done)
     }
   })
 
   beforeEach(async () => {
+    server = app.listen(port)
     await clearUserAccounts()
     return await clearFirestoreData()
+  })
+
+  afterAll(async () => {
+    await new Promise((resolve) => setTimeout(() => resolve(true), 10000)) // avoid jest open handle error
   })
 
   it('POST /auth/register/MedicalPractioner', async () => {
@@ -39,6 +40,7 @@ describe('app', () => {
       email: 'GabrielleMaguire@yahoo.com',
       password: 'a!123456',
       phoneNumber: '+61 491 570 156',
+      specialization: 'Neurology',
       location: { latitude: 33.8688, longitude: 151.2093 },
       languages: ['English', 'French', 'Japanese'],
       timezone: 'Australia/Sydney'
