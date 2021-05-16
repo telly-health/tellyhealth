@@ -6,5 +6,6 @@ export function createSendgridClient (): sgMail.MailService {
   if (apiKey != null) {
     sgMail.setApiKey(apiKey)
   }
+
   return sgMail
 }

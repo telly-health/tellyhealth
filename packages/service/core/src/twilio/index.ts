@@ -1,4 +1,3 @@
-export { createService } from './create-service'
 export { lookupPhoneNumber } from './lookup-phone'
 
 // TODO: remove these and use the middleware instead.

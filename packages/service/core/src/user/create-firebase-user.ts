@@ -27,12 +27,14 @@ export async function createFirebaseUser (
     timezone
   } = ctx.request.body as RegistrationForm
 
-  const { uid: authUid, emailVerified } = await ctx.services.auth.createUser({
+  const userDetails = await ctx.services.auth.createUser({
     displayName,
     email,
     password,
     phoneNumber
   })
+
+  const { uid: authUid, emailVerified } = userDetails
 
   ctx.state.user = {
     name: displayName,

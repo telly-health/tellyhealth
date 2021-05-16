@@ -19,6 +19,30 @@ export async function saveUserDetails (
   ctx.state.user.uid = id
   const { name, email, emailVerified, phoneNumber, authUid } = ctx.state.user
 
+  if (email != null) {
+    const verificationLink =
+      await ctx.services.auth.generateEmailVerificationLink(email, {
+        url: 'https://telly.health/login'
+      })
+
+    await ctx.services.sendgrid.send({
+      from: { email: 'noreply@telly.health' },
+      to: { email },
+      subject: 'Verify your email',
+      content: [
+        {
+          type: 'text',
+          value: `Welcome to telly.health, please verify your email by clicking on ${verificationLink}`
+        }
+      ],
+      mailSettings: {
+        sandboxMode: {
+          enable: process.env.NODE_ENV === 'test'
+        }
+      }
+    })
+  }
+
   ctx.body = {
     message: 'User registration sucessful',
     user: {

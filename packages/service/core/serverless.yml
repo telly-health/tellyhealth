@@ -1,8 +1,26 @@
 service: my-express-application
 useDotenv: true
 plugins:
-# - serverless-plugin-typescript
+  - serverless-plugin-typescript
   - serverless-offline
+  - serverless-jest-plugin
+
+custom:
+  jest:
+    testEnvironment: node
+    testRunner: jest-circus/runner
+    testMatch: 
+      - '<rootDir>/test/unit /**/*.test.ts'
+    globals:
+      'ts-jest':
+        'tsconfig': './tsconfig.test.json'
+    transform:
+      '^.+\\.ts$': 'ts-jest'
+    moduleFileExtensions:
+      - ts
+      - js
+      - json
+
 
 provider:
   name: aws
@@ -10,10 +28,9 @@ provider:
   stage: dev
   region: us-east-2
 
-
 functions:
   app:
-    handler: dist/cjs/handler.handler
+    handler: src/handler.ts
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: 'GET /healthcheck'
+      - http: 'POST /auth/register/:role'

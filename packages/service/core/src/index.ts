@@ -2,9 +2,9 @@ import Koa from 'koa'
 import cors from '@koa/cors'
 import bodyParser from 'koa-bodyparser'
 import helmet from 'koa-helmet'
-import { AppContext } from './types.js'
-import defaultRouter, { authRouter, otpRouter } from './routes/index.js'
-// import { config } from './config.js'
+import { AppContext } from './types'
+import defaultRouter, { authRouter, otpRouter } from './routes/index'
+// import { config } from './config'
 
 export const app = new Koa<AppContext>()
 
