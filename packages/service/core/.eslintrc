@@ -1,0 +1,15 @@
+{
+  "extends": "standard-with-typescript",
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 12
+  },
+  "ignorePatterns": [
+    "./test/**/*.ts",
+    "dist"
+  ]
+}

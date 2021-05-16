@@ -59,7 +59,7 @@ app.use(
 const port = config.get('server.port')
 
 // port is only configured for localhost
-if (port !== null) {
+if (port !== null && process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
     console.log('telly-health API has started on port', port)
   })
