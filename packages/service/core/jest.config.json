@@ -1,0 +1,20 @@
+{
+  "testEnvironment": "node",
+  "testRunner": "jest-circus/runner",
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "js",
+    "json"
+  ],
+  "setupFiles": [
+    "dotenv/config"
+  ],
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "./tsconfig.test.json"
+    }
+  }
+}
