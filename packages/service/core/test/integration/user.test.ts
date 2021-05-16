@@ -9,7 +9,7 @@ import {
 } from '@jest/globals'
 import { Server } from 'http'
 import request from 'supertest'
-import { app } from '../../src/'
+import { app } from '../../src'
 import { config } from '../../src/config'
 import { clearFirestoreData, clearUserAccounts } from './helpers'
 
@@ -34,7 +34,7 @@ describe('app', () => {
     await new Promise((resolve) => setTimeout(() => resolve(true), 10000)) // avoid jest open handle error
   })
 
-  it('POST /auth/register/MedicalPractioner', async () => {
+  it('POST /user/register/MedicalPractioner', async () => {
     const body = {
       name: 'Gabrielle Maguire',
       email: 'GabrielleMaguire@yahoo.com',
@@ -59,7 +59,7 @@ describe('app', () => {
     }
 
     return await request(server)
-      .post('/auth/register/MedicalPractioner')
+      .post('/user/register/MedicalPractioner')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send(body)
@@ -70,7 +70,7 @@ describe('app', () => {
       })
   })
 
-  it('POST /auth/register/Patient', async () => {
+  it('POST /user/register/Patient', async () => {
     const body = {
       name: 'Lily Farrow',
       email: 'lil_sparrow@outlook.com',
@@ -94,7 +94,7 @@ describe('app', () => {
     }
 
     return await request(server)
-      .post('/auth/register/Patient')
+      .post('/user/register/Patient')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send(body)

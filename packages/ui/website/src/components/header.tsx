@@ -60,7 +60,11 @@ const Header = ({ companyName }: Props) => {
 
   return (
     <React.Fragment>
-      <AppBar position="static" elevation={0} className={classes.appBar}>
+      <AppBar
+        position="static"
+        elevation={0}
+        className={`${classes.appBar} header`}
+      >
         <Toolbar className={classes.toolbar}>
           <Hidden smUp>
             <IconButton
@@ -96,10 +100,9 @@ const Header = ({ companyName }: Props) => {
               <Link
                 to={item.link}
                 style={{ textDecoration: "none", color: "inherit" }}
+                key={item.displayText}
               >
-                <Button color="inherit" key={item.displayText}>
-                  {item.displayText}
-                </Button>
+                <Button color="inherit">{item.displayText}</Button>
               </Link>
             ))}
           </Hidden>

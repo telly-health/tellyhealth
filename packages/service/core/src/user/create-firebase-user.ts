@@ -20,30 +20,35 @@ export async function createFirebaseUser (
   const {
     name: displayName,
     email,
-    password,
     phoneNumber,
     location,
     languages,
     timezone
   } = ctx.request.body as RegistrationForm
 
-  const { uid: authUid, emailVerified } = await ctx.services.auth.createUser({
-    displayName,
-    email,
-    password,
-    phoneNumber
-  })
+  try {
+    const { uid: authUid, emailVerified } = await ctx.services.auth.createUser({
+      displayName,
+      email,
+      phoneNumber
+    })
 
-  ctx.state.user = {
-    name: displayName,
-    email,
-    emailVerified,
-    phoneNumber,
-    authUid,
-    location,
-    languages,
-    timezone,
-    phoneVerified: false
+    ctx.state.user = {
+      name: displayName,
+      email,
+      emailVerified,
+      phoneNumber,
+      authUid,
+      location,
+      languages,
+      timezone,
+      phoneVerified: false
+    }
+  } catch (err) {
+    console.error(err)
+    ctx.body = err
+    ctx.status = 200
+    return
   }
 
   await next()

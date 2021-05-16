@@ -77,7 +77,7 @@
 	},
 	"prettier": "prettier-config-standard",
 	"scripts": {
-		"format": "prettier --write ./src && yarn lint --fix",
+		"format": "prettier --write ./src && yarn lint",
 		"lint:src": "eslint -c ./.eslintrc src/ --fix",
 		"lint:test": "eslint -c ./.eslintrc.test test/ --fix",
 		"lint": "yarn lint:src && yarn lint:test",

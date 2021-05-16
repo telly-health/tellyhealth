@@ -5,7 +5,9 @@
     "es6": true
   },
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": [
+      "./tsconfig.json"
+    ],
     "ecmaVersion": 12
   },
   "ignorePatterns": [

@@ -17,3 +17,7 @@
 .patient-form .submit {
     margin: 10px 0;
 }
+
+.MuiTextField-root {
+    width: 100%;
+}
