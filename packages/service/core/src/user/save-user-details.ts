@@ -3,7 +3,7 @@ import { Next } from 'koa'
 import { Role, MedicalPractioner } from '../db/models'
 import { StateAddons, ContextAddons } from '../types'
 
-export async function saveUserDetails (
+export async function saveUserDetails(
   ctx: RouterContext<StateAddons, ContextAddons>,
   next: Next
 ): Promise<void> {
@@ -23,6 +23,23 @@ export async function saveUserDetails (
     const verificationLink =
       await ctx.services.auth.generateEmailVerificationLink(email)
     console.log('Verification link', verificationLink)
+
+    await ctx.services.sendgrid.send({
+      from: { email: 'noreply@telly.health' },
+      to: { email },
+      subject: 'Verify your email',
+      content: [
+        {
+          type: 'text',
+          value: `Welcome to telly.health, please verify your email by clicking on ${verificationLink}`
+        }
+      ],
+      mailSettings: {
+        sandboxMode: {
+          enable: process.env.NODE_ENV === 'test'
+        }
+      }
+    })
   }
 
   ctx.body = {

@@ -2,7 +2,7 @@ import { Next } from 'koa'
 import { AppContext } from './types'
 import axios from 'axios'
 
-export async function errorHandler (ctx: AppContext, next: Next): Promise<void> {
+export async function errorHandler(ctx: AppContext, next: Next): Promise<void> {
   try {
     await next()
   } catch (e) {
