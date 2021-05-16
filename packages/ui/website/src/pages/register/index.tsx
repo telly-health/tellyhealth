@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography"
 import MuiAlert from "@material-ui/lab/Alert"
 import Backdrop from "@material-ui/core/Backdrop"
 import CircularProgress from "@material-ui/core/CircularProgress"
+import Divider from "@material-ui/core/Divider"
 import { makeStyles } from "@material-ui/core/styles"
 import axios from "axios"
 import theme from "../../theme"
@@ -39,7 +40,7 @@ const validationSchema = yup
     specialization: yup.string().required("Specialization is required"),
   })
   .shape({
-    country: yup.string().required("Country is required"),
+    country: yup.object().required("Country is required"),
     recaptcha: yup.string().required(),
     languages: yup.array().of(yup.string()).required("Languages is required"),
     phoneNumber: yup.string().required("Phone number is required"),
@@ -50,6 +51,7 @@ const RegisterClinician = () => {
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null as any)
   const [formValues, setFormValues] = useState(null as any)
+  const [location, setLocation] = useState({} as any)
 
   // Get geolocation
   const getLocation = async () => {
@@ -73,6 +75,7 @@ const RegisterClinician = () => {
         label: response.data.country,
       }
       setFormValues(initialValues)
+      setLocation(response.data)
     } catch (error) {
       setFormValues(initialValues)
       return error
@@ -88,7 +91,8 @@ const RegisterClinician = () => {
         url: "/user/register/medical_practitoner",
         data: {
           ...values,
-          location: "",
+          country: values.country.code,
+          location: location.lat && `${location.lat},${location.lon}` || "",
           timezone: "",
         },
       })
@@ -110,12 +114,14 @@ const RegisterClinician = () => {
         })
       }
       setLoading(false)
+      window.scrollTo(0, 0)
     } catch (err) {
       setResponse({
         type: "error",
         message: "Registration failed. Please try again.",
       })
       setLoading(false)
+      window.scrollTo(0, 0)
     }
   }
 
@@ -144,9 +150,10 @@ const RegisterClinician = () => {
       <Layout>
         <SEO title="Register clinician" />
         <Paper className={`register-form`} elevation={3}>
-          <Typography variant="h5" className={`title`}>
+          <Typography variant="h6" className={`title`}>
             Register GP/Specialist
           </Typography>
+          <Divider style={{ marginBottom: "10px" }} />
           {previewResponse()}
           {formValues ? (
             <Form
