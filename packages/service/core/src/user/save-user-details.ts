@@ -19,6 +19,12 @@ export async function saveUserDetails (
   ctx.state.user.uid = id
   const { name, email, emailVerified, phoneNumber, authUid } = ctx.state.user
 
+  if (email != null) {
+    const verificationLink =
+      await ctx.services.auth.generateEmailVerificationLink(email)
+    console.log('Verification link', verificationLink)
+  }
+
   ctx.body = {
     message: 'User registration sucessful',
     user: {
@@ -26,6 +32,7 @@ export async function saveUserDetails (
       email,
       emailVerified,
       phoneNumber,
+
       uid: id,
       authUid
     }
