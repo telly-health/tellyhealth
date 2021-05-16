@@ -8,9 +8,6 @@
     "project": "./tsconfig.json",
     "ecmaVersion": 12
   },
-  "rules": {
-    "indent": "off"
-  },
   "ignorePatterns": [
     "./test/**/*.ts",
     "dist"

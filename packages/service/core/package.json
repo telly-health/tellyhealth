@@ -79,9 +79,9 @@
 	},
 	"prettier": "prettier-config-standard",
 	"scripts": {
-		"format": "prettier --write ./src && yarn lint --fix",
-		"lint:src": "eslint -c ./.eslintrc src/",
-		"lint:test": "eslint -c ./.eslintrc.test test/",
+		"format": "prettier --write ./src && yarn lint",
+		"lint:src": "eslint -c ./.eslintrc src/ --fix",
+		"lint:test": "eslint -c ./.eslintrc.test test/ --fix",
 		"lint": "yarn lint:src && yarn lint:test",
 		"build": "yarn run build:esm && yarn run build:cjs",
 		"postbuild": "echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json && echo '{\"type\": \"module\"}' > ./dist/esm/package.json",
