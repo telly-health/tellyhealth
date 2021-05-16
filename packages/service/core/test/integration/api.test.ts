@@ -7,23 +7,24 @@ import {
   beforeAll,
   afterAll
 } from '@jest/globals'
+import { Server } from 'http'
 import request from 'supertest'
 import { app } from '../../src/'
 import { config } from '../../src/config'
 import { clearFirestoreData, clearUserAccounts } from './helpers'
 
-jest.setTimeout(10_000)
-let server
-const port = config.get('port')
+jest.setTimeout(40_000)
+let server: Server
+const port = config.get('server.port')
 
 describe('app', () => {
-  beforeAll(() => {
-    server = app.listen(port)
+  beforeAll((done) => {
+    server = app.listen(port, done)
   })
 
-  afterAll(() => {
+  afterAll((done) => {
     if (server != null) {
-      server.close()
+      server.close(done)
     }
   })
 

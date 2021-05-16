@@ -1,21 +1,21 @@
 import { beforeAll, afterAll, describe, it, expect } from '@jest/globals'
+import { Server } from 'http'
 import request from 'supertest'
 import { app } from '../../src/'
 import { config } from '../../src/config'
 
-let server
-const port = config.get('port')
+let server: Server
+const port = config.get('server.port')
 
 describe('Healthcheck Endpoint', () => {
-  beforeAll(() => {
-    server = app.listen(port)
+  beforeAll((done) => {
+    server = app.listen(port, done)
   })
 
-  afterAll(() => {
-    if (server != null) server.close()
+  afterAll((done) => {
+    if (server != null) server.close(done)
   })
 
-  afterAll(() => {})
   it('GET /healthcheck', async () => {
     return await request(server)
       .post('/healthcheck')

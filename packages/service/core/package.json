@@ -86,7 +86,7 @@
 		"build:esm": "tsc",
 		"build:cjs": "tsc --module CommonJS --outDir dist/cjs",
 		"clean": "rm -rf dist/",
-		"test": "FIREBASE_AUTH_EMULATOR_HOST=localhost:9099 FIRESTORE_EMULATOR_HOST=localhost:8080 jest --config jest.config.json",
+		"test": "APP_PORT=3000 FIREBASE_AUTH_EMULATOR_HOST=localhost:9099 FIRESTORE_EMULATOR_HOST=localhost:8080 jest --config jest.config.json",
 		"dev": "nodemon",
 		"dev:docker": "SERVER_PORT=3000 docker-compose up --build api",
 		"start:esm": "GOOGLE_APPLICATION_CREDENTIALS='./service-account.json' node --experimental-specifier-resolution=node --experimental-json-modules -r dotenv/config ./dist/esm/index.js",
