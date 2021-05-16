@@ -5,7 +5,11 @@ import bodyParser from 'koa-bodyparser'
 import helmet from 'koa-helmet'
 import yamljs from 'yamljs'
 import { AppContext } from './types.js'
-import defaultRouter, { authRouter, otpRouter } from './routes/index.js'
+import defaultRouter, {
+  authRouter,
+  otpRouter,
+  userRouter
+} from './routes/index.js'
 import { config } from './config.js'
 
 export const app = new Koa<AppContext>()
@@ -40,6 +44,9 @@ app.use(
 )
 
 app.use(defaultRouter.routes())
+
+app.use(userRouter.routes())
+app.use(userRouter.allowedMethods())
 
 app.use(authRouter.routes())
 app.use(authRouter.allowedMethods())

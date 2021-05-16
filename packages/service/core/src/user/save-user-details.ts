@@ -1,6 +1,6 @@
 import { RouterContext } from '@koa/router'
 import { Next } from 'koa'
-import { Role, MedicalPractioner } from '../db/models'
+import { Role } from '../db/models'
 import { StateAddons, ContextAddons } from '../types'
 
 export async function saveUserDetails (
@@ -10,26 +10,48 @@ export async function saveUserDetails (
   const { role } = ctx.params
 
   if (role === Role.MedicalPractioner) {
-    ;(ctx.state.user as MedicalPractioner).specialization =
-      ctx.request.body.specialization
-  }
-
-  const { id } = await ctx.services.db.collection('users').add(ctx.state.user)
-
-  ctx.state.user.uid = id
-  const { name, email, emailVerified, phoneNumber, authUid } = ctx.state.user
-
-  ctx.body = {
-    message: 'User registration sucessful',
-    user: {
-      name,
-      email,
-      emailVerified,
-      phoneNumber,
-      uid: id,
-      authUid
+    const { specialization } = ctx.request.body
+    ctx.state.user = {
+      ...ctx.state.user,
+      role: Role.MedicalPractioner,
+      specialization
+    }
+  } else if (role === Role.Individual) {
+    const {
+      preferredConsultation,
+      preferredConsultationDate,
+      preferredSpecialist,
+      additonalMessage
+    } = ctx.request.body
+    ctx.state.user = {
+      ...ctx.state.user,
+      role: Role.Individual,
+      preferredConsultation,
+      preferredConsultationDate,
+      preferredSpecialist,
+      additonalMessage
     }
   }
 
-  ctx.status = 200
+  try {
+    const { id } = await ctx.services.db.collection('users').add(ctx.state.user)
+
+    const { name, email, emailVerified, phoneNumber, authUid } = ctx.state.user
+
+    ctx.body = {
+      message: 'User was created successfully',
+      user: {
+        name,
+        email,
+        emailVerified,
+        phoneNumber,
+        id,
+        authUid
+      }
+    }
+    ctx.status = 200
+  } catch (err) {
+    ctx.body = err
+    ctx.status = 500
+  }
 }

@@ -1,7 +1,8 @@
 .register-form {
     padding: 40px;
     margin: 40px auto;
-    max-width: 600px;
+    width: 100%;
+    max-width: 900px;
 }
 
 .register-form .title {
@@ -21,4 +22,40 @@
 .typeform-full {
     padding: 20px 0 0 0;
     height: calc(100vh - 80px);
+}
+
+.react-tel-input {
+    width: 100%;
+    position: relative;
+    transition: background-color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    background-color: rgba(0, 0, 0, 0.09);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    height: 55px;
+}
+
+.react-tel-input .form-control {
+    position: relative;
+    font-size: 19px;
+    letter-spacing: .01rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-left: 64px;
+    margin-left: 0;
+    background: #e8e8e8;
+    border: 1px solid #CACACA;
+    border-radius: 5px;
+    line-height: 25px;
+    height: 100%;
+    width: 100%;
+    outline: none;
+}
+
+.react-tel-input .selected-flag {
+    outline: none;
+    position: relative;
+    width: 50px;
+    height: 100%;
+    padding: 0 0 0 14px;
+    border-radius: 3px 0 0 3px;
 }

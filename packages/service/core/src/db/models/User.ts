@@ -1,7 +1,7 @@
 export enum Role {
-  Admin = 'Admin',
-  MedicalPractioner = 'MedicalPractioner',
-  Individual = 'Individual'
+  Admin = 'admin',
+  MedicalPractioner = 'medical_practitoner',
+  Individual = 'individual'
 }
 
 // Retrieved from https://www.sgu.edu/blog/medical/ultimate-list-of-medical-specialties/
@@ -45,6 +45,10 @@ export interface Individual {
   timezone: string
   emailVerified: boolean
   phoneVerified: boolean
+  preferredSpecialist: MedicalSpecialization
+  preferredConsultation: string[]
+  preferredConsultationDate: string
+  additonalMessage: string
 }
 
 export interface MedicalPractioner {

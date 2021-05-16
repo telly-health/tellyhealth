@@ -18,4 +18,80 @@ paths:
               schema:
                 type: string
                 example: "\U0001F44D"
+  /user/register/medical_practitoner:
+    post:
+      summary: Medical practitoner registration
+      description: Register user as medical practitoner
+      operationId: createUser
+      responses:
+        '200':
+          description: User created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MedicalPractitoner'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicalPractitoner'
+        '405':
+          description: Invalid input
+      requestBody:
+        description: Create a new medical practitoner user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicalPractitoner'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MedicalPractitoner'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MedicalPractitoner'
+components:
+  schemas:
+    MedicalPractitoner:
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: Dr.John
+        email:
+          type: string
+          example: john@email.com
+        country:
+          type: string
+          example: Australia
+        location:
+          type: string
+          example: "12.00,43.02"
+        timezone:
+          type: string
+          example: "Sydney/Australia"
+        specialization:
+          type: string
+          example: "Dermatology"
+        languages:
+          type: array
+          example: ["Tamil", "English"]
+          items:
+            type: string
+        preferredConsultation:
+          type: array
+          example: ["webinar", "one-to-one"]
+          items:
+            type: string
+        phoneNumber:
+          type: string
+          example: "+61406210236"
+        emailVerified:
+          type: boolean
+          example: false
+          description: Email Status
+      xml:
+        name: user
+      type: object      
 tags: []

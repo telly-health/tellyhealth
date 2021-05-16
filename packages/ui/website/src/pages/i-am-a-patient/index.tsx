@@ -9,6 +9,11 @@ import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
 import MenuItem from "@material-ui/core/MenuItem"
 import Recaptcha from "react-recaptcha"
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers"
+import DateFnsUtils from "@date-io/date-fns"
 import theme from "../../theme"
 import { map } from "lodash"
 
@@ -64,6 +69,7 @@ const validationSchema = yup
     specialization: yup.string().required("Specialization is required"),
   })
   .shape({
+    date: yup.date().nullable(),
     location: yup.string().required("Location is required"),
     recaptcha: yup.string().required(),
     languages: yup.array().of(yup.string()).required("Languages is required"),
@@ -79,6 +85,7 @@ const RegisterClinician = () => {
     languages: [],
     recaptcha: "",
     preferredConsultation: [],
+    date: null,
     message: "",
   }
 
@@ -252,6 +259,19 @@ const RegisterClinician = () => {
                     />
                   )}
                 />
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    id="date"
+                    label="Preferred consultation date (dd/mm/yyyy)"
+                    inputVariant="filled"
+                    format="dd/MM/yyyy"
+                    value={values.date}
+                    onChange={value => setFieldValue("date", value)}
+                    KeyboardButtonProps={{
+                      "aria-label": "consultation date",
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
                 <TextField
                   fullWidth
                   multiline
@@ -259,7 +279,7 @@ const RegisterClinician = () => {
                   rows={4}
                   id="message"
                   name="message"
-                  label="Additional message"
+                  label="Additional consultation message"
                   variant="filled"
                   value={values.message}
                   onChange={handleChange}

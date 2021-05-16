@@ -16,6 +16,11 @@
    gatsby develop
    ```
 
+## Development Config
+
+RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+CORE_API_BASE_URL=http://localhost:3000
+
 ## 🤝 Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
