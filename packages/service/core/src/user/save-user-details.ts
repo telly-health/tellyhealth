@@ -21,7 +21,7 @@ export async function saveUserDetails (
       preferredConsultation,
       preferredConsultationDate,
       preferredSpecialist,
-      additonalMessage
+      additionalMessage
     } = ctx.request.body
     ctx.state.user = {
       ...ctx.state.user,
@@ -29,10 +29,10 @@ export async function saveUserDetails (
       preferredConsultation,
       preferredConsultationDate,
       preferredSpecialist,
-      additonalMessage
+      additionalMessage
     }
   }
-
+  
   try {
     const { id } = await ctx.services.db.collection('users').add(ctx.state.user)
 

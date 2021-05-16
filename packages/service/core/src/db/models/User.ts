@@ -48,7 +48,7 @@ export interface Individual {
   preferredSpecialist: MedicalSpecialization
   preferredConsultation: string[]
   preferredConsultationDate: string
-  additonalMessage: string
+  additionalMessage: string
 }
 
 export interface MedicalPractioner {
