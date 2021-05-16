@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import { config } from '../config'
 
-export function createFirebaseClient(): firebase.app.App {
+export function createFirebaseClient (): firebase.app.App {
   const apikey = config.get('firebase.apiKey')
   const appId = config.get('firebase.appId')
   const authDomain = config.get('firebase.authDomain')
