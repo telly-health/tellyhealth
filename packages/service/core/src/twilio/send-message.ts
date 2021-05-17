@@ -16,7 +16,7 @@ export interface NotificationDetails {
   to: string
 }
 
-export async function sendMessage (
+export async function sendMessage(
   client: Twilio,
   messageDetails: MessageDetails
 ): Promise<NotificationDetails> {

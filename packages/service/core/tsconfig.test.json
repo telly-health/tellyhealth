@@ -3,14 +3,8 @@
   "compilerOptions": {
     "module": "CommonJs",
     "noEmit": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
-  "include": [
-    "test",
-    "src",
-    "typings"
-  ],
-  "exclude": [
-    "dist"
-  ]
+  "include": ["test", "src", "typings"],
+  "exclude": ["dist"]
 }

@@ -3,21 +3,13 @@
     {
       "displayName": "UnitTests",
       "testEnvironment": "node",
-      "testMatch": [
-        "<rootDir>/test/unit/**/*.test.ts"
-      ],
+      "testMatch": ["<rootDir>/test/unit/**/*.test.ts"],
       "testRunner": "jest-circus/runner",
       "transform": {
         "^.+\\.ts$": "ts-jest"
       },
-      "moduleFileExtensions": [
-        "ts",
-        "js",
-        "json"
-      ],
-      "setupFiles": [
-        "dotenv/config"
-      ],
+      "moduleFileExtensions": ["ts", "js", "json"],
+      "setupFiles": ["dotenv/config"],
       "globals": {
         "ts-jest": {
           "tsconfig": "./tsconfig.test.json"
@@ -27,24 +19,14 @@
     {
       "displayName": "IntegrationTests",
       "testEnvironment": "node",
-      "testMatch": [
-        "<rootDir>/test/integration/**/*.test.ts"
-      ],
+      "testMatch": ["<rootDir>/test/integration/**/*.test.ts"],
       "testRunner": "jest-circus/runner",
       "transform": {
         "^.+\\.ts$": "ts-jest"
       },
-      "moduleFileExtensions": [
-        "ts",
-        "js",
-        "json"
-      ],
-      "setupFiles": [
-        "dotenv/config"
-      ],
-      "setupFilesAfterEnv": [
-        "<rootDir>/test/setup.ts"
-      ],
+      "moduleFileExtensions": ["ts", "js", "json"],
+      "setupFiles": ["dotenv/config"],
+      "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
       "globals": {
         "ts-jest": {
           "tsconfig": "./tsconfig.test.json"

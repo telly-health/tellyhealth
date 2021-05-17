@@ -77,31 +77,31 @@ components:
           example: Australia
         location:
           type: string
-          example: "12.00,43.02"
+          example: '12.00,43.02'
         timezone:
           type: string
-          example: "Sydney/Australia"
+          example: 'Sydney/Australia'
         specialization:
           type: string
-          example: "Dermatology"
+          example: 'Dermatology'
         languages:
           type: array
-          example: ["Tamil", "English"]
+          example: ['Tamil', 'English']
           items:
             type: string
         preferredConsultation:
           type: array
-          example: ["webinar", "one-to-one"]
+          example: ['webinar', 'one-to-one']
           items:
             type: string
         phoneNumber:
           type: string
-          example: "+61406210236"
+          example: '+61406210236'
         emailVerified:
           type: boolean
           example: false
           description: Email Status
       xml:
         name: user
-      type: object      
+      type: object
 tags: []
