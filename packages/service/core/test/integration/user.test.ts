@@ -1,19 +1,31 @@
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals'
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  afterAll
+} from '@jest/globals'
 import supertest from 'supertest'
 import app from '../../src'
-import { clearFirestoreData, clearUserAccounts } from './helpers'
+import { clearFirestoreData, clearUserAccounts, delay } from './helpers'
 
 const request = supertest(app)
 
 describe('app', () => {
   beforeEach(async () => {
-    return await Promise.all([clearUserAccounts(), clearFirestoreData()])
+    await Promise.all([clearUserAccounts(), clearFirestoreData()])
   })
   afterEach(async () => {
-    return app.close()
+    await app.close()
   })
 
-  it('POST /user/register/medical_practioner', async () => {
+  afterAll(async () => {
+    await Promise.all([clearUserAccounts(), clearFirestoreData()])
+    await delay('10s') // avoid jest open handle error
+  })
+
+  it('POST /user/register/medical_practitoner', async () => {
     const body = {
       name: 'Gabrielle Maguire',
       email: 'GabrielleMaguire@yahoo.com',
@@ -38,7 +50,7 @@ describe('app', () => {
     }
 
     return await request
-      .post('/user/register/medical_practioner')
+      .post('/user/register/medical_practitoner')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send(body)
@@ -57,7 +69,11 @@ describe('app', () => {
       phoneNumber: '+61 491 570 158',
       location: { latitude: 33.8688, longitude: 151.2093 },
       languages: ['English', 'French', 'Japanese'],
-      timezone: 'Australia/Sydney'
+      timezone: 'Australia/Sydney',
+      preferredConsultation: 'One on One',
+      preferredConsultationDate: '2020-11-22',
+      preferredSpecialist: 'Dr Gabrielle Maguire',
+      additionalMessage: 'Please send zoom link in advance'
     }
 
     const expected = {

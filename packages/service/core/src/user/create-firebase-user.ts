@@ -15,6 +15,7 @@ export async function createFirebaseUser (
     ctx.body = {
       message: `${role} provided is invalid, use one of ${Role.Individual} or ${Role.MedicalPractioner}`
     }
+    return
   }
 
   const {

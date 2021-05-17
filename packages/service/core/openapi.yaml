@@ -151,37 +151,37 @@ components:
           example: Australia
         location:
           type: string
-          example: "12.00,43.02"
+          example: '12.00,43.02'
         timezone:
           type: string
-          example: "Sydney/Australia"
+          example: 'Sydney/Australia'
         preferredSpecialist:
           type: string
-          example: "Dermatology"
+          example: 'Dermatology'
         languages:
           type: array
-          example: ["Tamil", "English"]
+          example: ['Tamil', 'English']
           items:
             type: string
         preferredConsultation:
           type: array
-          example: ["group", "one-to-one"]
+          example: ['group', 'one-to-one']
           items:
             type: string
         preferredConsultationDate:
           type: string
-          example: "2022-05-16T10:19:00.000Z"
+          example: '2022-05-16T10:19:00.000Z'
         phoneNumber:
           type: string
-          example: "+61406210236"
+          example: '+61406210236'
         emailVerified:
           type: boolean
           example: false
           description: Email Status
         additionalMessage:
           type: string
-          example: "Additional consultation message"
+          example: 'Additional consultation message'
       xml:
         name: individual
-      type: object       
+      type: object
 tags: []

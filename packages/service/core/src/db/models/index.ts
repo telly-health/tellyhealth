@@ -7,4 +7,4 @@ export {
   schema as ConsultationSchema
 } from './Consultation'
 
-export * from './User.js'
+export * from './User'
