@@ -2,7 +2,7 @@ import { RouterContext } from '@koa/router'
 import { Role } from '../db/models'
 import { StateAddons, ContextAddons } from '../types'
 
-export async function saveUserDetails(
+export async function saveUserDetails (
   ctx: RouterContext<StateAddons, ContextAddons>
 ): Promise<void> {
   const { role } = ctx.params
