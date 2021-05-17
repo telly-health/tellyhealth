@@ -1,11 +1,4 @@
-import {
-  describe,
-  jest,
-  it,
-  expect,
-  beforeEach,
-  afterEach
-} from '@jest/globals'
+import { describe, it, expect, beforeEach, afterEach } from '@jest/globals'
 import supertest from 'supertest'
 import app from '../../src'
 import { clearFirestoreData, clearUserAccounts } from './helpers'
@@ -17,7 +10,7 @@ describe('app', () => {
     return await Promise.all([clearUserAccounts(), clearFirestoreData()])
   })
   afterEach(async () => {
-    return await app.close()
+    return app.close()
   })
 
   it('POST /user/register/MedicalPractioner', async () => {

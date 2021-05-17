@@ -1,7 +1,7 @@
 import { AppContext } from '../types'
 import { Next } from 'koa'
 
-export async function getUser(ctx: AppContext, next: Next): Promise<void> {
+export async function getUser (ctx: AppContext, next: Next): Promise<void> {
   if (ctx.request.body.email != null) {
     const {
       uid,

@@ -1,11 +1,9 @@
 import { RouterContext } from '@koa/router'
-import { Next } from 'koa'
 import { Role } from '../db/models'
 import { StateAddons, ContextAddons } from '../types'
 
 export async function saveUserDetails (
-  ctx: RouterContext<StateAddons, ContextAddons>,
-  next: Next
+  ctx: RouterContext<StateAddons, ContextAddons>
 ): Promise<void> {
   const { role } = ctx.params
 
@@ -39,9 +37,9 @@ export async function saveUserDetails (
     const { name, email, emailVerified, phoneNumber, authUid } = ctx.state.user
 
     if (email != null) {
-      const verificationLink =
-        await ctx.services.auth.generateEmailVerificationLink(email)
-      console.log('Verification link', verificationLink)
+      const verificationLink = await ctx.services.auth.generateEmailVerificationLink(
+        email
+      )
 
       await ctx.services.sendgrid.send({
         from: { email: 'noreply@telly.health' },
@@ -68,7 +66,6 @@ export async function saveUserDetails (
         email,
         emailVerified,
         phoneNumber,
-
         uid: id,
         authUid
       }

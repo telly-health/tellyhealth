@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged",
     "format": "prettier --write ."
   },
   "author": "Ajain Vivek <ajainvivek07@gmail.com>",

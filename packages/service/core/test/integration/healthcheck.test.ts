@@ -1,5 +1,4 @@
-import { afterEach, describe, it, expect, beforeEach } from '@jest/globals'
-import { Server } from 'http'
+import { afterEach, describe, it, expect } from '@jest/globals'
 import supertest from 'supertest'
 import app from '../../src/'
 
