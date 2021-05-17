@@ -56,8 +56,8 @@ jobs:
       - name: Create env file
         run: |
           touch .env.production
-          echo RECAPTCHA_SITE_KEY=${{ secrets.RECAPTCHA_SITE_KEY }} >> .env.production
-          echo CORE_API_BASE_URL="https://telly.health" >> .env.production
+          echo GATSBY_RECAPTCHA_SITE_KEY=${{ secrets.RECAPTCHA_SITE_KEY }} >> .env.production
+          echo GATSBY_CORE_API_BASE_URL="https://telly.health" >> .env.production
       - name: Build the package
         run: npm run build
       - name: Publish

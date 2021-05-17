@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
   },
 }))
-const apiBaseUrl = process.env.CORE_API_BASE_URL
+const apiBaseUrl = process.env.GATSBY_CORE_API_BASE_URL
 
 const validationSchema = yup
   .object({
@@ -96,7 +96,7 @@ const RegisterClinician = () => {
         url: "/user/register/individual",
         data: {
           ...values,
-          location: location.lat && `${location.lat},${location.lon}` || "",
+          location: (location.lat && `${location.lat},${location.lon}`) || "",
           country: values.country.code,
           timezone: "",
         },
