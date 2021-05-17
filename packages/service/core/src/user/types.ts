@@ -24,7 +24,7 @@ export interface IndividualRegistrationForm {
   preferredSpecialist: MedicalSpecialization
   preferredConsultation: string[]
   preferredConsultationDate: string
-  additonalMessage: string
+  additionalMessage: string
   timezone: string
 }
 

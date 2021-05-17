@@ -7,6 +7,4 @@ export {
   schema as ConsultationSchema
 } from './Consultation'
 
-export { schema as PatientSchema, model as Patient } from './Patient'
-
-export * from './User'
+export * from './User.js'

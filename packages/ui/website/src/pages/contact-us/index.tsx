@@ -29,7 +29,7 @@ function countryToFlag(isoCode: string) {
     : isoCode
 }
 
-const siteKey = process.env.RECAPTCHA_SITE_KEY
+const siteKey = process.env.GATSBY_RECAPTCHA_SITE_KEY
 
 const validationSchema = yup
   .object({

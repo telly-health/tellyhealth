@@ -19,7 +19,7 @@ export async function saveUserDetails (
       preferredConsultation,
       preferredConsultationDate,
       preferredSpecialist,
-      additonalMessage
+      additionalMessage
     } = ctx.request.body
     ctx.state.user = {
       ...ctx.state.user,
@@ -27,7 +27,7 @@ export async function saveUserDetails (
       preferredConsultation,
       preferredConsultationDate,
       preferredSpecialist,
-      additonalMessage
+      additionalMessage
     }
   }
 
