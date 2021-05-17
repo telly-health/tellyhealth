@@ -7,11 +7,12 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 import MenuItem from "@material-ui/core/MenuItem"
 import PhoneInput from "react-phone-input-2"
 import Recaptcha from "react-recaptcha"
-import { map, lowerCase } from "lodash"
+import { map, lowerCase, get } from "lodash"
 
 import specializations from "../../data/specializations"
 import allLanguages from "../../data/languages"
 import countries from "../../data/countries"
+import { MedicalPractitoner } from "../../data/types"
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -45,7 +46,7 @@ const siteKey = process.env.RECAPTCHA_SITE_KEY
 const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
   <Formik
     validationSchema={validationSchema}
-    initialValues={initialValues}
+    initialValues={initialValues as MedicalPractitoner}
     enableReinitialize={true}
     onSubmit={onSubmit}
   >
@@ -59,7 +60,7 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           label="Full Name"
           autoComplete="new-password"
           variant="filled"
-          value={values.name}
+          value={get(values, "name", "")}
           onChange={handleChange}
           error={touched.name && Boolean(errors.name)}
           helperText={touched.name && errors.name}
@@ -72,15 +73,15 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           name="email"
           label="Email"
           variant="filled"
-          value={values.email}
+          value={get(values, "email", "")}
           onChange={handleChange}
           error={touched.email && Boolean(errors.email)}
           helperText={touched.email && errors.email}
         />
         <div className="MuiFormControl-root MuiTextField-root textfield MuiFormControl-fullWidth">
           <PhoneInput
-            country={lowerCase(values.country.code)}
-            value={values.phoneNumber}
+            country={lowerCase(get(values, "country.code", "in"))}
+            value={get(values, "phoneNumber", "")}
             onChange={phone => {
               setFieldValue("phoneNumber", `+${phone}`)
             }}
@@ -98,7 +99,10 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
               {option.label}
             </React.Fragment>
           )}
-          value={values.country}
+          value={get(values, "country", {
+            code: "in",
+            label: "India"
+          })}
           onChange={(e, value) => {
             setFieldValue(
               "country",
@@ -129,7 +133,7 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           autoComplete="new-password"
           select
           label="Choose your specialization"
-          value={values.specialization}
+          value={get(values, "specialization", "")}
           onChange={handleChange}
           error={touched.specialization && Boolean(errors.specialization)}
           helperText={touched.specialization && errors.specialization}
