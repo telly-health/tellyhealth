@@ -27,3 +27,15 @@ export interface MedicalPractitoner {
   recaptcha: string
   preferredConsultation: string[]
 }
+
+export interface Contact {
+  name: string
+  email: string
+  phoneNumber: string
+  country: {
+    code: string
+    label: string
+  }
+  recaptcha: string
+  message: string
+}

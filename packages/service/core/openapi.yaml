@@ -78,6 +78,36 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/Individual'
+  /contact/save:
+    post:
+      summary: Contact enquiry messages
+      description: Contact enquiry messages from site users
+      operationId: createContact
+      responses:
+        '200':
+          description: Contact was saved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Contact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '405':
+          description: Invalid input
+      requestBody:
+        description: Create a new enquiry
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contact'
 components:
   schemas:
     MedicalPractitoner:
@@ -173,5 +203,32 @@ components:
           example: "Additional consultation message"
       xml:
         name: individual
+      type: object
+    Contact:
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 11
+        name:
+          type: string
+          example: Richard Branson
+        email:
+          type: string
+          example: richard@email.com
+        country:
+          type: string
+          example: Australia
+        location:
+          type: string
+          example: "12.00,43.02"
+        phoneNumber:
+          type: string
+          example: "+61406210236"
+        message:
+          type: string
+          example: "Contact message"
+      xml:
+        name: contact
       type: object       
 tags: []

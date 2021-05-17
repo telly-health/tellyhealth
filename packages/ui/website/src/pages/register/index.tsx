@@ -51,7 +51,7 @@ const RegisterClinician = () => {
   const classes = useStyles()
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null as any)
-  const [formValues, setFormValues] = useState(null as Individual)
+  const [formValues, setFormValues] = useState(null as any)
   const [location, setLocation] = useState({} as any)
 
   // Get geolocation

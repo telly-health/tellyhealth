@@ -1,35 +1,37 @@
-import React, { useEffect } from "react"
-import { Formik, Form } from "formik"
+import React, { useEffect, useState } from "react"
 import * as yup from "yup"
-import Button from "@material-ui/core/Button"
-import TextField from "@material-ui/core/TextField"
-import Autocomplete from "@material-ui/lab/Autocomplete"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
+import Skeleton from "@material-ui/lab/Skeleton"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-import Recaptcha from "react-recaptcha"
+import MuiAlert from "@material-ui/lab/Alert"
+import Backdrop from "@material-ui/core/Backdrop"
+import CircularProgress from "@material-ui/core/CircularProgress"
+import Divider from "@material-ui/core/Divider"
+import { makeStyles } from "@material-ui/core/styles"
+import FacebookIcon from "@material-ui/icons/Facebook"
+import TwitterIcon from "@material-ui/icons/Twitter"
+import axios from "axios"
 import theme from "../../theme"
+import Form from "./form"
 
+import { Contact } from "../../data/types"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
-import countries from "../../data/countries"
+import errorCodes from "../../data/error-codes"
 
+import "react-phone-input-2/lib/style.css"
 import "./style.css"
 
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE 11
-function countryToFlag(isoCode: string) {
-  return typeof String.fromCodePoint !== "undefined"
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, char =>
-          String.fromCodePoint(char.charCodeAt(0) + 127397)
-        )
-    : isoCode
-}
+const useStyles = makeStyles(theme => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
+}))
 
-const siteKey = process.env.GATSBY_RECAPTCHA_SITE_KEY
+const apiBaseUrl = process.env.GATSBY_CORE_API_BASE_URL
 
 const validationSchema = yup
   .object({
@@ -38,28 +40,88 @@ const validationSchema = yup
       .string()
       .email("Enter a valid email")
       .required("Email is required"),
-    phone: yup
-      .string()
-      .min(8, "Phone should be of minimum 8 characters length")
-      .required("Phone number is required"),
   })
   .shape({
-    location: yup.string().required("Location is required"),
+    country: yup.object().required("Country is required"),
     recaptcha: yup.string().required(),
+    phoneNumber: yup.string().required("Phone number is required"),
+    message: yup.string().required("Enquiry message is required"),
   })
 
-const RegisterClinician = () => {
-  const initialValues = {
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    recaptcha: "",
-    message: "",
+const ContactUs = () => {
+  const classes = useStyles()
+  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState(null as any)
+  const [formValues, setFormValues] = useState(null as any)
+  const [location, setLocation] = useState({} as any)
+
+  // Get geolocation
+  const getLocation = async () => {
+    const initialValues: Contact = {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      country: {
+        code: "IN",
+        label: "India",
+      },
+      recaptcha: "",
+      message: "",
+    }
+    try {
+      const response = await axios.get("https://extreme-ip-lookup.com/json/")
+      initialValues.country = {
+        code: response.data.countryCode,
+        label: response.data.country,
+      }
+      setFormValues(initialValues)
+      setLocation(response.data)
+    } catch (error) {
+      setFormValues(initialValues)
+      return error
+    }
   }
 
-  const onSubmit = (values: any) => {
-    console.log(JSON.stringify(values, null, 2))
+  const onSubmit = async (values: any, { resetForm }) => {
+    setLoading(true)
+    try {
+      const result: any = await axios({
+        method: "post",
+        baseURL: apiBaseUrl,
+        url: "/contact/save",
+        data: {
+          ...values,
+          country: values.country.code,
+          location: (location.lat && `${location.lat},${location.lon}`) || "",
+        },
+      })
+      const data = result.data
+      if (data.id) {
+        setResponse({
+          type: "success",
+          message:
+            "Thanks for contacting us. Our team will reach out to you shortly.",
+        })
+        resetForm({})
+      } else {
+        const errorCode: string = data.code as string
+        // @ts-expect-error: Let's ignore a compile error
+        const errorMessage = errorCodes[errorCode] || "Please try again."
+        setResponse({
+          type: "error",
+          message: `Contact save failed. ${errorMessage}`,
+        })
+      }
+      setLoading(false)
+      window.scrollTo(0, 0)
+    } catch (err) {
+      setResponse({
+        type: "error",
+        message: "Contact save failed. Please try again.",
+      })
+      setLoading(false)
+      window.scrollTo(0, 0)
+    }
   }
 
   useEffect(() => {
@@ -68,134 +130,65 @@ const RegisterClinician = () => {
     script.async = true
     script.defer = true
     document.body.appendChild(script)
+    getLocation()
   }, [])
+
+  const previewResponse = () => {
+    if (!response) {
+      return ""
+    }
+    return (
+      <MuiAlert elevation={6} variant="filled" severity={response.type}>
+        {response.message}
+      </MuiAlert>
+    )
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <SEO title="Get in touch" />
+        <SEO title="TellyHealth - Contact us" />
         <Paper className={`contact-form`} elevation={3}>
-          <Typography variant="h5" className={`title`}>
-            Get in touch
+          <Typography variant="h6" className={`title`}>
+            Get in touch!
           </Typography>
-          <Formik
-            validationSchema={validationSchema}
-            initialValues={initialValues}
-            onSubmit={onSubmit}
-          >
-            {({ handleChange, values, errors, touched, setFieldValue }) => (
-              <Form>
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  id="name"
-                  name="name"
-                  label="Full Name"
-                  variant="filled"
-                  value={values.name}
-                  onChange={handleChange}
-                  error={touched.name && Boolean(errors.name)}
-                  helperText={touched.name && errors.name}
-                />
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  id="email"
-                  name="email"
-                  label="Email"
-                  variant="filled"
-                  value={values.email}
-                  onChange={handleChange}
-                  error={touched.email && Boolean(errors.email)}
-                  helperText={touched.email && errors.email}
-                />
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  id="phone"
-                  name="phone"
-                  label="Phone number"
-                  type="phone"
-                  variant="filled"
-                  value={values.phone}
-                  onChange={handleChange}
-                  error={touched.phone && Boolean(errors.phone)}
-                  helperText={touched.phone && errors.phone}
-                />
-                <Autocomplete
-                  id="country-select"
-                  options={countries}
-                  autoHighlight
-                  className="textfield"
-                  getOptionLabel={option => option.label}
-                  renderOption={option => (
-                    <React.Fragment>
-                      <span>{countryToFlag(option.code)}</span>
-                      {option.label}
-                    </React.Fragment>
-                  )}
-                  onChange={(e, value) => {
-                    setFieldValue(
-                      "location",
-                      value !== null ? value.code : initialValues.location
-                    )
-                  }}
-                  renderInput={params => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      label="Choose your country"
-                      variant="filled"
-                      inputProps={{
-                        ...params.inputProps,
-                      }}
-                      value={values.location}
-                      error={touched.location && Boolean(errors.location)}
-                      helperText={touched.location && errors.location}
-                    />
-                  )}
-                />
-                <TextField
-                  fullWidth
-                  multiline
-                  className="textfield"
-                  rows={4}
-                  id="message"
-                  name="message"
-                  label="Your message"
-                  variant="filled"
-                  value={values.message}
-                  onChange={handleChange}
-                  error={touched.message && Boolean(errors.message)}
-                  helperText={touched.message && errors.message}
-                />
-                <Recaptcha
-                  sitekey={siteKey}
-                  render="explicit"
-                  verifyCallback={(response: any) => {
-                    setFieldValue("recaptcha", response)
-                  }}
-                  onloadCallback={() => {
-                    console.log("done loading!")
-                  }}
-                />
-                <Button
-                  size="large"
-                  className="submit"
-                  color="primary"
-                  variant="contained"
-                  fullWidth
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </Form>
-            )}
-          </Formik>
+          <Typography variant="subtitle1" className={`subtitle`}>
+            Contact us for enquiry, help or join the team
+          </Typography>
+          <div className="social-wrapper">
+            <a href="https://www.facebook.com/tellyhealth" target="_blank" >
+              <FacebookIcon fontSize="large" style={{ color: "#4267B2" }} />
+            </a>
+            <a href="https://twitter.com/tellyhealth" target="_blank" >
+              <TwitterIcon fontSize="large" style={{ color: "#1DA1F2" }} />
+            </a>
+          </div>
+          <Divider style={{ marginBottom: "10px" }} />
+          {previewResponse()}
+          {formValues ? (
+            <Form
+              initialValues={formValues as Contact}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            />
+          ) : (
+            <div>
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+            </div>
+          )}
+          <Backdrop className={classes.backdrop} open={loading}>
+            <span style={{ position: "relative", top: "43px", left: "68px" }}>
+              Sending message...
+            </span>
+            <CircularProgress color="inherit" />
+          </Backdrop>
         </Paper>
       </Layout>
     </ThemeProvider>
   )
 }
 
-export default RegisterClinician
+export default ContactUs

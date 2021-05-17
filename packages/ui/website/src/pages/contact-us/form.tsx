@@ -4,15 +4,12 @@ import { Formik, Form } from "formik"
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
 import Autocomplete from "@material-ui/lab/Autocomplete"
-import MenuItem from "@material-ui/core/MenuItem"
 import PhoneInput from "react-phone-input-2"
 import Recaptcha from "react-recaptcha"
-import { map, lowerCase, get } from "lodash"
+import { lowerCase, get } from "lodash"
 
-import specializations from "../../data/specializations"
-import allLanguages from "../../data/languages"
 import countries from "../../data/countries"
-import { MedicalPractitoner } from "../../data/types"
+import { Contact } from "../../data/types"
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -26,27 +23,12 @@ const countryToFlag = (isoCode: string) => {
     : isoCode
 }
 
-const interests = [
-  {
-    id: "webinar",
-    title: "Webinar Consultation",
-  },
-  {
-    id: "group",
-    title: "Group Consultation",
-  },
-  {
-    id: "one-to-one",
-    title: "One-to-One Consultation",
-  },
-]
+const siteKey = process.env.GATSBY_RECAPTCHA_SITE_KEY
 
-const siteKey = process.env.RECAPTCHA_SITE_KEY
-
-const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
+const ContactForm = ({ validationSchema, initialValues, onSubmit }) => (
   <Formik
     validationSchema={validationSchema}
-    initialValues={initialValues as MedicalPractitoner}
+    initialValues={initialValues as Contact}
     enableReinitialize={true}
     onSubmit={onSubmit}
   >
@@ -126,76 +108,17 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
         />
         <TextField
           fullWidth
+          multiline
           className="textfield"
-          name="specialization"
-          id="specialization"
+          rows={4}
+          id="message"
+          name="message"
+          label="Enquiry message"
           variant="filled"
-          autoComplete="new-password"
-          select
-          label="Choose your specialization"
-          value={get(values, "specialization", "")}
+          value={get(values, "message", "")}
           onChange={handleChange}
-          error={touched.specialization && Boolean(errors.specialization)}
-          helperText={touched.specialization && errors.specialization}
-        >
-          {specializations.map(option => (
-            <MenuItem key={option.id} value={option.id}>
-              {option.name}
-            </MenuItem>
-          ))}
-        </TextField>
-        <Autocomplete
-          multiple
-          id="languages"
-          options={allLanguages}
-          getOptionLabel={option => option.name}
-          defaultValue={[]}
-          onChange={(e, value) => {
-            const languages = map(value, option => {
-              return option.id
-            })
-            setFieldValue(
-              "languages",
-              value !== null ? languages : initialValues.languages
-            )
-          }}
-          renderInput={params => (
-            <TextField
-              {...params}
-              variant="filled"
-              autoComplete="new-password"
-              label="Known languages"
-              className="textfield"
-              placeholder="Choose"
-              helperText={touched.languages && errors.languages}
-            />
-          )}
-        />
-        <Autocomplete
-          multiple
-          id="preferred-consultation"
-          options={interests}
-          getOptionLabel={option => option.title}
-          defaultValue={[]}
-          onChange={(e, value) => {
-            const preferredConsultation = value || []
-
-            setFieldValue(
-              "preferredConsultation",
-              value !== null
-                ? preferredConsultation.map(consultation => consultation.id)
-                : initialValues.preferredConsultation
-            )
-          }}
-          renderInput={params => (
-            <TextField
-              {...params}
-              variant="filled"
-              className="textfield"
-              label="Preferred consultation"
-              placeholder="Choose"
-            />
-          )}
+          error={touched.message && Boolean(errors.message)}
+          helperText={touched.message && errors.message}
         />
         <Recaptcha
           sitekey={siteKey}
@@ -215,11 +138,11 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           fullWidth
           type="submit"
         >
-          Register
+          Send Message
         </Button>
       </Form>
     )}
   </Formik>
 )
 
-export default RegisterForm
+export default ContactForm
