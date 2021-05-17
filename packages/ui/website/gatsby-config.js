@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `TellyHealth`,
@@ -55,7 +59,7 @@ module.exports = {
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          "GA-G-NVW81EZYP0", // Google Analytics / GA
+          "G-NVW81EZYP0", // Google Analytics / GA
         ],
       },
     },
