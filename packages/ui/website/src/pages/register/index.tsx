@@ -1,29 +1,22 @@
 import React, { useEffect, useState } from "react"
-import { Formik, Form } from "formik"
 import * as yup from "yup"
-import Button from "@material-ui/core/Button"
-import TextField from "@material-ui/core/TextField"
-import Autocomplete from "@material-ui/lab/Autocomplete"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
+import Skeleton from "@material-ui/lab/Skeleton"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-import MenuItem from "@material-ui/core/MenuItem"
 import MuiAlert from "@material-ui/lab/Alert"
 import Backdrop from "@material-ui/core/Backdrop"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import PhoneInput from "react-phone-input-2"
+import Divider from "@material-ui/core/Divider"
 import { makeStyles } from "@material-ui/core/styles"
-import Recaptcha from "react-recaptcha"
 import axios from "axios"
 import theme from "../../theme"
-import { map } from "lodash"
+import Form from "./form"
 
+import { MedicalPractitoner } from "../../data/types"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
-import specializations from "../../data/specializations"
-import allLanguages from "../../data/languages"
-import countries from "../../data/countries"
 import errorCodes from "../../data/error-codes"
 
 import "react-phone-input-2/lib/style.css"
@@ -36,34 +29,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE 11
-function countryToFlag(isoCode: string) {
-  return typeof String.fromCodePoint !== "undefined"
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, char =>
-          String.fromCodePoint(char.charCodeAt(0) + 127397)
-        )
-    : isoCode
-}
-
-const interests = [
-  {
-    id: "webinar",
-    title: "Webinar Consultation",
-  },
-  {
-    id: "group",
-    title: "Group Consultation",
-  },
-  {
-    id: "one-to-one",
-    title: "One-to-One Consultation",
-  },
-]
-
-const siteKey = process.env.RECAPTCHA_SITE_KEY
 const apiBaseUrl = process.env.CORE_API_BASE_URL
 
 const validationSchema = yup
@@ -76,26 +41,47 @@ const validationSchema = yup
     specialization: yup.string().required("Specialization is required"),
   })
   .shape({
-    country: yup.string().required("Country is required"),
+    country: yup.object().required("Country is required"),
     recaptcha: yup.string().required(),
     languages: yup.array().of(yup.string()).required("Languages is required"),
     phoneNumber: yup.string().required("Phone number is required"),
   })
 
 const RegisterClinician = () => {
-  const initialValues = {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    country: "",
-    specialization: "",
-    languages: [],
-    recaptcha: "",
-    preferredConsultation: [],
-  }
   const classes = useStyles()
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null as any)
+  const [formValues, setFormValues] = useState(null as Individual)
+  const [location, setLocation] = useState({} as any)
+
+  // Get geolocation
+  const getLocation = async () => {
+    const initialValues: MedicalPractitoner = {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      country: {
+        code: "IN",
+        label: "India",
+      },
+      specialization: "",
+      languages: [],
+      recaptcha: "",
+      preferredConsultation: [],
+    }
+    try {
+      const response = await axios.get("https://extreme-ip-lookup.com/json/")
+      initialValues.country = {
+        code: response.data.countryCode,
+        label: response.data.country,
+      }
+      setFormValues(initialValues)
+      setLocation(response.data)
+    } catch (error) {
+      setFormValues(initialValues)
+      return error
+    }
+  }
 
   const onSubmit = async (values: any, { resetForm }) => {
     setLoading(true)
@@ -106,7 +92,8 @@ const RegisterClinician = () => {
         url: "/user/register/medical_practitoner",
         data: {
           ...values,
-          location: "",
+          country: values.country.code,
+          location: location.lat && `${location.lat},${location.lon}` || "",
           timezone: "",
         },
       })
@@ -128,12 +115,14 @@ const RegisterClinician = () => {
         })
       }
       setLoading(false)
+      window.scrollTo(0, 0)
     } catch (err) {
       setResponse({
         type: "error",
         message: "Registration failed. Please try again.",
       })
       setLoading(false)
+      window.scrollTo(0, 0)
     }
   }
 
@@ -143,6 +132,7 @@ const RegisterClinician = () => {
     script.async = true
     script.defer = true
     document.body.appendChild(script)
+    getLocation()
   }, [])
 
   const previewResponse = () => {
@@ -161,190 +151,25 @@ const RegisterClinician = () => {
       <Layout>
         <SEO title="Register clinician" />
         <Paper className={`register-form`} elevation={3}>
-          <Typography variant="h5" className={`title`}>
+          <Typography variant="h6" className={`title`}>
             Register GP/Specialist
           </Typography>
+          <Divider style={{ marginBottom: "10px" }} />
           {previewResponse()}
-          <Formik
-            validationSchema={validationSchema}
-            initialValues={initialValues}
-            onSubmit={onSubmit}
-          >
-            {({ handleChange, values, errors, touched, setFieldValue }) => (
-              <Form>
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  id="name"
-                  name="name"
-                  label="Full Name"
-                  autoComplete="new-password"
-                  variant="filled"
-                  value={values.name}
-                  onChange={handleChange}
-                  error={touched.name && Boolean(errors.name)}
-                  helperText={touched.name && errors.name}
-                />
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  autoComplete="new-password"
-                  id="email"
-                  name="email"
-                  label="Email"
-                  variant="filled"
-                  value={values.email}
-                  onChange={handleChange}
-                  error={touched.email && Boolean(errors.email)}
-                  helperText={touched.email && errors.email}
-                />
-                <div className="MuiFormControl-root MuiTextField-root textfield MuiFormControl-fullWidth">
-                  <PhoneInput
-                    variant="filled"
-                    autoComplete="new-password"
-                    country={"us"}
-                    value={values.phoneNumber}
-                    error={touched.phoneNumber && Boolean(errors.phoneNumber)}
-                    helperText={touched.phoneNumber && errors.phoneNumber}
-                    onChange={phone => {
-                      setFieldValue("phoneNumber", `+${phone}`)
-                    }}
-                  />
-                </div>
-                <Autocomplete
-                  id="country-select"
-                  options={countries}
-                  autoHighlight
-                  className="textfield"
-                  getOptionLabel={option => option.label}
-                  renderOption={option => (
-                    <React.Fragment>
-                      <span>{countryToFlag(option.code)}</span>
-                      {option.label}
-                    </React.Fragment>
-                  )}
-                  onChange={(e, value) => {
-                    setFieldValue(
-                      "country",
-                      value !== null ? value.code : initialValues.country
-                    )
-                  }}
-                  renderInput={params => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      label="Choose country you live in"
-                      variant="filled"
-                      autoComplete="off"
-                      inputProps={{
-                        ...params.inputProps,
-                      }}
-                      value={values.country}
-                      error={touched.country && Boolean(errors.country)}
-                      helperText={touched.country && errors.country}
-                    />
-                  )}
-                />
-                <TextField
-                  fullWidth
-                  className="textfield"
-                  name="specialization"
-                  id="specialization"
-                  variant="filled"
-                  autoComplete="new-password"
-                  select
-                  label="Choose your specialization"
-                  value={values.specialization}
-                  onChange={handleChange}
-                  error={
-                    touched.specialization && Boolean(errors.specialization)
-                  }
-                  helperText={touched.specialization && errors.specialization}
-                >
-                  {specializations.map(option => (
-                    <MenuItem key={option.id} value={option.id}>
-                      {option.name}
-                    </MenuItem>
-                  ))}
-                </TextField>
-                <Autocomplete
-                  multiple
-                  id="languages"
-                  options={allLanguages}
-                  getOptionLabel={option => option.name}
-                  defaultValue={[]}
-                  onChange={(e, value) => {
-                    const languages = map(value, option => {
-                      return option.id
-                    })
-                    setFieldValue(
-                      "languages",
-                      value !== null ? languages : initialValues.languages
-                    )
-                  }}
-                  renderInput={params => (
-                    <TextField
-                      {...params}
-                      variant="filled"
-                      autoComplete="new-password"
-                      label="Known languages"
-                      className="textfield"
-                      placeholder="Choose"
-                      helperText={touched.languages && errors.languages}
-                    />
-                  )}
-                />
-                <Autocomplete
-                  multiple
-                  id="preferred-consultation"
-                  options={interests}
-                  getOptionLabel={option => option.title}
-                  defaultValue={[]}
-                  onChange={(e, value) => {
-                    const preferredConsultation = value || []
-
-                    setFieldValue(
-                      "preferredConsultation",
-                      value !== null
-                        ? preferredConsultation.map(
-                            consultation => consultation.id
-                          )
-                        : initialValues.preferredConsultation
-                    )
-                  }}
-                  renderInput={params => (
-                    <TextField
-                      {...params}
-                      variant="filled"
-                      className="textfield"
-                      label="Preferred consultation"
-                      placeholder="Choose"
-                    />
-                  )}
-                />
-                <Recaptcha
-                  sitekey={siteKey}
-                  render="explicit"
-                  verifyCallback={(response: any) => {
-                    setFieldValue("recaptcha", response)
-                  }}
-                  onloadCallback={() => {
-                    console.log("done loading!")
-                  }}
-                />
-                <Button
-                  size="large"
-                  className="submit"
-                  color="primary"
-                  variant="contained"
-                  fullWidth
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </Form>
-            )}
-          </Formik>
+          {formValues ? (
+            <Form
+              initialValues={formValues as MedicalPractitoner}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            />
+          ) : (
+            <div>
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+            </div>
+          )}
           <Backdrop className={classes.backdrop} open={loading}>
             <span style={{ position: "relative", top: "43px", left: "68px" }}>
               Registering...
