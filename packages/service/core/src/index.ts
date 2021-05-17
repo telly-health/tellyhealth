@@ -56,9 +56,6 @@ app.use(
   })
 )
 
-const port = config.get('server.port')
-if (port !== null && process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {
-    console.log('telly-health API has started on port', port)
-  })
-}
+const port = config.get('server.port') as number
+const server = app.listen(port)
+export default server

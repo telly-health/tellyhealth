@@ -41,6 +41,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "lint-staged": "^11.0.0",
     "prettier": "2.0.5",
     "typescript": "^3.9.7"
   },

@@ -4,34 +4,20 @@ import {
   it,
   expect,
   beforeEach,
-  afterEach,
-  afterAll
+  afterEach
 } from '@jest/globals'
-import { Server } from 'http'
-import request from 'supertest'
-import { app } from '../../src'
-import { config } from '../../src/config'
+import supertest from 'supertest'
+import app from '../../src'
 import { clearFirestoreData, clearUserAccounts } from './helpers'
 
-jest.setTimeout(40_000)
-let server: Server
-const port = config.get('server.port')
+const request = supertest(app)
 
 describe('app', () => {
-  afterEach((done) => {
-    if (server != null) {
-      server.close(done)
-    }
-  })
-
   beforeEach(async () => {
-    server = app.listen(port)
-    await clearUserAccounts()
-    return await clearFirestoreData()
+    return await Promise.all([clearUserAccounts(), clearFirestoreData()])
   })
-
-  afterAll(async () => {
-    await new Promise((resolve) => setTimeout(() => resolve(true), 10000)) // avoid jest open handle error
+  afterEach(async () => {
+    return await app.close()
   })
 
   it('POST /user/register/MedicalPractioner', async () => {
@@ -58,8 +44,8 @@ describe('app', () => {
       }
     }
 
-    return await request(server)
-      .post('/user/register/MedicalPractioner')
+    return await request
+      .post('/user/register/MjedicalPractioner')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send(body)
@@ -93,7 +79,7 @@ describe('app', () => {
       }
     }
 
-    return await request(server)
+    return await request
       .post('/user/register/Patient')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
