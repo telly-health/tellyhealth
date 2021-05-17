@@ -95,7 +95,7 @@ const RegisterClinician = () => {
         url: "/user/register/individual",
         data: {
           ...values,
-          location: location.lat && `${location.lat},${location.lon}` || "",
+          location: (location.lat && `${location.lat},${location.lon}`) || "",
           country: values.country.code,
           timezone: "",
         },

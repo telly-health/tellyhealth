@@ -8,7 +8,8 @@ import { AppContext } from './types.js'
 import defaultRouter, {
   authRouter,
   otpRouter,
-  userRouter
+  userRouter,
+  contactRouter
 } from './routes/index.js'
 import { config } from './config.js'
 
@@ -44,6 +45,9 @@ app.use(
 )
 
 app.use(defaultRouter.routes())
+
+app.use(contactRouter.routes())
+app.use(contactRouter.allowedMethods())
 
 app.use(userRouter.routes())
 app.use(userRouter.allowedMethods())

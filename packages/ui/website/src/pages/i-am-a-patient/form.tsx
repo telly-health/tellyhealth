@@ -136,7 +136,9 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           label="Choose specialist"
           value={values.preferredSpecialist}
           onChange={handleChange}
-          error={touched.preferredSpecialist && Boolean(errors.preferredSpecialist)}
+          error={
+            touched.preferredSpecialist && Boolean(errors.preferredSpecialist)
+          }
           helperText={touched.preferredSpecialist && errors.preferredSpecialist}
         >
           {specializations.map(option => (
@@ -205,7 +207,9 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
             inputVariant="filled"
             format="dd/MM/yyyy"
             value={values.preferredConsultationDate}
-            onChange={value => setFieldValue("preferredConsultationDate", value)}
+            onChange={value =>
+              setFieldValue("preferredConsultationDate", value)
+            }
             KeyboardButtonProps={{
               "aria-label": "consultation date",
             }}

@@ -10,4 +10,5 @@ router.get('/healthcheck', (ctx) => {
 export { router as authRouter } from './auth'
 export { router as otpRouter } from './otp'
 export { router as userRouter } from './user'
+export { router as contactRouter } from './contact'
 export default router

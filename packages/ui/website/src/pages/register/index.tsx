@@ -92,7 +92,7 @@ const RegisterClinician = () => {
         data: {
           ...values,
           country: values.country.code,
-          location: location.lat && `${location.lat},${location.lon}` || "",
+          location: (location.lat && `${location.lat},${location.lon}`) || "",
           timezone: "",
         },
       })
