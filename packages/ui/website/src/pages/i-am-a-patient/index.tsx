@@ -12,6 +12,7 @@ import CircularProgress from "@material-ui/core/CircularProgress"
 import axios from "axios"
 import theme from "../../theme"
 import Form from "./form"
+import { Individual } from "../../data/types"
 
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
   },
 }))
-const apiBaseUrl = process.env.CORE_API_BASE_URL
+const apiBaseUrl = process.env.GATSBY_CORE_API_BASE_URL
 
 const validationSchema = yup
   .object({
@@ -57,7 +58,7 @@ const RegisterClinician = () => {
 
   // Get geolocation
   const getLocation = async () => {
-    const initialValues = {
+    const initialValues: Individual = {
       name: "",
       email: "",
       phoneNumber: "",
@@ -161,7 +162,7 @@ const RegisterClinician = () => {
           {previewResponse()}
           {formValues ? (
             <Form
-              initialValues={formValues}
+              initialValues={formValues as Individual}
               validationSchema={validationSchema}
               onSubmit={onSubmit}
             />

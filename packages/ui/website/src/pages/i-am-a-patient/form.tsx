@@ -12,7 +12,8 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers"
 import DateFnsUtils from "@date-io/date-fns"
-import { map, lowerCase } from "lodash"
+import { map, lowerCase, get } from "lodash"
+import { Individual } from "../../data/types"
 
 import specializations from "../../data/specializations"
 import allLanguages from "../../data/languages"
@@ -45,12 +46,12 @@ const interests = [
   },
 ]
 
-const siteKey = process.env.RECAPTCHA_SITE_KEY
+const siteKey = process.env.GATSBY_RECAPTCHA_SITE_KEY
 
 const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
   <Formik
     validationSchema={validationSchema}
-    initialValues={initialValues}
+    initialValues={initialValues as Individual}
     enableReinitialize={true}
     onSubmit={onSubmit}
   >
@@ -64,7 +65,7 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           label="Full Name"
           autoComplete="new-password"
           variant="filled"
-          value={values.name}
+          value={get(values, "name", "")}
           onChange={handleChange}
           error={touched.name && Boolean(errors.name)}
           helperText={touched.name && errors.name}
@@ -77,15 +78,15 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           name="email"
           label="Email"
           variant="filled"
-          value={values.email}
+          value={get(values, "email", "")}
           onChange={handleChange}
           error={touched.email && Boolean(errors.email)}
           helperText={touched.email && errors.email}
         />
         <div className="MuiFormControl-root MuiTextField-root textfield MuiFormControl-fullWidth">
           <PhoneInput
-            country={lowerCase(values.country.code)}
-            value={values.phoneNumber}
+            country={lowerCase(get(values, "country.code", "in"))}
+            value={get(values, "phoneNumber", "")}
             onChange={phone => {
               setFieldValue("phoneNumber", `+${phone}`)
             }}
@@ -103,7 +104,10 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
               {option.label}
             </React.Fragment>
           )}
-          value={values.country}
+          value={get(values, "country", {
+            code: "in",
+            label: "India",
+          })}
           onChange={(e, value) => {
             setFieldValue(
               "country",
@@ -134,7 +138,7 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           autoComplete="new-password"
           select
           label="Choose specialist"
-          value={values.preferredSpecialist}
+          value={get(values, "preferredSpecialist", "")}
           onChange={handleChange}
           error={
             touched.preferredSpecialist && Boolean(errors.preferredSpecialist)
@@ -206,7 +210,7 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
             label="Preferred consultation date (dd/mm/yyyy)"
             inputVariant="filled"
             format="dd/MM/yyyy"
-            value={values.preferredConsultationDate}
+            value={get(values, "preferredConsultationDate", "")}
             onChange={value =>
               setFieldValue("preferredConsultationDate", value)
             }
@@ -224,7 +228,7 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           name="additionalMessage"
           label="Additional consultation message"
           variant="filled"
-          value={values.additionalMessage}
+          value={get(values, "additionalMessage", "")}
           onChange={handleChange}
           error={touched.additionalMessage && Boolean(errors.additionalMessage)}
           helperText={touched.additionalMessage && errors.additionalMessage}

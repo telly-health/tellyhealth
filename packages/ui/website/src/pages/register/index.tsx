@@ -13,6 +13,7 @@ import axios from "axios"
 import theme from "../../theme"
 import Form from "./form"
 
+import { MedicalPractitoner } from "../../data/types"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const apiBaseUrl = process.env.CORE_API_BASE_URL
+const apiBaseUrl = process.env.GATSBY_CORE_API_BASE_URL
 
 const validationSchema = yup
   .object({
@@ -50,12 +51,12 @@ const RegisterClinician = () => {
   const classes = useStyles()
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null as any)
-  const [formValues, setFormValues] = useState(null as any)
+  const [formValues, setFormValues] = useState(null as Individual)
   const [location, setLocation] = useState({} as any)
 
   // Get geolocation
   const getLocation = async () => {
-    const initialValues = {
+    const initialValues: MedicalPractitoner = {
       name: "",
       email: "",
       phoneNumber: "",
@@ -157,7 +158,7 @@ const RegisterClinician = () => {
           {previewResponse()}
           {formValues ? (
             <Form
-              initialValues={formValues}
+              initialValues={formValues as MedicalPractitoner}
               validationSchema={validationSchema}
               onSubmit={onSubmit}
             />
