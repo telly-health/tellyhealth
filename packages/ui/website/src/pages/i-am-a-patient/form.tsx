@@ -251,7 +251,7 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           fullWidth
           type="submit"
         >
-          Submit
+          Register
         </Button>
       </Form>
     )}
