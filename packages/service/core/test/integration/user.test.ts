@@ -13,7 +13,7 @@ describe('app', () => {
     return app.close()
   })
 
-  it('POST /user/register/MedicalPractioner', async () => {
+  it('POST /user/register/medical_practioner', async () => {
     const body = {
       name: 'Gabrielle Maguire',
       email: 'GabrielleMaguire@yahoo.com',
@@ -38,7 +38,7 @@ describe('app', () => {
     }
 
     return await request
-      .post('/user/register/MjedicalPractioner')
+      .post('/user/register/medical_practioner')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send(body)
@@ -49,7 +49,7 @@ describe('app', () => {
       })
   })
 
-  it('POST /user/register/Patient', async () => {
+  it('POST /user/register/individual', async () => {
     const body = {
       name: 'Lily Farrow',
       email: 'lil_sparrow@outlook.com',
@@ -73,7 +73,7 @@ describe('app', () => {
     }
 
     return await request
-      .post('/user/register/Patient')
+      .post('/user/register/individual')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send(body)
