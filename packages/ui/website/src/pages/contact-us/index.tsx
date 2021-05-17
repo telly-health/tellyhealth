@@ -156,10 +156,10 @@ const ContactUs = () => {
             Contact us for enquiry, help or join the team
           </Typography>
           <div className="social-wrapper">
-            <a href="https://www.facebook.com/tellyhealth" target="_blank" >
+            <a href="https://www.facebook.com/tellyhealth" target="_blank">
               <FacebookIcon fontSize="large" style={{ color: "#4267B2" }} />
             </a>
-            <a href="https://twitter.com/tellyhealth" target="_blank" >
+            <a href="https://twitter.com/tellyhealth" target="_blank">
               <TwitterIcon fontSize="large" style={{ color: "#1DA1F2" }} />
             </a>
           </div>
