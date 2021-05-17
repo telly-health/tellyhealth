@@ -32,7 +32,7 @@ export async function saveUserDetails (
       additionalMessage
     }
   }
-  
+
   try {
     const { id } = await ctx.services.db.collection('users').add(ctx.state.user)
 

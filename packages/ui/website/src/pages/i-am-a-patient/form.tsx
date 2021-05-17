@@ -46,7 +46,7 @@ const interests = [
   },
 ]
 
-const siteKey = process.env.RECAPTCHA_SITE_KEY
+const siteKey = process.env.GATSBY_RECAPTCHA_SITE_KEY
 
 const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
   <Formik
@@ -106,7 +106,7 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           )}
           value={get(values, "country", {
             code: "in",
-            label: "India"
+            label: "India",
           })}
           onChange={(e, value) => {
             setFieldValue(
@@ -140,7 +140,9 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           label="Choose specialist"
           value={get(values, "preferredSpecialist", "")}
           onChange={handleChange}
-          error={touched.preferredSpecialist && Boolean(errors.preferredSpecialist)}
+          error={
+            touched.preferredSpecialist && Boolean(errors.preferredSpecialist)
+          }
           helperText={touched.preferredSpecialist && errors.preferredSpecialist}
         >
           {specializations.map(option => (
@@ -209,7 +211,9 @@ const PatientRegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
             inputVariant="filled"
             format="dd/MM/yyyy"
             value={get(values, "preferredConsultationDate", "")}
-            onChange={value => setFieldValue("preferredConsultationDate", value)}
+            onChange={value =>
+              setFieldValue("preferredConsultationDate", value)
+            }
             KeyboardButtonProps={{
               "aria-label": "consultation date",
             }}

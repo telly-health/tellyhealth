@@ -101,7 +101,7 @@ const RegisterForm = ({ validationSchema, initialValues, onSubmit }) => (
           )}
           value={get(values, "country", {
             code: "in",
-            label: "India"
+            label: "India",
           })}
           onChange={(e, value) => {
             setFieldValue(
