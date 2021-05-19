@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import Image from "./image"
 import Hidden from "@material-ui/core/Hidden"
+import { Link } from "gatsby"
 
 const Hero = () => {
   return (
@@ -26,9 +27,11 @@ const Hero = () => {
           We connect people to medical practitoners across the globe for online
           telehealth consultation.
         </Typography>
-        <Button variant="contained" color="primary" size="large">
-          Book consultation
-        </Button>
+        <Link to="/i-am-a-patient">
+          <Button variant="contained" color="primary" size="large">
+            Join patient waitlist
+          </Button>
+        </Link>
       </Grid>
       <Hidden xsDown>
         <Grid

@@ -11,6 +11,21 @@ import Bar from "./bar"
 const JoinUsPanel = () => {
   return (
     <Grid container spacing={3} style={{ minHeight: 500 }}>
+      <Hidden xsDown>
+        <Grid
+          item={true}
+          sm={6}
+          container
+          direction="column"
+          justify="center"
+          alignItems="flex-start"
+          style={{ padding: 10 }}
+        >
+          <div style={{ width: "100%" }}>
+            <Image alt="Medical practitoner" filename="doctors.webp" />
+          </div>
+        </Grid>
+      </Hidden>
       <Grid
         item={true}
         xs={12}
@@ -31,7 +46,7 @@ const JoinUsPanel = () => {
         >
           Countries across Asis Pacific are reeling surges in corona virus cases
           which has put stress and overburden on health care professionals. We
-          want to make health professionals accessible to everyone across the
+          want to make healthcare accessible to everyone across the
           globe.
         </Typography>
         <Link
@@ -48,22 +63,6 @@ const JoinUsPanel = () => {
           </Button>
         </Link>
       </Grid>
-
-      <Hidden xsDown>
-        <Grid
-          item={true}
-          sm={6}
-          container
-          direction="column"
-          justify="center"
-          alignItems="flex-start"
-          style={{ padding: 10 }}
-        >
-          <div style={{ width: "100%" }}>
-            <Image alt="Medical practitoner" filename="doctor.jpg" />
-          </div>
-        </Grid>
-      </Hidden>
     </Grid>
   )
 }

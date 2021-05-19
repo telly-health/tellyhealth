@@ -82,7 +82,7 @@ const Header = ({ companyName }: Props) => {
             color="inherit"
             className={classes.toolbarTitle}
           >
-            <div style={{ width: "180px" }}>
+            <div style={{ width: "160px" }}>
               <Link
                 to={`/`}
                 style={{ textDecoration: "none", color: "inherit" }}
@@ -105,15 +105,15 @@ const Header = ({ companyName }: Props) => {
                 <Button color="inherit">{item.displayText}</Button>
               </Link>
             ))}
+            <Link
+              to={`/register`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Button variant="contained" color="primary" disableElevation>
+                Register GP/Specialist
+              </Button>
+            </Link>
           </Hidden>
-          <Link
-            to={`/register`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <Button variant="contained" color="primary" disableElevation>
-              Register GP/Specialist
-            </Button>
-          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -128,10 +128,24 @@ const Header = ({ companyName }: Props) => {
       >
         <List className={classes.drawerList}>
           {navLinks.map((item, index) => (
-            <ListItem button key={item.displayText}>
-              <ListItemText primary={item.displayText} />
-            </ListItem>
+            <Link
+              to={item.link}
+              style={{ textDecoration: "none", color: "inherit" }}
+              key={item.displayText}
+            >
+              <ListItem button key={item.displayText}>
+                <ListItemText primary={item.displayText} />
+              </ListItem>
+            </Link>
           ))}
+          <Link
+            to={`/register`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button variant="contained" color="primary" disableElevation>
+              Register GP/Specialist
+            </Button>
+          </Link>
         </List>
       </Drawer>
     </React.Fragment>
