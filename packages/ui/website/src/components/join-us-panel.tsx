@@ -46,8 +46,7 @@ const JoinUsPanel = () => {
         >
           Countries across Asis Pacific are reeling surges in corona virus cases
           which has put stress and overburden on health care professionals. We
-          want to make healthcare accessible to everyone across the
-          globe.
+          want to make healthcare accessible to everyone across the globe.
         </Typography>
         <Link
           to={`/register`}
