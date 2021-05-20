@@ -1,6 +1,7 @@
 import { afterAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { createFirebaseUser } from '../../../src/user/create-firebase-user'
 import admin from 'firebase-admin'
+import { Role } from '../../../src/db/models'
 
 describe('Create Firebase User Middleware', () => {
   beforeEach(() => {
@@ -82,7 +83,7 @@ describe('Create Firebase User Middleware', () => {
 
     const next = jest.fn<Promise<void>, any>()
     const ctx = {
-      params: 'MedicalPractioner',
+      params: { role: Role.MedicalPractioner },
       request: {
         body
       },

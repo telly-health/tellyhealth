@@ -57,47 +57,33 @@ export const config = convict({
     }
   },
   firebase: {
-    apiKey: {
+    credentials: {
+      // firebase-admin picks this up automatically, adding this here for documentation.
       format: String,
-      doc: 'Firebase API Key',
-      env: 'FIREBASE_API_KEY',
-      default: undefined as any
+      doc: 'Service Account Credentials file used to initialize the admin client',
+      env: 'GOOGLE_APPLICATION_CREDENTIALS'
     },
-    authDomain: {
-      format: String,
-      doc: 'FIrebase Auth Domain',
-      env: 'FIREBASE_AUTH_DOMAIN',
-      default: undefined as any
-    },
-    projectId: {
-      format: String,
-      doc: 'Firebase Project ID',
-      env: 'FIREBASE_PROJECT_ID',
-      default: 'tellyhealth'
-    },
-    storageBucket: {
-      format: String,
-      doc: 'Firebase Storage Bucket',
-      env: 'FIREBASE_STORAGE_BUCKET',
-      default: undefined as any
-    },
-    messagingSenderId: {
-      format: String,
-      doc: 'Firebase Message Sender Id',
-      env: 'FIREBASE_MESSAGING_SENDER_ID',
-      default: undefined as any
-    },
-    appId: {
-      format: String,
-      doc: 'Firebase App Id',
-      env: 'FIREBASE_APP_ID',
-      default: undefined as any
-    },
-    measurementId: {
-      format: String,
-      doc: 'Firebase Measurement Id',
-      env: 'FIREBASE_MEASUREMENT_ID',
-      default: undefined as any
+    emulators: {
+      token: {
+        format: String,
+        doc: 'A JWT token linked to an IRL google account, used on CI by firebase-cli to authenticate and identify the project to emulate',
+        env: 'FIREBASE_TOKEN',
+        default: undefined as any
+      },
+      authUrl: {
+        // this variable is picked up automatically by firebase-admin.
+        format: String,
+        doc: 'The URL where the auth emulator is running',
+        env: 'FIREBASE_AUTH_EMULATOR_HOST',
+        default: undefined as any
+      },
+      firestoreUrl: {
+        // this variable is picked up automatically by firebase-admin
+        format: String,
+        doc: 'The URL where the firestore emulator is running',
+        env: 'FIRESTORE_EMULATOR_HOST',
+        default: undefined as any
+      }
     }
   },
   zoom: {

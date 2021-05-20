@@ -43,7 +43,7 @@ jobs:
       # Check for package changes
       - name: Check for package changes
         id: early
-        run: ./ci/check-package.sh "core-api"
+        run: ./ci/check-package.sh "core-api"  
 
   build:
     # The type of runner that the job will run on
@@ -69,8 +69,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # Check for package changes
-      - name: Run test
-        run: echo "Running test"
+      - name: Run tests
+        uses: 'actions/setup-node@v1'
+        run:
+          - yarn install
+          - ./ci/test-unit.sh "core-api"
 
   deploy:
      # The type of runner that the job will run on

@@ -9,7 +9,7 @@
         "^.+\\.ts$": "ts-jest"
       },
       "moduleFileExtensions": ["ts", "js", "json"],
-      "setupFiles": ["dotenv/config"],
+      "setupFiles": ["dotenv-flow/config"],
       "globals": {
         "ts-jest": {
           "tsconfig": "./tsconfig.test.json"
@@ -25,7 +25,7 @@
         "^.+\\.ts$": "ts-jest"
       },
       "moduleFileExtensions": ["ts", "js", "json"],
-      "setupFiles": ["dotenv/config"],
+      "setupFiles": ["dotenv-flow/config"],
       "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
       "globals": {
         "ts-jest": {
