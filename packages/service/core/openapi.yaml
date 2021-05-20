@@ -231,14 +231,14 @@ components:
           example: Australia
         location:
           type: string
-          example: "12.00,43.02"
+          example: '12.00,43.02'
         phoneNumber:
           type: string
-          example: "+61406210236"
+          example: '+61406210236'
         message:
           type: string
-          example: "Contact message"
+          example: 'Contact message'
       xml:
         name: contact
-      type: object       
+      type: object
 tags: []
