@@ -4,9 +4,14 @@ import cors from '@koa/cors'
 import bodyParser from 'koa-bodyparser'
 import helmet from 'koa-helmet'
 import yamljs from 'yamljs'
-import { AppContext } from './types'
-import defaultRouter, { authRouter, otpRouter, userRouter } from './routes'
-import { config } from './config'
+import { AppContext } from './types.js'
+import defaultRouter, {
+  authRouter,
+  otpRouter,
+  userRouter,
+  contactRouter
+} from './routes/index.js'
+import { config } from './config.js'
 
 export const app = new Koa<AppContext>()
 
@@ -40,6 +45,9 @@ app.use(
 )
 
 app.use(defaultRouter.routes())
+
+app.use(contactRouter.routes())
+app.use(contactRouter.allowedMethods())
 
 app.use(userRouter.routes())
 app.use(userRouter.allowedMethods())

@@ -57,13 +57,12 @@ export async function confirmPhoneVerification (
     phoneNumber
   )
   const serviceId = config.get('twilio.serviceSid')
-  const verificationCheck: VerificationCheckInstance =
-    await ctx.services.twilio.verify
-      .services(serviceId)
-      .verificationChecks.create({
-        to: formattedPhoneNumber,
-        code: otp
-      })
+  const verificationCheck: VerificationCheckInstance = await ctx.services.twilio.verify
+    .services(serviceId)
+    .verificationChecks.create({
+      to: formattedPhoneNumber,
+      code: otp
+    })
 
   if (
     (ctx.state.phoneVerification.completed =

@@ -10,10 +10,24 @@
     margin: 10px 0;
 }
 
+.contact-form .subtitle {
+    text-align: center;
+    margin: 10px 0;
+}
+
 .contact-form .textfield {
     margin: 10px 0;
 }
 
 .contact-form .submit {
     margin: 10px 0;
+}
+
+.contact-form .social-wrapper {
+    margin: 10px auto;
+    display: table;
+}
+
+.contact-form .social-wrapper svg {
+    margin: 0 5px;
 }

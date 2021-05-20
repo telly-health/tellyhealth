@@ -7,6 +7,7 @@ import Consultations from "../components/consultations"
 import AboutPanel from "../components/about-panel"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
 import JoinUs from "../components/join-us-panel"
+import JoinDiscord from "../components/join-discord"
 import theme from "../theme"
 
 const IndexPage = () => (
@@ -20,6 +21,7 @@ const IndexPage = () => (
         <Hero />
         <Consultations />
         <AboutPanel />
+        <JoinDiscord />
         <JoinUs />
       </Layout>
     </ThemeProvider>
