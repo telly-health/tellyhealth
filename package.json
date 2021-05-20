@@ -19,6 +19,7 @@
 		"packages/**"
 	],
 	"scripts": {
+		"setup": "lerna boostrap --no-ci",
 		"prepare": "husky install",
 		"format": "lerna exec yarn format"
 	}

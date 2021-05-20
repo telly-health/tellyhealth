@@ -6,7 +6,7 @@ set -o pipefail
 
 source ./ci/setup.sh
 
-pipeline_name=$1
+pipeline_name="$1"
 
 echo "telly.health..."
 
@@ -35,7 +35,7 @@ get_changes() {
   if [[ "${GITHUB_REF}" == "refs/heads/master" ]] ; then
     # get packages from last commit
     changes_from_last_commit
-  elif [[ "${GITHUB_REF}" =~ ^v[0-9]+\.[0-9]+ ]]; then
+    elif [[ "${GITHUB_REF}" =~ ^v[0-9]+\.[0-9]+ ]]; then
     # get packages from release artifacts
     changes_on_tagged_release
   else
@@ -88,18 +88,18 @@ main () {
   local name
   local location
   local is_package_changed="false"
-
+  
   changes=$(get_changes | jq -c ".")
-
+  
   for package in $(json_arry_to_base64 "${changes}"); do
     name="$(get_package_name "$(decode_base64 "${package}")")"
     location="$(get_package_location "$(decode_base64 "${package}")")"
     log_info "The package ${name} at ${location} has changed. A build with run id ${GITHUB_RUN_ID} will triggered for the project."
-    if [[ $pipeline_name == $name ]]; then
+    if [[ $pipeline_name == "${name}" ]]; then
       is_package_changed="true"
     fi
   done
-
+  
   if [[ $is_package_changed == "true" ]]; then
     log_info "The package ${pipeline_name} files has changed. Continue the pipeline."
     echo ::set-output name=conclusion::success

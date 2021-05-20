@@ -1,0 +1,16 @@
+{
+  "extends": "standard-with-typescript",
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.test.json",
+    "tsConfigRootDir": "__dirname",
+    "ecmaVersion": 12
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  }
+}

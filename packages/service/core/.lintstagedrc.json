@@ -1,0 +1,4 @@
+{
+  "(src|test)/*.(ts|js|json)": ["yarn format", "yarn lint", "git add"],
+  "*.json": ["yarn format", "git add"]
+}

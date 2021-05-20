@@ -3,7 +3,7 @@ import Router from '@koa/router'
 import { getUser, logout, verifyJwt } from '../auth'
 import { prepareContext } from '../prepare-context'
 import { resetPassword } from '../auth/reset-password'
-import { updateUser } from '../user/index.js'
+import { updateUser } from '../user/index'
 
 export const router = new Router() as AppRouter
 

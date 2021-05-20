@@ -1,0 +1,37 @@
+{
+  "projects": [
+    {
+      "displayName": "UnitTests",
+      "testEnvironment": "node",
+      "testMatch": ["<rootDir>/test/unit/**/*.test.ts"],
+      "testRunner": "jest-circus/runner",
+      "transform": {
+        "^.+\\.ts$": "ts-jest"
+      },
+      "moduleFileExtensions": ["ts", "js", "json"],
+      "setupFiles": ["dotenv-flow/config"],
+      "globals": {
+        "ts-jest": {
+          "tsconfig": "./tsconfig.test.json"
+        }
+      }
+    },
+    {
+      "displayName": "IntegrationTests",
+      "testEnvironment": "node",
+      "testMatch": ["<rootDir>/test/integration/**/*.test.ts"],
+      "testRunner": "jest-circus/runner",
+      "transform": {
+        "^.+\\.ts$": "ts-jest"
+      },
+      "moduleFileExtensions": ["ts", "js", "json"],
+      "setupFiles": ["dotenv-flow/config"],
+      "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
+      "globals": {
+        "ts-jest": {
+          "tsconfig": "./tsconfig.test.json"
+        }
+      }
+    }
+  ]
+}

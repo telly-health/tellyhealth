@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import swaggerUi from 'koa2-swagger-ui'
+import * as swaggerUi from 'koa2-swagger-ui'
 import cors from '@koa/cors'
 import bodyParser from 'koa-bodyparser'
 import helmet from 'koa-helmet'
@@ -53,10 +53,7 @@ app.use(userRouter.routes())
 app.use(userRouter.allowedMethods())
 
 app.use(authRouter.routes())
-app.use(authRouter.allowedMethods())
-
 app.use(otpRouter.routes())
-app.use(otpRouter.allowedMethods())
 
 app.use(
   koaSwagger({
@@ -67,11 +64,6 @@ app.use(
   })
 )
 
-const port = config.get('server.port')
-
-// port is only configured for localhost
-if (port !== null) {
-  app.listen(port, () => {
-    console.log('telly-health API has started on port', port)
-  })
-}
+const port = config.get('server.port') as number
+const server = app.listen(port)
+export default server

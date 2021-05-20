@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged",
     "format": "prettier --write ."
   },
   "author": "Ajain Vivek <ajainvivek07@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "lint-staged": "^11.0.0",
     "prettier": "^2.3.0"
   }
 }

@@ -41,6 +41,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "lint-staged": "^11.0.0",
     "prettier": "2.0.5",
     "typescript": "^3.9.7"
   },
@@ -55,6 +56,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve --prefix-paths",
     "clean": "gatsby clean",
+    "precommit": "lint-staged",
     "serve-prod": "gatsby build && gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
