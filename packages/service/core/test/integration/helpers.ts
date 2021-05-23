@@ -3,22 +3,35 @@ import ms from 'ms'
 import { firebaseAdmin } from '../../src/clients'
 import firebase from 'firebase'
 
-const app = firebase.initializeApp({
-  auth: {
-    uid: 'alice-key',
-    email: 'alice@example.com'
-  },
-  projectId: 'tellyhealth',
-  apiKey: process.env.FIREBASE_API_KEY
-})
+function getFirebaseClient (): firebase.app.App {
+  if (firebase.apps.length > 0) {
+    return firebase.app()
+  }
 
-let testAuth: firebase.auth.Auth | undefined
+  return firebase.initializeApp({
+    auth: {
+      uid: 'alice-key',
+      email: 'alice@example.com'
+    },
+    projectId: 'tellyhealth',
+    apiKey: process.env.FIREBASE_API_KEY
+  })
+}
 
-try {
-  testAuth = app.auth()
-  testAuth.useEmulator('http://localhost:9099')
-} catch (e) {
-  console.error(e)
+function getAuthClient (): firebase.auth.Auth | undefined {
+  const app = getFirebaseClient()
+
+  let testAuth: firebase.auth.Auth | undefined
+
+  try {
+    testAuth = app.auth()
+    testAuth.useEmulator('http://localhost:9099')
+    return testAuth
+  } catch (e) {
+    console.error(e)
+  }
+
+  return undefined
 }
 
 export async function clearUserAccounts (): Promise<AxiosResponse<any>> {
@@ -32,6 +45,8 @@ export async function registerUser (
   password: string,
   profile: Record<string, any>
 ): Promise<firebase.User | undefined> {
+  const testAuth = getAuthClient()
+
   if (testAuth == null) return undefined
 
   try {
@@ -53,20 +68,20 @@ export async function clearFirestoreData (): Promise<AxiosResponse<any>> {
 }
 
 export async function createJwtToken (
-  uid: string,
   email: string,
-  password: string,
-  projectId = 'tellyhealth',
-  databaseName = 'users'
+  password: string
 ): Promise<string | null | undefined> {
+  const testAuth = getAuthClient()
+
   if (testAuth == null) return undefined
+
   try {
     const creds = await testAuth.signInWithEmailAndPassword(email, password)
     if (creds.user == null) {
       return undefined
     }
 
-    return await creds.user.getIdToken()
+    return await creds.user.getIdToken(true)
   } catch (e) {
     console.error(e)
   }
@@ -78,7 +93,10 @@ export async function passwordlessLoginWithEmail (
   email: string,
   emailLink: string
 ): Promise<string | undefined> {
+  const testAuth = getAuthClient()
+
   if (testAuth == null) return undefined
+
   try {
     const creds = await testAuth.signInWithEmailLink(email, emailLink)
 

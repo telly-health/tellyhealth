@@ -43,6 +43,7 @@ describe('app', () => {
       }
     }
 
+    await clearUserAccounts()
     const response = await wrapped.run(event as any)
 
     expect(response.statusCode).toEqual(200)
@@ -88,6 +89,7 @@ describe('app', () => {
       }
     }
 
+    await clearUserAccounts()
     const response = await wrapped.run(event as any)
     expect(response.statusCode).toEqual(200)
     expect(response.body).toBeDefined()
