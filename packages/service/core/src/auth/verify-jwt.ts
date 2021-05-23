@@ -3,6 +3,7 @@ import { AppContext } from '../types'
 import admin from 'firebase-admin'
 
 export async function verifyJwt (ctx: AppContext, next: Next): Promise<void> {
+  const isEmulated = process.env.NODE_ENV === 'test'
   const bearerToken = ctx.headers.authorization
 
   if (bearerToken == null) {
@@ -16,7 +17,7 @@ export async function verifyJwt (ctx: AppContext, next: Next): Promise<void> {
   const tokenSegments = (bearerToken as string).split(' ')
 
   let idToken: string = ''
-  if (tokenSegments.length === 1) {
+  if (tokenSegments.length === 2) {
     idToken = tokenSegments[1]
   }
 
@@ -30,7 +31,7 @@ export async function verifyJwt (ctx: AppContext, next: Next): Promise<void> {
 
   try {
     const claims: admin.auth.DecodedIdToken =
-      await ctx.services.auth.verifyIdToken(idToken)
+      await ctx.services.auth.verifyIdToken(idToken, isEmulated)
 
     ctx.state.claims = claims
     await next()

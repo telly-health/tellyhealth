@@ -1,4 +1,4 @@
-service: my-express-application
+service: tellyhealth-api
 useDotenv: true
 plugins:
   - serverless-plugin-typescript
@@ -10,7 +10,7 @@ custom:
     testEnvironment: node
     testRunner: jest-circus/runner
     testMatch: 
-      - '<rootDir>/test/unit /**/*.test.ts'
+      - '<rootDir>/test/integration /**/*.test.ts'
     globals:
       'ts-jest':
         'tsconfig': './tsconfig.test.json'
@@ -30,7 +30,12 @@ provider:
 
 functions:
   app:
-    handler: src/handler.ts
+   # handler: src/handler.ts
+    handler: dist/cjs/handler.handler
     events:
       - http: 'GET /healthcheck'
-      - http: 'POST /auth/register/:role'
+      - http: 'POST /auth/register/{role}'
+      - http: 'POST /auth/update_profile'
+      - http: 'POST /auth/verify-email'
+      - http: 'POST /auth/login/email'
+      - http: 'POST /auth/login'

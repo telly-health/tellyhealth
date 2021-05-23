@@ -1,7 +1,6 @@
-import { Next } from 'koa'
 import { AppContext } from '../types'
 
-export async function updateUser (ctx: AppContext, next: Next): Promise<void> {
+export async function updateUser (ctx: AppContext): Promise<void> {
   const { uid: userId, ...user } = ctx.request.body
   const { uid, displayName, email, emailVerified, phoneNumber } =
     await ctx.services.auth.updateUser(userId, user)
