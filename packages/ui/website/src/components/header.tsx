@@ -88,7 +88,7 @@ const Header = ({ companyName }: Props) => {
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <Image
-                  alt="Connecting people to medical practitioners across the globe"
+                  alt="Connecting people to medical practitioners"
                   filename="logo.png"
                 />
               </Link>

@@ -2,9 +2,10 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
+import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew"
+import { Link } from "gatsby"
 import Image from "./image"
 import Hidden from "@material-ui/core/Hidden"
-import { Link } from "gatsby"
 import Bar from "./bar"
 
 const AboutPanel = () => {
@@ -21,7 +22,7 @@ const AboutPanel = () => {
           style={{ padding: 10 }}
         >
           <div style={{ width: "100%" }}>
-            <Image alt="how it works" filename="how-it-works.png" />
+            <Image alt="Medical practitoner" filename="doctors.webp" />
           </div>
         </Grid>
       </Hidden>
@@ -36,22 +37,28 @@ const AboutPanel = () => {
         style={{ paddingLeft: 40, paddingRight: 40 }}
       >
         <Typography variant="h4" color="inherit">
-          Global healthcare support
+          We are here to help you with
         </Typography>
         <Bar />
         <Typography
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          Connecting people to medical practitioners across the globe through
-          telehealth consultations.
+          Countries across Asis Pacific are reeling surges in corona virus cases
+          which has put stress and overburden on health care professionals. We
+          want to make healthcare accessible to everyone.
         </Typography>
         <Link
-          to={`/how-it-works`}
+          to={`/register`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <Button variant="outlined" color="primary" size="large">
-            Learn More
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            endIcon={<AccessibilityNewIcon />}
+          >
+            Join us - Doctor
           </Button>
         </Link>
       </Grid>

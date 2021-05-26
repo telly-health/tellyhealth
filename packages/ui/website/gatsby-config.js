@@ -5,7 +5,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `TellyHealth`,
-    description: `Connecting people to medical practitioners across the globe.`,
+    description: `Connecting people to medical practitioners.`,
     author: ``,
   },
   plugins: [

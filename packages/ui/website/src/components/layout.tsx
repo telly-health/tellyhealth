@@ -32,15 +32,36 @@ const Layout = ({ children }: Props) => {
   return (
     <React.Fragment>
       <Header />
-      <Box
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        {children}
-      </Box>
+        {Array.isArray(children) ? children.map((view: any, index: number) => {
+          if (view.props.title) {
+            return
+          }
+          if(view.props.fullwidth) {
+            return <Box
+              key={index}
+            >
+              {view}
+            </Box>
+          }
+          return <Box
+            style={{
+              margin: `0 auto`,
+              maxWidth: 980,
+              padding: `0 1.0875rem 1.45rem`,
+            }}
+            key={index}
+          >
+            {view}
+          </Box>
+        }) : <Box
+          style={{
+            margin: `0 auto`,
+            maxWidth: 980,
+            padding: `0 1.0875rem 1.45rem`,
+          }}
+        >
+          {children}
+        </Box>}
       <Footer />
     </React.Fragment>
   )

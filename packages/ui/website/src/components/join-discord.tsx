@@ -28,8 +28,7 @@ const JoinUsPanel = () => {
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          Join our Discord server! We are building the community to support
-          people in need of medical support and consultations.
+          Join our Discord server! We are building the community to share health related information.
         </Typography>
         <a href="https://discord.gg/T8f4qZsf" target="_blank">
           <Button
@@ -38,9 +37,7 @@ const JoinUsPanel = () => {
             size="large"
             endIcon={
               <Avatar
-                src={
-                  "https://img-premium.flaticon.com/png/512/2111/2111370.png?token=exp=1621392272~hmac=05afc4fcb48f342c20a6e2e66f329f4d"
-                }
+                src={"/discord.png"}
               />
             }
           >

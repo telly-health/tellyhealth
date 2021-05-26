@@ -2,13 +2,16 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
-import Image from "./image"
-import Hidden from "@material-ui/core/Hidden"
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { Link } from "gatsby"
 
-const Hero = () => {
+interface Props {
+  fullwidth: boolean
+}
+
+const Hero = ({fullwidth}: Props) => {
   return (
-    <Grid container spacing={3} style={{ minHeight: 500 }}>
+    <Grid container spacing={3} style={{ minHeight: 500, marginBottom: 30 }} className="bg-cover-main bg-filter">
       <Grid
         item={true}
         xs={12}
@@ -16,38 +19,33 @@ const Hero = () => {
         container
         direction="column"
         justify="center"
-        alignItems="flex-start"
+        alignItems="flex-end"
         style={{ paddingLeft: 40, paddingRight: 40 }}
+        className="bg-non-blurred"
       >
-        <Typography variant="h4" color="inherit" style={{ marginBottom: 20 }}>
-          Telehealth Consultation
-        </Typography>
+        <div style={{ padding: 30, backdropFilter: "blur(20px)" }}>
+          <Typography variant="h3" style={{ color: "#fff", fontWeight: "bold", marginBottom: 10 }}>
+            Virtual Care for All
+          </Typography>
 
-        <Typography variant="subtitle1" style={{ marginBottom: 30 }}>
-          We connect people to medical practitoners across the globe for online
-          telehealth consultation.
-        </Typography>
-        <Link to="/i-am-a-patient">
-          <Button variant="contained" color="primary" size="large">
-            Join patient waitlist
-          </Button>
-        </Link>
+          <Typography variant="subtitle1" color="inherit" style={{ color: "#fefefe", paddingLeft: 5 }}>
+            Connect to a doctor, therapist, or medical expert
+          </Typography>
+          <Typography variant="subtitle1" color="inherit" style={{ color: "#fefefe", paddingLeft: 5, marginBottom: 30 }}>
+            anywhere you are by phone or video.
+          </Typography>
+          <Link to="/i-am-a-patient">
+            <Button variant="contained" color="primary" size="large">
+              Get Started Now
+            </Button>
+          </Link>
+          <Link to="/how-it-works">
+            <Button variant="text" style={{ color: "#fff" }} size="large" endIcon={<ArrowForwardIcon />}>
+              Learn More
+            </Button>
+          </Link>
+        </div>
       </Grid>
-      <Hidden xsDown>
-        <Grid
-          item={true}
-          sm={6}
-          container
-          direction="column"
-          justify="center"
-          alignItems="flex-start"
-          style={{ padding: 10 }}
-        >
-          <div style={{ width: "100%" }}>
-            <Image alt="Virtual Healthcare for you" filename="bg.jpg" />
-          </div>
-        </Grid>
-      </Hidden>
     </Grid>
   )
 }

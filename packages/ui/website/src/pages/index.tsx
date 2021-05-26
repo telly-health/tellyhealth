@@ -16,9 +16,9 @@ const IndexPage = () => (
       <Layout>
         <SEO
           title="TellyHealth | Home"
-          description={`Connecting people to medical practitoners across the globe`}
+          description={`Connecting people to medical practitoners`}
         />
-        <Hero />
+        <Hero fullwidth />
         <Consultations />
         <AboutPanel />
         <JoinDiscord />

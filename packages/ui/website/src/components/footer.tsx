@@ -47,14 +47,14 @@ const Footer = () => {
               <Typography variant="h4" color="inherit">
                 <div style={{ width: "180px" }}>
                   <Image
-                    alt="Connecting people to medical practitioners across the globe"
+                    alt="Connecting people to medical practitioners"
                     filename="telly.health-logo-white.png"
                   />
                 </div>
               </Typography>
               <Typography variant="body1" color="inherit">
                 TellyHealth is a platform for connecting people to medical
-                practitioners across the globe.
+                practitioners.
               </Typography>
               <Typography variant="body2" color="inherit">
                 @telly.health PTY LTD 2021. All rights reserved

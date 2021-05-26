@@ -1,7 +1,7 @@
 {
   "name": "website-ui",
   "private": true,
-  "description": "Connecting people to medical practitioners across the globe",
+  "description": "Connecting people to medical practitioners",
   "version": "0.1.0",
   "author": "Ajain Vivek",
   "dependencies": {
