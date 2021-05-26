@@ -54,8 +54,8 @@ const Services = () => {
         <Typography variant="subtitle1" style={{ margin: 30 }}>
           Countries across Asia Pacific are reeling from surges from corona
           viruses cases, this as overburdened health care professionals. Group
-          consultations are created by medical practitioners to
-          support people in time of crisis.
+          consultations are created by medical practitioners to support people
+          in time of crisis.
         </Typography>
       </Grid>
 

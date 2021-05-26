@@ -28,18 +28,15 @@ const JoinUsPanel = () => {
           variant="subtitle1"
           style={{ marginBottom: 30, marginTop: 20 }}
         >
-          Join our Discord server! We are building the community to share health related information.
+          Join our Discord server! We are building the community to share health
+          related information.
         </Typography>
         <a href="https://discord.gg/T8f4qZsf" target="_blank">
           <Button
             variant="outlined"
             color="primary"
             size="large"
-            endIcon={
-              <Avatar
-                src={"/discord.png"}
-              />
-            }
+            endIcon={<Avatar src={"/discord.png"} />}
           >
             Join TellyHealth Hub
           </Button>

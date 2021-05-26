@@ -32,28 +32,29 @@ const Layout = ({ children }: Props) => {
   return (
     <React.Fragment>
       <Header />
-        {Array.isArray(children) ? children.map((view: any, index: number) => {
+      {Array.isArray(children) ? (
+        children.map((view: any, index: number) => {
           if (view.props.title) {
             return
           }
-          if(view.props.fullwidth) {
-            return <Box
+          if (view.props.fullwidth) {
+            return <Box key={index}>{view}</Box>
+          }
+          return (
+            <Box
+              style={{
+                margin: `0 auto`,
+                maxWidth: 980,
+                padding: `0 1.0875rem 1.45rem`,
+              }}
               key={index}
             >
               {view}
             </Box>
-          }
-          return <Box
-            style={{
-              margin: `0 auto`,
-              maxWidth: 980,
-              padding: `0 1.0875rem 1.45rem`,
-            }}
-            key={index}
-          >
-            {view}
-          </Box>
-        }) : <Box
+          )
+        })
+      ) : (
+        <Box
           style={{
             margin: `0 auto`,
             maxWidth: 980,
@@ -61,7 +62,8 @@ const Layout = ({ children }: Props) => {
           }}
         >
           {children}
-        </Box>}
+        </Box>
+      )}
       <Footer />
     </React.Fragment>
   )
