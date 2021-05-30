@@ -19,10 +19,10 @@ const IndexPage = () => (
           description={`Connecting people to medical practitoners`}
         />
         <Hero fullwidth />
-        <Consultations />
+        {/* <Consultations /> */}
         <AboutPanel />
-        <JoinDiscord />
         <JoinUs />
+        {/* <JoinDiscord /> */}
       </Layout>
     </ThemeProvider>
   </React.Fragment>

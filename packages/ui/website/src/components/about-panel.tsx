@@ -37,30 +37,43 @@ const AboutPanel = () => {
         style={{ paddingLeft: 40, paddingRight: 40 }}
       >
         <Typography variant="h4" color="inherit">
-          We are here to help you with
+          We are here to help
         </Typography>
         <Bar />
         <Typography
           variant="subtitle1"
-          style={{ marginBottom: 30, marginTop: 20 }}
+          style={{ marginBottom: 0, marginTop: 20 }}
         >
-          Countries across Asis Pacific are reeling surges in corona virus cases
-          which has put stress and overburden on health care professionals. We
-          want to make healthcare accessible to everyone.
+          We want to make healthcare accessible to everyone from comfort of your home. We provide services 
         </Typography>
-        <Link
-          to={`/register`}
-          style={{ textDecoration: "none", color: "inherit" }}
+        <Typography
+          variant="h6"
+          color="primary"
+          style={{ fontWeight: "lighter", marginTop: 10 }}
         >
-          <Button
-            variant="outlined"
-            color="primary"
-            size="large"
-            endIcon={<AccessibilityNewIcon />}
-          >
-            Join us - Doctor
-          </Button>
-        </Link>
+          General Medical
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          style={{ fontWeight: "lighter" }}
+        >
+          Mental Health
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          style={{ fontWeight: "lighter" }}
+        >
+          Specialists & Expert Advice
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          style={{ fontWeight: "lighter", marginBottom: 30 }}
+        >
+          Wellness Care
+        </Typography>
       </Grid>
     </Grid>
   )
